@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>poly000客栈</title><link>/</link><description>poly000 的碎碎念</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>/android-chrome-512x512.png</url><title>poly000客栈</title><link>/</link></image><language>chinese</language><lastBuildDate>Sun, 25 Jul 2021 19:26:26 +0806</lastBuildDate><pubDate>Sun, 25 Jul 2021 19:26:26 +0806</pubDate><item><title>给Win32程序加图标</title><link>/archives/add-icon-to-win32-exe/</link><description>&lt;h2&gt;前言&lt;/h2&gt;
+&lt;p&gt;为了好玩咱想要试着给win32程序加图标，&lt;/p&gt;&lt;p&gt;但是只找到了用VS加图标的操作……&lt;/p&gt;&lt;p&gt;最后找到了链接操作。&lt;/p&gt;&lt;p&gt;&lt;a href="https://fragglet.livejournal.com/4448.html"&gt;原文地址（英文）&lt;/a&gt;&lt;/p&gt;&lt;h2&gt;开始动手做&lt;/h2&gt;
+&lt;p&gt;首先 我们需要写一个 &lt;code&gt;.rc&lt;/code&gt; 的文件：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1 ICON &amp;quot;(path-to-*.ico)&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后，运行&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;windres [file.rc] [file.o]
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;最后把 &lt;code&gt;.o&lt;/code&gt; 链接进去！(这里是C程序)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;gcc main.c [file.o]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;大功告成！&lt;/p&gt;</description><author>1348292515@qq.com (Poly000)</author><guid isPermaLink="true">/archives/add-icon-to-win32-exe/</guid><pubDate>Tue, 29 Sep 2020 22:08:00 +0806</pubDate></item><item><title>Wallpaper Engine的开源替代品：ScreenPlay</title><link>/archives/ScreenPlay/</link><description>&lt;h2&gt;前言&lt;/h2&gt;
+&lt;p&gt;最近突然想找开源的linux上的WE替代品，&lt;/p&gt;&lt;p&gt;然而找到了 &lt;em&gt;Windows10&lt;/em&gt; 下运行的的 &lt;strong&gt;ScreenPlay&lt;/strong&gt; 。&lt;/p&gt;&lt;p&gt;感觉挺好的，于是贡献了zh-CN的翻译。&lt;/p&gt;&lt;h2&gt;安装&lt;/h2&gt;
+&lt;p&gt;首先需要加入 &lt;em&gt;&lt;a href="https://discord.gg/3RygPHZ"&gt;Discord群组&lt;/a&gt;&lt;/em&gt; 获取邀请码（至少目前是）。&lt;/p&gt;&lt;p&gt;然后到Steam激活产品 -&amp;gt; 输入序列号。&lt;/p&gt;&lt;p&gt;（其中的bot因为 Power$hell 易死。）&lt;/p&gt;&lt;p&gt;界面预览图：&lt;/p&gt;&lt;figure style="flex: 88.83248730964468" &gt;&lt;img loading="lazy" width="1400" height="788" src="/archives/assets/f78f501ef1d9764495df8984c129970d.png" /&gt;&lt;figcaption&gt;create&lt;/figcaption&gt;&lt;/figure&gt;&lt;figure style="flex: 88.83248730964468" &gt;&lt;img loading="lazy" width="1400" height="788" src="/archives/assets/b1ef8a71fa1fa82dbfe8699a2e58d57f.png" /&gt;&lt;figcaption&gt;workshop&lt;/figcaption&gt;&lt;/figure&gt;&lt;figure style="flex: 88.83248730964468" &gt;&lt;img loading="lazy" width="1400" height="788" src="/archives/assets/49014982ca8e4b7fb3655eafa1c0ef4d.png" /&gt;&lt;figcaption&gt;settings&lt;/figcaption&gt;&lt;/figure&gt;</description><author>1348292515@qq.com (Poly000)</author><guid isPermaLink="true">/archives/ScreenPlay/</guid><pubDate>Thu, 01 Oct 2020 01:04:00 +0806</pubDate></item><item><title>GPU直通教程汉化</title><link>/archives/vm-on-linux-use-gpu-passthough/</link><description>&lt;h2&gt;原文链接&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://clayfreeman.github.io/gpu-passthrough/"&gt;https://clayfreeman.github.io/gpu-passthrough/&lt;/a&gt;&lt;/p&gt;&lt;h2&gt;汉化&lt;/h2&gt;
+&lt;p&gt;正在做了（咕）&lt;/p&gt;</description><author>1348292515@qq.com (Poly000)</author><guid isPermaLink="true">/archives/vm-on-linux-use-gpu-passthough/</guid><pubDate>Thu, 04 Feb 2021 00:04:00 +0806</pubDate></item><item><title>在wine下运行galgame常见问题解决方案</title><link>/archives/galgame-runs-on-linux/</link><description>&lt;h2&gt;说明&lt;/h2&gt;
+&lt;p&gt;咱的wine一直跟随archlinux官方仓库最新版&lt;/p&gt;&lt;p&gt;这里内容可能很少，因为咱每次wine推gal出错并且解决了才会放到这里&lt;/p&gt;&lt;h2&gt;这里是正文&lt;/h2&gt;
+&lt;p&gt;咱在linux下推gal有时OP什么的经常出错……&lt;/p&gt;&lt;p&gt;于是准备整理这个博文，​收录各种错误信息解决方案。&lt;/p&gt;&lt;h3&gt;通用&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;MPEG splitter faild: 安装 devenum, quartz 后解决；quartz出问题的话可以执行 &lt;code&gt;winetricks --force quartz&lt;/code&gt; 重装。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;万能方法： 在崩溃的地方存档，换win7虚拟机走过那段内容后存档。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;其他OP播放崩溃：faudio（闪画面无声音），等等……（待添加）&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;打不开游戏: 一般安装DirectX相关依赖项即可解决&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;启动时弹了乱码报错，或者是游戏中乱码（比如 Clover Day’s中文汉化版，rewrite），可以在wine前加启动参数LANG=en_US.UTF-8，或LANG=zh_CN.UTF-8或LANG=ja_JP.UTF-8。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://appdb.winehq.org/"&gt;WineHQ-AppDB&lt;/a&gt; 通常会有一些人提供信息。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;特定游戏&lt;/h3&gt;
+&lt;h4&gt;拔作岛&lt;/h4&gt;
+&lt;p&gt;拔作岛使用编码 GB18030&lt;/p&gt;&lt;p&gt;启动时使用 &lt;code&gt;LANG=zh_CN.GB18030 wine ...&lt;/code&gt; 即可解决乱码&lt;/p&gt;&lt;p&gt;&lt;a href="https://blog.sg4yk.com/gal_on_linux.html"&gt;参考链接&lt;/a&gt;（需要事先进行locale-gen）&lt;/p&gt;</description><author>1348292515@qq.com (Poly000)</author><guid isPermaLink="true">/archives/galgame-runs-on-linux/</guid><pubDate>Thu, 04 Feb 2021 00:04:00 +0806</pubDate></item><item><title>WinDirStat——Windows下存储分析的优秀方案</title><link>/archives/windirstat-recommend/</link><description>&lt;h2&gt;引言&lt;/h2&gt;
+&lt;p&gt;一个月前&lt;span title="被学校领导命令"&gt;清理&lt;/span&gt;C盘，&lt;/p&gt;&lt;p&gt;然后在 &lt;a href="https://alternativeto.net"&gt;alternativeto.net&lt;/a&gt; 找到了 &lt;a href="https://alternativeto.net/software/filelight/?platform=windows"&gt;FileLight 在 Windows 上的替代品&lt;/a&gt;，&lt;/p&gt;&lt;p&gt;最后选择了 &lt;a href="https://windirstat.net/index.html"&gt;WinDirStat&lt;/a&gt; 。&lt;/p&gt;&lt;p&gt;相较于 TreeSize 抽象的饼图和&lt;span title="让人眼花"&gt;目害&lt;/span&gt;的大小图，&lt;/p&gt;&lt;p&gt;WinDirStat 使用 &lt;strong&gt;颜色&lt;/strong&gt; （对应文件类型）， &lt;strong&gt;矩形大小&lt;/strong&gt; （对应文件大小），直观地显示了空间使用分布。&lt;/p&gt;&lt;p&gt;附一张截图：&lt;/p&gt;&lt;figure style="flex: 66.08391608391608" &gt;&lt;img loading="lazy" width="378" height="286" src="https://windirstat.net/images/windirstat.jpg" /&gt;&lt;figcaption&gt;screencut&lt;/figcaption&gt;&lt;/figure&gt;</description><author>1348292515@qq.com (Poly000)</author><guid isPermaLink="true">/archives/windirstat-recommend/</guid><pubDate>Wed, 23 Jun 2021 19:30:00 +0806</pubDate></item><item><title>OpenGL Flipping——记一次游戏直播闪屏修复过程</title><link>/archives/opengl-flipping/</link><description>&lt;h2&gt;引言&lt;/h2&gt;
+&lt;p&gt;此前我在 bilibili 上传 osu! 等游戏视频 发现有闪屏现象。&lt;/p&gt;&lt;p&gt;很久以后我到 OBS 社区 寻求帮助，终于得到了解决方案。&lt;/p&gt;&lt;h2&gt;Flipping&lt;/h2&gt;
+&lt;p&gt;NVIDIA Flipping 是种可以 &lt;strong&gt;略微&lt;/strong&gt; 提高帧率的技术，&lt;/p&gt;&lt;p&gt;对于内容创作者（录制视频，全屏模式的话）应当禁用，不然会影响录制（详见官方文档）&lt;/p&gt;&lt;p&gt;禁用之后，垂直同步会无法使用，而且会有 &lt;strong&gt;略微&lt;/strong&gt; 性能下降&lt;/p&gt;</description><author>1348292515@qq.com (Poly000)</author><guid isPermaLink="true">/archives/opengl-flipping/</guid><pubDate>Tue, 20 Jul 2021 01:03:00 +0806</pubDate></item><item><title>关于 Osdlyrics 网易来源启用翻译</title><link>/archives/enable-osdlyrics-netease-translation/</link><description>&lt;h2&gt;引言&lt;/h2&gt;
+&lt;p&gt;今天偶然得知 GNU/Linux 下的 Osdlyrics 可用于桌面歌词&lt;/p&gt;&lt;p&gt;但是它不会默认启用翻译。所以这次说一下怎么修改 Osdlyrics 尝试使用翻译歌词。&lt;/p&gt;&lt;h2&gt;原理&lt;/h2&gt;
+&lt;p&gt;根据 &lt;a href="https://github.com/Binaryify/NeteaseCloudMusicApi"&gt;NeteaseCloudMusicApi&lt;/a&gt; ，
+我发现网易的翻译LRC和原LRC是区分的。&lt;/p&gt;&lt;p&gt;因此，只要修改 &lt;code&gt;/usr/lib/osdlyrics/lyricsources/netease/&lt;/code&gt; 下的 &lt;code&gt;netease.py&lt;/code&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+@@ -86,7 +86,9 @@ class NeteaseSource(BaseLyricSourcePlugin):
+         # Avoid processing results with no lyrics.
+         if 'nolyric' in parsed or 'uncollected' in parsed:
+             raise ValueError('This item has no lyrics.')
+-        lyric = parsed['lrc']['lyric']
++        lyric = parsed['tlyric']['lyric']
++        if not lyric:
++            lyric = parsed['lrc']['lyric'] # If there is no translation, use the original lyric instead
+         return lyric.encode('utf-8')
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这样修改就可以尝试使用翻译歌词。&lt;/p&gt;</description><author>1348292515@qq.com (Poly000)</author><guid isPermaLink="true">/archives/enable-osdlyrics-netease-translation/</guid><pubDate>Sun, 25 Jul 2021 17:45:00 +0806</pubDate></item></channel></rss>
