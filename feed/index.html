@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>poly000客栈</title><link>/</link><description>poly000 的碎碎念</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>/android-chrome-512x512.png</url><title>poly000客栈</title><link>/</link></image><language>chinese</language><lastBuildDate>Wed, 28 Jul 2021 19:38:04 +0806</lastBuildDate><pubDate>Wed, 28 Jul 2021 19:38:04 +0806</pubDate><item><title>给Win32程序加图标</title><link>/archives/add-icon-to-win32-exe/</link><description>&lt;h2&gt;前言&lt;/h2&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>poly000客栈</title><link>/</link><description>poly000 的碎碎念</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>/android-chrome-512x512.png</url><title>poly000客栈</title><link>/</link></image><language>chinese</language><lastBuildDate>Wed, 28 Jul 2021 19:51:09 +0806</lastBuildDate><pubDate>Wed, 28 Jul 2021 19:51:09 +0806</pubDate><item><title>给Win32程序加图标</title><link>/archives/add-icon-to-win32-exe/</link><description>&lt;h2&gt;前言&lt;/h2&gt;
 &lt;p&gt;为了好玩咱想要试着给win32程序加图标，&lt;/p&gt;&lt;p&gt;但是只找到了用VS加图标的操作……&lt;/p&gt;&lt;p&gt;最后找到了链接操作。&lt;/p&gt;&lt;p&gt;&lt;a href="https://fragglet.livejournal.com/4448.html"&gt;原文地址（英文）&lt;/a&gt;&lt;/p&gt;&lt;h2&gt;开始动手做&lt;/h2&gt;
 &lt;p&gt;首先 我们需要写一个 &lt;code&gt;.rc&lt;/code&gt; 的文件：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;1 ICON &amp;quot;(path-to-*.ico)&amp;quot;
@@ -49,10 +49,7 @@
 &lt;p&gt;Rust 发布于三个渠道： stable，beta，以及 nightly。&lt;/p&gt;&lt;p&gt;Nightly 编译器每天都会发布，而且唯有它允许你解锁不稳定 Rust 特性。&lt;/p&gt;&lt;blockquote&gt;
 &lt;p&gt;这篇文章只讨论不稳定编译器特性，不稳定的库特性不属于这个话题。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2&gt;为什么要用不稳定特性？&lt;/h2&gt;
-&lt;p&gt;不稳定 Rust 可以让你使用在稳定 Rust 中无法表示的API。正因如此，编译器与标准库都使用了不稳定特性。&lt;/p&gt;&lt;p&gt;使用不稳定的特性总是伴随着一些风险。它们经常会有一些意想不到的行为，有时甚至会破坏 Rust 的内存安全保证，导致未定义行为。一部分特性可能开发的很好，而另一部分可能未被开发。&lt;/p&gt;&lt;p&gt;它发生于编译过程中，编译器将会恐慌。
-This could be due to data and queries becoming malformed by incomplete features or even just hitting a &lt;code&gt;todo!&lt;/code&gt; on part of a feature that has not been worked on yet.
-这可能是由于数据与查询操作因不完整的特性而畸形，甚至可能只是在未做出的特性部分打了一个 &lt;code&gt;todo!()&lt;/code&gt;
-如果你遇到了ICE，检查一下这个问题是否已知，否则就把它报告给&lt;a href="https://github.com/rust-lang/rust/issues"&gt;bug tracker&lt;/a&gt;。&lt;/p&gt;&lt;p&gt;Rust 不保证在未来继续支持它的不稳定特性。
+&lt;p&gt;不稳定 Rust 可以让你使用在稳定 Rust 中无法表示的API。正因如此，编译器与标准库都使用了不稳定特性。&lt;/p&gt;&lt;p&gt;使用不稳定的特性总是伴随着一些风险。它们经常会有一些意想不到的行为，有时甚至会破坏 Rust 的内存安全保证，导致未定义行为。一部分特性可能开发的很好，而另一部分可能未被开发。&lt;/p&gt;&lt;p&gt;对于使用不稳定特性的 Nightly 编译器，遇到“内部编译器错误”并不少见，这种情况通常称为&lt;a href="https://github.com/rust-lang/rust/labels/I-ICE"&gt;ICE&lt;/a&gt;。它发生于编译过程中，编译器将会恐慌。这可能是由于数据与查询操作因未完成的特性而畸形，甚至可能只是因为未做出的特性部分被打了一个 &lt;code&gt;todo!()&lt;/code&gt;。&lt;/p&gt;&lt;p&gt;如果你遇到了ICE，检查一下这个问题是否已知，否则就把它报告给&lt;a href="https://github.com/rust-lang/rust/issues"&gt;bug tracker&lt;/a&gt;。&lt;/p&gt;&lt;p&gt;Rust 不保证在未来继续支持它的不稳定特性。
 作为 Rust 开发者，我们享受着优秀的向下兼容性与稳定性，
 而启用不稳定特性时，这些保证都被抛在脑后。
 今天工作的程序可能明天就大不相同。&lt;/p&gt;&lt;p&gt;我决定研究不稳定特性，不是因为我需要用它们去解决实际问题。
