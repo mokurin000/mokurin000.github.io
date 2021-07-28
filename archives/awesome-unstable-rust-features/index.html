@@ -1,0 +1,603 @@
+<!DOCTYPE HTML>
+<html lang="chinese">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="poly000,blog" />
+    <meta name="generator" content="Maverick 1.2.1" />
+    <meta name="template" content="Galileo" />
+    <link rel="alternate" type="application/rss+xml" title="poly000客栈 &raquo; RSS 2.0" href="/feed/index.xml" />
+    <link rel="alternate" type="application/atom+xml" title="poly000客栈 &raquo; ATOM 1.0" href="/feed/atom/index.xml" />
+    <link rel="stylesheet" href="/assets/galileo-8d8763e752.css">
+    <link rel="stylesheet" href="/assets/ExSearch/ExSearch-182e5a8868.css">
+    <link rel="stylesheet" href="/assets/katex.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700&display=swap">
+    <script>
+        var ExSearchConfig = {
+            root: "",
+            api: "/059a3e654146dd7dc65071df2879918a.json"
+        }
+    </script>
+    
+<title>令人赞叹的Rust不稳定特性 - poly000客栈</title>
+<meta name="author" content="Poly000" />
+<meta name="description" content="关于翻译" />
+<meta property="og:title" content="令人赞叹的Rust不稳定特性 - poly000客栈" />
+<meta property="og:description" content="关于翻译" />
+<meta property="og:site_name" content="poly000客栈" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/archives/awesome-unstable-rust-features/" />
+<meta property="og:image" content="" />
+<meta property="article:published_time" content="2021-07-28T15:04:00+08.00" />
+<meta name="twitter:title" content="令人赞叹的Rust不稳定特性 - poly000客栈" />
+<meta name="twitter:description" content="关于翻译" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:image" content="" />
+
+
+    
+    </head>
+    
+    <body>
+        
+        <div class="container">
+            <header id="ga-header">
+                <div first>
+                    <aside id="ga-brand">
+                        <h1 class="brand"><a class="no-style" href="/">poly000客栈</a></h1>
+                        <p>poly000 的碎碎念</p>
+                    </aside>
+                </div>
+                <div second id="ga-nav">
+                    <nav class="navs">
+                        <ul><li><a class="ga-highlight" href="/" target="_self">Home</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/archives/" target="_self">Archives</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/about/" target="_self">About</a></li><span class="separator">·</span><li><a href="#" target="_self" class="search-form-input ga-highlight">Search</a></li></ul>
+                    </nav>
+                </div>
+            </header>
+            <div class="wrapper">
+                
+<main>    
+    <section class="ga-section ga-content">
+        <article class="yue">
+            <h1 class="ga-post_title">令人赞叹的Rust不稳定特性</h1>
+            <span class="ga-post_meta ga-mono">
+                <span>Poly000</span>
+                <time>
+                    2021-07-28
+                </time>
+                
+                in <a no-style class="category" href="/category/Programming/">
+                    Programming
+                </a>
+                
+                
+                <span class="leancloud_visitors" 
+                    id="/archives/awesome-unstable-rust-features/" 
+                    data-flag-title="令人赞叹的Rust不稳定特性"> · <i class="leancloud-visitors-count"></i> Views</span>
+                
+            </span>
+            <div class="ga-content_body">
+                <h2>关于翻译</h2>
+<p>主要译者：<a href="https://github.com/poly000">ppoly000</a></p><p>标题翻译参考了 <a href="https://github.com/xieyuheng">@xieyuheng</a> 的建议。</p><p>术语部分翻译参考了 <a href="https://rustwiki.org/wiki/translate/english-chinese-glossary-of-rust/">Rust 语言术语中英文对照表</a>，有改动。</p><p>这个翻译<strong>尚未完成</strong>，预计需要多日努力。</p><h2>Credits</h2>
+<p>[原文] by <a href="https://twitter.com/efun_b">Ethan Brierley</a></p><h2>简介</h2>
+<p>这篇文章介绍了一些尚不稳定的 Rust 编译器特性。它将会简要叙述这些特性，并不会深入太多的细节。</p><h2>什么是不稳定 Rust？</h2>
+<p>Rust 发布于三个渠道： stable，beta，以及 nightly。</p><p>Nightly 编译器每天都会发布，而且唯有它允许你解锁不稳定 Rust 特性。</p><blockquote>
+<p>这篇文章只讨论不稳定编译器特性，不稳定的库特性不属于这个话题。</p></blockquote>
+<h2>为什么要用不稳定特性？</h2>
+<p>不稳定 Rust 可以让你使用在稳定 Rust 中无法表示的API。正因如此，编译器与标准库都使用了不稳定特性。</p><p>使用不稳定的特性总是伴随着一些风险。它们经常会有一些意想不到的行为，有时甚至会破坏 Rust 的内存安全保证，导致未定义行为。一部分特性可能开发的很好，而另一部分可能未被开发。</p><p>它发生于编译过程中，编译器将会恐慌。
+This could be due to data and queries becoming malformed by incomplete features or even just hitting a <code>todo!</code> on part of a feature that has not been worked on yet.
+这可能是由于数据与查询操作因不完整的特性而畸形，甚至可能只是在未做出的特性部分打了一个 <code>todo!()</code>
+如果你遇到了ICE，检查一下这个问题是否已知，否则就把它报告给<a href="https://github.com/rust-lang/rust/issues">bug tracker</a>。</p><p>Rust 不保证在未来继续支持它的不稳定特性。
+作为 Rust 开发者，我们享受着优秀的向下兼容性与稳定性，
+而启用不稳定特性时，这些保证都被抛在脑后。
+今天工作的程序可能明天就大不相同。</p><p>我决定研究不稳定特性，不是因为我需要用它们去解决实际问题。
+我寻找它们是因为我觉得他们很有趣。
+对我来说，使用不稳定的特性，是一种有趣的，使我更多地参与到语言本身的开发过程的方法。</p><blockquote>
+<p>不稳定特性的全面列表见<a href="https://github.com/rust-lang/rust/blob/135ccbaca86ed4b9c0efaf0cd31442eae57ffad7/src/librustc_feature/active.rs#L83-L530">不稳定特性列表</a>。</p></blockquote>
+<h2>启用不稳定特性</h2>
+<p>为了开始使用不稳定特性，首先你需要安装 Nightly 工具链：</p><div class="highlight"><pre><span></span>rustup toolchain install nightly
+</pre></div>
+<p>若要使用 Nightly 工具链，你需要在运行命令时加上 <code>+nightly</code> 修饰符。</p><div class="highlight"><pre><span></span>&lt;rust-command&gt; +nightly &lt;args&gt;
+</pre></div>
+<p>For example:</p><div class="highlight"><pre><span></span>cargo +nightly run
+</pre></div>
+<p>另外，你可以将你的默认编译器改为 Nightly ，这样你就不再需要使用 <code>+nightly</code> 修饰符。
+我经常这样做，因为我不认为 nightly 编译器很不稳定，即使对于我的在 stable 上可以编译的项目也是这样。</p><div class="highlight"><pre><span></span>rustup default nightly
+</pre></div>
+<p>一旦你使用 nightly 编译器，你就可以直接开始使用不稳定特性。让我们试一试吧！</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">my_box</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">box</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<p>它会导致这样的编译错误：</p><div class="highlight"><pre><span></span><span class="n">error</span><span class="p">[</span><span class="n">E0658</span><span class="p">]</span>: <span class="nc">box</span><span class="w"> </span><span class="n">expression</span><span class="w"> </span><span class="n">syntax</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">experimental</span><span class="p">;</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">call</span><span class="w"> </span><span class="err">`</span><span class="nb">Box</span>::<span class="n">new</span><span class="err">`</span><span class="w"> </span><span class="n">instead</span><span class="w"></span>
+<span class="w"> </span><span class="o">-</span>-&gt; <span class="nc">src</span><span class="o">/</span><span class="n">main</span><span class="p">.</span><span class="n">rs</span>:<span class="mi">2</span>:<span class="mi">18</span><span class="w"></span>
+<span class="w">  </span><span class="o">|</span><span class="w"></span>
+<span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="kd">let</span><span class="w"> </span><span class="n">my_box</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">box</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="o">|</span><span class="w">                  </span><span class="o">^^^^^</span><span class="w"></span>
+<span class="w">  </span><span class="o">|</span><span class="w"></span>
+<span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">note</span>: <span class="nc">see</span><span class="w"> </span><span class="n">issue</span><span class="w"> </span>#<span class="mi">49733</span><span class="w"> </span><span class="o">&lt;</span><span class="n">https</span>:<span class="c1">//github.com/rust-lang/rust/issues/49733&gt; for more information</span>
+<span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">help</span>: <span class="nc">add</span><span class="w"> </span><span class="err">`</span><span class="cp">#![feature(box_syntax)]</span><span class="err">`</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">crate</span><span class="w"> </span><span class="n">attributes</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">enable</span><span class="w"></span>
+</pre></div>
+<p>正如以往，Rust 在 <code>help</code> 消息中准确地告诉了我们需要做什么。
+我们需要用 <code>#![feature(box_syntax)]</code> 启用这个特性。</p><div class="highlight"><pre><span></span><span class="cp">#![feature(box_syntax)]</span><span class="w"></span>
+<span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">my_box</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">box</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<p>所有不稳定特性都需要在可以使用前以 <code>#![feature(..)]</code> 启用。
+如果你忘记了，编译器<strong>通常</strong>会正确地指出要如何做，然而，并非总会这样。</p><p>现在，让我们开始讨论一些特性本身。
+我把你需要启用的特性名称放在每个特性的标题中的 <code>代码块</code> 中，而在代码片段中省略它们，以保持简洁。</p><h2>控制流、模式和块</h2>
+<h3><code>destructuring_assignment</code></h3>
+<p>在Rust中，在绑定某一类型到一个定义时解构它是很常见的。
+这通常是通过 <code>let</code> 绑定完成的。</p><div class="highlight"><pre><span></span><span class="c1">// 创建两个 &quot;变量&quot;, 一个是 x, 一个是 y </span>
+<span class="kd">let</span><span class="w"> </span><span class="n">Point</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Point</span>::<span class="n">random</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+<p>传统上，这种模式只有在实例化一个新定义时才能实现。
+<code>destructuring_assignment</code> 将它拓展到可用于修改值时。</p><!-- extends this to work when mutating values -->
+<p>换句话说，我们可以不使用 <code>let</code> 完成解构。</p><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="k">mut</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+
+<span class="n">Point</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Point</span>::<span class="n">random</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+<h3>从任意块提前返回，<code>label_break_value</code></h3>
+<p>One of the less well-known Rust features is the fact that <a href="https://doc.rust-lang.org/edition-guide/rust-2018/control-flow/loops-can-break-with-a-value.html"><code>loop</code>可以带值退出</a>.
+Like many of the constructs in Rust loops are not just statements, but <a href="https://doc.rust-lang.org/reference/statements-and-expressions.html">expressions</a>.</p><div class="highlight"><pre><span></span><span class="c1">// Keep asking the user to input an number until they give us a valid one</span>
+<span class="kd">let</span><span class="w"> </span><span class="n">number</span>: <span class="kt">u8</span> <span class="o">=</span><span class="w"> </span><span class="k">loop</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nb">Ok</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">input</span><span class="p">().</span><span class="n">parse</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">break</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;Invaid number, Please input a valid number&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+</pre></div>
+<p><code>label_break_value</code> extends this to work on any labelled block, not just loops.
+This acts as a kind of early <code>return</code> that works on any block of code, not just function bodies.</p><p>To label a block you use a syntax similar to lifetimes.</p><div class="highlight"><pre><span></span><span class="o">&#39;</span><span class="na">block</span>: <span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="c1">// This block is now labelled &quot;block&quot;</span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<p>It is already possible to <a href="https://doc.rust-lang.org/rust-by-example/flow_control/loop/nested.html">label loops</a> much in the same way.</p><p>We can put the same label on our <code>break</code> to early return from that block.</p><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&#39;</span><span class="na">block</span>: <span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">is_empty</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">break</span><span class="w"> </span><span class="nl">&#39;block</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// Early return from block</span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">s</span><span class="p">.</span><span class="n">parse</span><span class="p">().</span><span class="n">unwrap</span><span class="p">()</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<blockquote>
+<p>This feature is <a href="http://david.tribble.com/text/goto.html">not equivalent to goto</a>.
+It does not have the same damaging effects as goto as it only goes forward and breaks from a block.</p></blockquote>
+<h3>Inlining the power of the <code>?</code> operator using <code>try_blocks</code></h3>
+<p>The <a href="https://doc.rust-lang.org/edition-guide/rust-2018/error-handling-and-panics/the-question-mark-operator-for-easier-error-handling.html">edition guide</a> uses this example to illustrate how the question mark operator works:</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">read_username_from_file</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="nb">Result</span><span class="o">&lt;</span><span class="nb">String</span><span class="p">,</span><span class="w"> </span><span class="n">io</span>::<span class="n">Error</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">File</span>::<span class="n">open</span><span class="p">(</span><span class="s">&quot;username.txt&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">match</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nb">Ok</span><span class="p">(</span><span class="n">file</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">file</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nb">Err</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">Err</span><span class="p">(</span><span class="n">e</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="p">};</span><span class="w"></span>
+
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">new</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">match</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">read_to_string</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nb">Ok</span><span class="p">(</span><span class="n">_</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nb">Ok</span><span class="p">(</span><span class="n">s</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="nb">Err</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nb">Err</span><span class="p">(</span><span class="n">e</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<p>Simplifying using the <code>?</code> operator, results in this equivalent code:</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">read_username_from_file</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="nb">Result</span><span class="o">&lt;</span><span class="nb">String</span><span class="p">,</span><span class="w"> </span><span class="n">io</span>::<span class="n">Error</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">File</span>::<span class="n">open</span><span class="p">(</span><span class="s">&quot;username.txt&quot;</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">new</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">f</span><span class="p">.</span><span class="n">read_to_string</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="nb">Ok</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<p><code>?</code> is used in the context of functions to early return an <code>Err</code> if encountered.
+<code>try_blocks</code> unlock the same power but for any block of code rather than just functions.
+With <code>try_blocks</code> we can inline our <code>read_usernames_from_file</code> function.</p><p><code>try_blocks</code> relate to <code>?</code> in the same way that <code>label_break_value</code> relates to <code>return</code>.
+The RFC for <code>try_blocks</code> mentions <code>label_break_value</code> as a potential way of desugaring  <code>try_blocks</code>.</p><p>Let's rewrite our <code>read_username_from_file</code> function as a simple <code>let</code> binding with a <code>try</code> block.</p><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">read_username_from_file</span>: <span class="nb">Result</span><span class="o">&lt;</span><span class="nb">String</span><span class="p">,</span><span class="w"> </span><span class="n">io</span>::<span class="n">Error</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kr">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">File</span>::<span class="n">open</span><span class="p">(</span><span class="s">&quot;username.txt&quot;</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">new</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">f</span><span class="p">.</span><span class="n">read_to_string</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="nb">Ok</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<p>I love this kind of thing especially for smaller expressions that can be made easier to read when not extracted into functions.</p><h3><code>inline_const</code></h3>
+<p>Currently, the way to get a value to be evaluated at compile time is by defining a constant.</p><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">PI_APPROX</span>: <span class="kt">f64</span> <span class="o">=</span><span class="w"> </span><span class="mf">22.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">7.0</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="kd">let</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">func</span><span class="p">(</span><span class="n">PI_APPROX</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<p>With <code>inline_const</code> we can do the same as an anonymous expression.</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="kd">let</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">func</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mf">22.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">7.0</span><span class="w"> </span><span class="p">});</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<p>With this simple example, the <code>const</code> block is almost certainly not necessary, due to compiler optimisations such as <a href="https://blog.rust-lang.org/inside-rust/2019/12/02/const-prop-on-by-default.html">constant propagation</a>,
+however, with more complex constants, it may be helpful to be explicit with the block.</p><p>This feature also allows for these blocks to be used in pattern position.
+<code>match x { 1 + 3 =&gt; {} }</code> results in a syntax error while <code>match x { const { 1 + 3 } =&gt; {} }</code>does not.</p><h3><code>if_let_guard</code></h3>
+<p>Extends the <a href="https://doc.rust-lang.org/beta/rust-by-example/flow_control/match/guard.html"><code>if</code> guards</a> that you can use with <code>match</code> statements to be able to use <code>if let</code>.</p><h3><code>let_chains</code></h3>
+<p>Currently, <code>if let</code> and <code>while let</code> expressions can not be chained with <code>||</code> or <code>&amp;&amp;</code>.
+This feature adds that support.</p><h2>Traits</h2>
+<h3><code>associated_type_bounds</code></h3>
+<p>Let's take this stable Rust function:</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">fizzbuzz</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="nc">impl</span><span class="w"> </span><span class="nb">Iterator</span><span class="o">&lt;</span><span class="n">Item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">(</span><span class="mi">1</span><span class="o">..</span><span class="p">).</span><span class="n">map</span><span class="p">(</span><span class="o">|</span><span class="n">val</span><span class="o">|</span><span class="w"> </span><span class="k">match</span><span class="w"> </span><span class="p">(</span><span class="n">val</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s">&quot;FizzBuzz&quot;</span><span class="p">.</span><span class="n">to_string</span><span class="p">(),</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s">&quot;Fizz&quot;</span><span class="p">.</span><span class="n">to_string</span><span class="p">(),</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="n">_</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s">&quot;Buzz&quot;</span><span class="p">.</span><span class="n">to_string</span><span class="p">(),</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="n">_</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">val</span><span class="p">.</span><span class="n">to_string</span><span class="p">(),</span><span class="w"></span>
+<span class="w">    </span><span class="p">})</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<p>With the <code>associated_type_bounds</code> feature we can use an anonymous type in this context:</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">fizzbuzz</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="nc">impl</span><span class="w"> </span><span class="nb">Iterator</span><span class="o">&lt;</span><span class="n">Item</span>: <span class="nc">Display</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">..</span><span class="p">.</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+<p>Let's take a look at this horribly repetitive type signature:</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">flatten_twice</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">iter</span>: <span class="nc">T</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">Flatten</span><span class="o">&lt;</span><span class="n">Flatten</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span><span class="w"></span>
+<span class="k">where</span><span class="w"></span>
+<span class="w">    </span><span class="n">T</span>: <span class="nb">Iterator</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;</span><span class="n">T</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">Iterator</span><span class="o">&gt;</span>::<span class="n">Item</span>: <span class="nb">IntoIterator</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;&lt;</span><span class="n">T</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">Iterator</span><span class="o">&gt;</span>::<span class="n">Item</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">IntoIterator</span><span class="o">&gt;</span>::<span class="n">Item</span>: <span class="nb">IntoIterator</span><span class="p">,</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">iter</span><span class="p">.</span><span class="n">flatten</span><span class="p">().</span><span class="n">flatten</span><span class="p">()</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<p>With this feature, we can write it simply as:</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">flatten_twice</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">iter</span>: <span class="nc">T</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">Flatten</span><span class="o">&lt;</span><span class="n">Flatten</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span><span class="w"></span>
+<span class="k">where</span><span class="w"></span>
+<span class="w">    </span><span class="n">T</span>: <span class="nb">Iterator</span><span class="o">&lt;</span><span class="n">Item</span>: <span class="nb">IntoIterator</span><span class="o">&lt;</span><span class="n">Item</span>: <span class="nb">IntoIterator</span><span class="o">&gt;&gt;</span><span class="p">,</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">iter</span><span class="p">.</span><span class="n">flatten</span><span class="p">().</span><span class="n">flatten</span><span class="p">()</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<p>Which is far easier for me to reason about.</p><h3><code>default_type_parameter_fallback</code>, <code>associated_type_defaults</code> and <code>const_generics_defaults</code></h3>
+<p>These features allow you to specify default values for <a href="https://github.com/rust-lang/rfcs/blob/master/text/0213-defaulted-type-params.md">generic types</a>, <a href="https://github.com/rust-lang/rfcs/blob/master/text/2532-associated-type-defaults.md">associated types</a> and <a href="#const-generics">const variables</a> respectively in more places.</p><p>This allows you as a developer to create nicer APIs.
+If a crate user is not interested in a detail and that item has a default then the detail can be omitted.
+This also makes it easier to extend APIs without making breaking changes for your users.</p><h3><code>negative_impls</code> and <code>auto_traits</code></h3>
+<p>Both of these features are used in the standard library. The traits <a href="https://doc.rust-lang.org/std/marker/trait.Send.html"><code>Send</code></a> and <a href="https://doc.rust-lang.org/std/marker/trait.Sync.html"><code>Sync</code></a> are both examples of auto traits.</p><p>The trait <code>Send</code> is <a href="https://doc.rust-lang.org/src/core/marker.rs.html#38-40">defined in the standard library as so</a>:</p><div class="highlight"><pre><span></span><span class="k">pub</span><span class="w"> </span><span class="k">unsafe</span><span class="w"> </span><span class="n">auto</span><span class="w"> </span><span class="k">trait</span><span class="w"> </span><span class="nb">Send</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// empty.</span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<p>Note the use of the <code>auto</code> keyword.
+This tells the compiler to automatically implement the <code>Send</code> trait for any struct/enum/union as long as all the types that make up said type also implement <code>Send</code>.</p><p>Auto traits would not be very useful if simply every type always implemented them.
+That is where <code>negative_impls</code> come in.</p><p><code>negative_impls</code> allows for a type to opt-out from implementing an auto trait.
+Take for example <code>UnsafeCell</code>. It would be very unsafe for an unrestricted <code>UnsafeCell</code> to be shared across threads, therefore it would be very unsafe for it to be <code>Sync</code>.</p><div class="highlight"><pre><span></span><span class="k">impl</span><span class="o">&lt;</span><span class="n">T</span>: <span class="o">?</span><span class="nb">Sized</span><span class="o">&gt;</span><span class="w"> </span><span class="o">!</span><span class="nb">Sync</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">UnsafeCell</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+</pre></div>
+<p>Note the creative use of <code>!</code> to express &quot;not <code>Sync</code>&quot;.</p><h3><code>marker_trait_attr</code></h3>
+<p>This feature adds the <code>#[marker]</code> attribute for traits.</p><p>Rust disallows the defining of traits implementations that could overlap.
+This is so that the compiler will always know which implementation to use because there will always be only one.</p><p>Traits marked with <code>#[marker]</code> cannot override anything in their implementations.
+That way they are allowed to have overlapping implementations because all implementations will be the same.</p><h3><code>type_alias_impl_trait</code>, <code>impl_trait_in_bindings</code> and <code>trait_alias</code></h3>
+<p><code>impl Trait</code> tells the compiler to infer a concrete type to replace it with that implements <code>Trait</code>.
+Currently, <code>impl Trait</code> is only used in the context of function arguments or return types.</p><p><code>type_alias_impl_trait</code> and <code>impl_trait_in_bindings</code> extend the places <code>impl trait</code> can be used to include type aliases and <code>let</code> bindings respectively.</p><p><code>trait_alias</code> is subtlely different to <code>type_alias_impl_trait</code>.
+Everywhere you use a type alias the type must remain constant.
+A single concrete type must be inferred by the compiler that works in all those places.
+Trait aliases are more forgiving as they can be a different type in each place they are used.</p><h3><code>fn_traits</code> and <code>unboxed_closures</code></h3>
+<p>The three traits <code>Fn</code>, <code>FnMut</code> and <code>FnOnce</code> are known as the fn traits.
+They are automatically implemented for any functions or closures that you create and are what provides the ability to pass arguments to them.</p><p>An automatic implementation is currently the only way to implement those traits.
+The <code>fn_traits</code> feature allows for custom implementations on any type.
+This is very similar to operator overloading but customising the use of <code>()</code>.</p><div class="highlight"><pre><span></span><span class="cp">#![feature(unboxed_closures)]</span><span class="w"> </span><span class="c1">// required to implement a function with `extern &quot;rust-call&quot;`</span>
+<span class="cp">#![feature(fn_traits)]</span><span class="w"></span>
+
+<span class="k">struct</span> <span class="nc">Multiply</span><span class="p">;</span><span class="w"></span>
+
+<span class="cp">#[allow(non_upper_case_globals)]</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="n">multiply</span>: <span class="nc">Multiply</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Multiply</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">impl</span><span class="w"> </span><span class="nb">FnOnce</span><span class="o">&lt;</span><span class="p">(</span><span class="kt">u32</span><span class="p">,</span><span class="w"> </span><span class="kt">u32</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">Multiply</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">type</span> <span class="nc">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">u32</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="s">&quot;rust-call&quot;</span><span class="w"> </span><span class="k">fn</span> <span class="nf">call_once</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">a</span>: <span class="p">(</span><span class="kt">u32</span><span class="p">,</span><span class="w"> </span><span class="kt">u32</span><span class="p">))</span><span class="w"> </span>-&gt; <span class="nc">Self</span>::<span class="n">Output</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">a</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="mi">1</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="k">impl</span><span class="w"> </span><span class="nb">FnOnce</span><span class="o">&lt;</span><span class="p">(</span><span class="kt">u32</span><span class="p">,</span><span class="w"> </span><span class="kt">u32</span><span class="p">,</span><span class="w"> </span><span class="kt">u32</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">Multiply</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">type</span> <span class="nc">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">u32</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="s">&quot;rust-call&quot;</span><span class="w"> </span><span class="k">fn</span> <span class="nf">call_once</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">a</span>: <span class="p">(</span><span class="kt">u32</span><span class="p">,</span><span class="w"> </span><span class="kt">u32</span><span class="p">,</span><span class="w"> </span><span class="kt">u32</span><span class="p">))</span><span class="w"> </span>-&gt; <span class="nc">Self</span>::<span class="n">Output</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">a</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="mi">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="mi">2</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="k">impl</span><span class="w"> </span><span class="nb">FnOnce</span><span class="o">&lt;</span><span class="p">(</span><span class="o">&amp;</span><span class="kt">str</span><span class="p">,</span><span class="w"> </span><span class="kt">usize</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">Multiply</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">type</span> <span class="nc">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="s">&quot;rust-call&quot;</span><span class="w"> </span><span class="k">fn</span> <span class="nf">call_once</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">a</span>: <span class="p">(</span><span class="o">&amp;</span><span class="kt">str</span><span class="p">,</span><span class="w"> </span><span class="kt">usize</span><span class="p">))</span><span class="w"> </span>-&gt; <span class="nc">Self</span>::<span class="n">Output</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">a</span><span class="p">.</span><span class="mf">0.</span><span class="n">repeat</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="fm">assert_eq!</span><span class="p">(</span><span class="n">multiply</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="mi">6</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="fm">assert_eq!</span><span class="p">(</span><span class="n">multiply</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">),</span><span class="w"> </span><span class="mi">24</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="fm">assert_eq!</span><span class="p">(</span><span class="n">multiply</span><span class="p">(</span><span class="s">&quot;hello &quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;hello hello hello &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<p>Notice that this is being used to create a hacky version of <a href="https://en.wikipedia.org/wiki/Function_overloading">function overloading</a> and <a href="https://en.wikipedia.org/wiki/Variadic_function">variadic functions</a>.</p><h2>Sugar</h2>
+<h3><code>box_patterns</code> and <code>box_syntax</code></h3>
+<p>These two features make constructing and destructing <code>Box</code>es easier.
+The <code>box</code> keyword replaces <code>Box::new(..)</code> and allows for the dereferencing <code>Box</code>es when pattern matching.</p><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="nc">TrashStack</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">head</span>: <span class="nc">T</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">body</span>: <span class="nb">Option</span><span class="o">&lt;</span><span class="nb">Box</span><span class="o">&lt;</span><span class="n">TrashStack</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;&gt;</span><span class="p">,</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="k">impl</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">TrashStack</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">elem</span>: <span class="nc">T</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">Self</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="bp">Self</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">head</span>: <span class="nc">elem</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">body</span>: <span class="nb">Some</span><span class="p">(</span><span class="k">box</span><span class="w"> </span><span class="bp">self</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">peek</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nb">Option</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="n">TrashStack</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">body</span>: <span class="nb">Some</span><span class="p">(</span><span class="k">box</span><span class="w"> </span><span class="n">TrashStack</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">head</span><span class="p">,</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="p">}),</span><span class="w"></span>
+<span class="w">            </span><span class="o">..</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">self</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nb">Some</span><span class="p">(</span><span class="n">head</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nb">None</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<p>This makes things a little more ergonomic but I don't think there is much chance that this feature will ever be stabilised.
+It seems to have existed forever with no plan for stabilisation but instead a little discussion about removing the feature.
+<code>box_synatx</code> is used heavily in the compiler's source and a little in the standard library.</p><p>It is interesting to note that <code>box</code> does not desugar to <code>Box::new</code> but <code>Box::new</code> is implemented in the standard library with <code>box</code>.</p><div class="highlight"><pre><span></span><span class="k">impl</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="nb">Box</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="o">..</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">new</span><span class="p">(</span><span class="n">x</span>: <span class="nc">T</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">Self</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">box</span><span class="w"> </span><span class="n">x</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="o">..</span><span class="p">.</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<h3><code>async_closure</code></h3>
+<p>Currently to be async inside of a closure you have to use an async block.</p><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">).</span><span class="n">get</span><span class="p">(</span><span class="o">|</span><span class="n">_</span><span class="o">|</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">Ok</span><span class="p">(</span><span class="s">&quot;Hi&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">});</span><span class="w"></span>
+</pre></div>
+<p><code>async_closure</code> allows you to mark the closure itself as async just like you would a async function.</p><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">).</span><span class="n">get</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="o">|</span><span class="n">_</span><span class="o">|</span><span class="w"> </span><span class="nb">Ok</span><span class="p">(</span><span class="s">&quot;Hi&quot;</span><span class="p">));</span><span class="w"></span>
+</pre></div>
+<h3><code>in_band_lifetimes</code></h3>
+<p>To use a lifetime it must be explicitly brought into scope.</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">select</span><span class="o">&lt;&#39;</span><span class="na">data</span><span class="o">&gt;</span><span class="p">(</span><span class="n">data</span>: <span class="kp">&amp;</span><span class="o">&#39;</span><span class="na">data</span> <span class="nc">Data</span><span class="p">,</span><span class="w"> </span><span class="n">params</span>: <span class="kp">&amp;</span><span class="nc">Params</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kp">&amp;</span><span class="o">&#39;</span><span class="na">data</span> <span class="nc">Item</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+<p>With <code>in_band_lifetimes</code> the lifetimes can be used without bringing them into scope first.</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">select</span><span class="p">(</span><span class="n">data</span>: <span class="kp">&amp;</span><span class="o">&#39;</span><span class="na">data</span> <span class="nc">Data</span><span class="p">,</span><span class="w"> </span><span class="n">params</span>: <span class="kp">&amp;</span><span class="nc">Params</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kp">&amp;</span><span class="o">&#39;</span><span class="na">data</span> <span class="nc">Item</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+<p>Interestingly enough this was <a href="https://github.com/rust-lang/rfcs/pull/2115#issuecomment-323221054">how lifetimes used to work</a> pre <code>1.0.0</code>.</p><h3><code>format_args_capture</code></h3>
+<p>This allows for named arguments to be placed inside of strings inside any macro that depends on <code>std::format_args!</code>.
+That includes <code>print!</code>, <code>format!</code>, <code>write!</code> and many more.</p><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Ferris&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="kd">let</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="p">;</span><span class="w"></span>
+<span class="fm">println!</span><span class="p">(</span><span class="s">&quot;Hello {name}, you are {age} years old&quot;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+<p>It is likely that this will be stabilised with or soon after edition 2021.</p><h3><code>crate_visibility_modifier</code></h3>
+<p>With this feature you can write <code>crate struct Foo</code> rather than <code>pub(crate) struct Foo</code> and have it mean exactly the same thing.</p><p>This makes <code>pub(crate)</code> easier to write, encouraging the use of crate visibility when full <code>pub</code> is not necessary.</p><h2>Types</h2>
+<h3><code>type_ascription</code></h3>
+<p>Take for example the <code>collect</code> method on <code>Iterator</code>.
+Collect transforms an interator into a collection.</p><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">word</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="p">.</span><span class="n">chars</span><span class="p">().</span><span class="n">collect</span><span class="p">();</span><span class="w"></span>
+<span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{:?}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">word</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+<p>This does not compile because Rust is unable to infer the type of <code>word</code>.
+This can be fixed by replacing the first line with:</p><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">word</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="p">.</span><span class="n">chars</span><span class="p">().</span><span class="n">collect</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+<p>With <code>type_ascription</code> the <code>let</code> binding is no longer necessary and one can simply:</p><div class="highlight"><pre><span></span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{:?}&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="p">.</span><span class="n">chars</span><span class="p">().</span><span class="n">collect</span><span class="p">()</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+<p>The <code>: Type</code> syntax can be used anywhere to hint at the compiler &quot;I want this type at this point&quot;.</p><h3><code>never_type</code></h3>
+<p>It is possible to define <code>enum</code>s with zero variants.
+Such an enum exists stable in the standard library.</p><div class="highlight"><pre><span></span><span class="k">pub</span><span class="w"> </span><span class="k">enum</span> <span class="nc">Infallible</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+</pre></div>
+<p>It is possible to use this type in generics and function signatures but never possible for it to be constructed.
+There are simply no variants to construct.</p><p>The unit type, <code>()</code> would be equivalent to an enum with a single variant.
+<code>never_type</code> introduces a new type, <code>!</code> which is equivalent to our <code>Infallible</code> enum with zero variants.</p><p>Because <code>!</code> can never be constructed it can be given special powers.
+We don't have to handle the case of <code>!</code> because we have proven it will never exist.</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="o">!</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">loop</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<p>Loops without a <code>break</code> &quot;return <code>!</code>&quot; because they don't ever return.</p><p><code>!</code> can be very useful for expressing impossible outcomes in the type system.
+Take for example the <code>FromStr</code> implementation on this <code>UserName</code> type.
+This implementation is infallible because its implementation can never fail.
+This allows us to set the <code>Err</code> variant to type <code>!</code>.</p><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="nc">UserName</span><span class="p">(</span><span class="nb">String</span><span class="p">);</span><span class="w"></span>
+
+<span class="k">impl</span><span class="w"> </span><span class="n">FromStr</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">UserName</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">type</span> <span class="nb">Err</span> <span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">fn</span> <span class="nf">from_str</span><span class="p">(</span><span class="n">s</span>: <span class="kp">&amp;</span><span class="kt">str</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nb">Result</span><span class="o">&lt;</span><span class="bp">Self</span><span class="p">,</span><span class="w"> </span><span class="bp">Self</span>::<span class="nb">Err</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nb">Ok</span><span class="p">(</span><span class="bp">Self</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">to_owned</span><span class="p">()))</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<p>It is then possible to use an empty <code>match</code> on the <code>Err</code> variant because <code>!</code> has no variants.</p><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">user_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">match</span><span class="w"> </span><span class="n">UserName</span>::<span class="n">from_str</span><span class="p">(</span><span class="s">&quot;ethan&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nb">Ok</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nb">Err</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">match</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="p">{},</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+</pre></div>
+<p>With the feature <code>exhaustive_patterns</code> the type system becomes smart enough for us to eliminate the <code>Err</code> branch altogether.</p><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">user_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">match</span><span class="w"> </span><span class="n">UserName</span>::<span class="n">from_str</span><span class="p">(</span><span class="s">&quot;ethan&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nb">Ok</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+</pre></div>
+<p>We can combine this with destructuring to remove the <code>match</code> leaving a beautiful line of code.</p><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nb">Ok</span><span class="p">(</span><span class="n">user_name</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UserName</span>::<span class="n">from_str</span><span class="p">(</span><span class="s">&quot;ethan&quot;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+<h2>Attributes</h2>
+<h3><code>optimize_attribute</code></h3>
+<p>It is possible to specify how you want your binary to be optimised with <code>Cargo.toml</code> <a href="https://doc.rust-lang.org/book/ch14-01-release-profiles.html">using <code>opt-level</code></a>.</p><p>The <code>opt-level</code> affects the entire crate while the <code>optimize_attribute</code> can control optimization for individual items.</p><div class="highlight"><pre><span></span><span class="cp">#[optimize(speed)]</span><span class="w"></span>
+<span class="k">fn</span> <span class="nf">fast_but_large</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="o">..</span><span class="p">.</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="cp">#[optimize(size)]</span><span class="w"></span>
+<span class="k">fn</span> <span class="nf">slow_but_small</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="o">..</span><span class="p">.</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<p>This would be very useful for fine-tuning applications where the trade off between size and performance is particularly pronounced such as when using <a href="https://webassembly.org/">web assembly</a>.</p><h3><code>stmt_expr_attributes</code></h3>
+<p>This feature allows you to place attributes almost everywhere not just top-level items. For example with this feature, you are able to place an <a href="#optimize-attribute">optimize attribute</a> on a closure.</p><h3><code>cfg_version</code></h3>
+<p>This feature allows for conditional compilation based on compiler version.</p><div class="highlight"><pre><span></span><span class="cp">#[cfg(version(</span><span class="s">&quot;1.42&quot;</span><span class="cp">))]</span><span class="w"> </span><span class="c1">// 1.42 and above</span>
+<span class="k">fn</span> <span class="nf">a</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="cp">#[cfg(not(version(</span><span class="s">&quot;1.42&quot;</span><span class="cp">)))]</span><span class="w"> </span><span class="c1">// 1.41 and below</span>
+<span class="k">fn</span> <span class="nf">a</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<p>This allows crates to make use of the latest compiler features while still keeping fallback support for old compilers.</p><h3><code>no_core</code></h3>
+<p>It has been possible to opt-out of using the standard library using <code>#![no_std]</code> for a while.
+This is important for applications that don't run in a full environment such as embedded systems.
+Embedded systems often don't have an operating system or even dynamic memory so many of the functions in <code>std</code> wouldn't work.</p><p><code>#![no_core]</code> takes it further by opting out of libcore.
+That leaves you with almost nothing, you can't even use libc.
+This makes it very difficult to implement anything useful.</p><h2>Other</h2>
+<h3>Const Generics</h3>
+<p>I spoke about the future of const_generics <a href="/posts/intro-to-const-generics/">at my talk for Rust Dublin</a>.
+Rather than me reiterating what I said there, I encourage you to <a href="/posts/intro-to-const-generics/">watch that talk</a>.</p><h2>Macros 2.0</h2>
+<p>Rust's declarative macros are very powerful however some of the rules around <code>macro_rules!</code> have always confused me.</p><p>For one, <code>macro_rules!</code> acts as a simple token transformation.
+It takes a list of tokens and outputs a new list of tokens, nothing smarter than that.
+The publicity rules end up being the rules of where the macro is being called.
+This is obvious because the codes is being simply pasted into that place.</p><p>Macros 2.0 is an rfc describing a replacement to <code>macro_rules!</code> with a new construct simply using the keyword <code>macro</code>.</p><p>One of the main improvements the new syntax introduces is macro hygiene which allows macros to use the publicity rules of where they are written rather than where they are called.</p><h3><code>generators</code></h3>
+<p>Generators/coroutines provide a special kind of function that can be paused during execution to &quot;yield&quot; intermediate values to the caller.</p><p>Generators can return multiple values using the <code>yield</code> keyword, each time pausing the function and returning to the caller.
+A generator can then <code>return</code> a single value after which it can no longer be resumed.</p><p>About three years ago I attempted to write an algorithm to traverse an infinite matrix along its diagonals.
+I found it very difficult to write that with Rust's iterators and ended up giving up.</p><p>Here is an implementation using Rust's generators/coroutines along with a number of other features we've discussed already.</p><div class="highlight"><pre><span></span><span class="cp">#![feature(</span>
+<span class="cp">    try_blocks,</span>
+<span class="cp">    generators,</span>
+<span class="cp">    generator_trait,</span>
+<span class="cp">    associated_type_bounds,</span>
+<span class="cp">    type_ascription</span>
+<span class="cp">)]</span><span class="w"></span>
+
+<span class="k">use</span><span class="w"> </span><span class="n">std</span>::<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">iter</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">ops</span>::<span class="p">{</span><span class="n">Generator</span><span class="p">,</span><span class="w"> </span><span class="n">GeneratorState</span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="n">pin</span>::<span class="n">Pin</span><span class="p">,</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+<span class="sd">/// Input</span>
+<span class="sd">/// [[1, 2, 3]</span>
+<span class="sd">/// ,[4, 5, 6]</span>
+<span class="sd">/// ,[7, 8, 9]]</span>
+<span class="sd">/// Output</span>
+<span class="sd">/// [1, 2, 4, 3, 5, 7]</span>
+<span class="k">fn</span> <span class="nf">diagonalize</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="k">mut</span><span class="w"> </span><span class="n">matrix</span>: <span class="nc">impl</span><span class="w"> </span><span class="nb">Iterator</span><span class="o">&lt;</span><span class="n">Item</span>: <span class="nb">Iterator</span><span class="o">&lt;</span><span class="n">Item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;&gt;</span><span class="p">,</span><span class="w"></span>
+<span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">impl</span><span class="w"> </span><span class="n">Generator</span><span class="o">&lt;</span><span class="n">Yield</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="n">Return</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">move</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">rows</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Vec</span>::<span class="n">new</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="p">(</span><span class="kr">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">rows</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">matrix</span><span class="p">.</span><span class="n">next</span><span class="p">()</span><span class="o">?</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">0</span><span class="o">..</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">0</span><span class="o">..</span><span class="n">height</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">rows</span><span class="p">.</span><span class="n">len</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="n">rows</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">matrix</span><span class="p">.</span><span class="n">next</span><span class="p">()</span><span class="o">?</span><span class="p">);</span><span class="w"></span>
+<span class="w">                    </span><span class="p">}</span><span class="w"></span>
+<span class="w">                    </span><span class="kr">yield</span><span class="w"> </span><span class="n">rows</span><span class="p">[</span><span class="n">row</span><span class="p">].</span><span class="n">next</span><span class="p">()</span><span class="o">?</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">})</span>: <span class="nb">Option</span><span class="o">&lt;</span><span class="p">()</span><span class="o">&gt;</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">matrix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="o">..</span><span class="p">).</span><span class="n">map</span><span class="p">(</span><span class="o">|</span><span class="n">x</span><span class="o">|</span><span class="w"> </span><span class="n">iter</span>::<span class="n">once</span><span class="p">(</span><span class="n">x</span><span class="p">).</span><span class="n">cycle</span><span class="p">().</span><span class="n">enumerate</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">diagonals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">diagonalize</span><span class="p">(</span><span class="n">matrix</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="n">GeneratorState</span>::<span class="n">Yielded</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pin</span>::<span class="n">new</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">diagonals</span><span class="p">).</span><span class="n">resume</span><span class="p">(())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="fm">dbg!</span><span class="p">(</span><span class="n">value</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<blockquote>
+<p>It is understandable if you found the above snippet hard to interpret.
+It makes use of a number of features that you may have just been introduced to.</p><p>There is a compelling argument against adding too many new features as they can greatly increase the learning curve.</p></blockquote>
+<p>Generators make it possible to write implementations that are far more difficult or even impossible to write without them.</p><p>Generators were added to implement async-await in the standard library.
+It is most likely that the exact semantics will change before any kind of stabilisation but they are very fun to play with.</p><h3>Final thoughts</h3>
+<p>I have to apologise for not including three amazing unstable features; <a href="https://github.com/rust-lang/rfcs/blob/master/text/1598-generic_associated_types.md">Generic associated types</a>, <a href="https://rust-lang.github.io/rfcs/2873-inline-asm.html">inline asm</a> and <a href="https://rust-lang.github.io/rfcs/1210-impl-specialization.html">specialization</a>.
+I simply did not feel able to give these features justice in this article but I may try to talk about them in future.</p><p>If you wish to read more about an unstable feature the best place to start is <a href="https://doc.rust-lang.org/beta/unstable-book/the-unstable-book.html">the unstable book</a> where most of them are listed.
+The unstable book then links to a <a href="https://github.com/rust-lang/rust/labels/C-tracking-issue">tracking issue</a> which then often, in turn, links to an <a href="https://rust-lang.github.io/rfcs/">RFC</a>.
+With this combination of sources, you can then build up a picture of the details surrounding a feature.</p><p>Thank you for reading my first blog post 😃.
+The best way to support me is by following my <a href="https://twitter.com/efun_b">Twitter</a>.
+I am also looking for employment opportunities so please get in touch if you would like to talk about that.</p>
+            </div>
+        </article>
+        <div id="ga-tags">
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/tag/Rust/">#Rust</a>
+    </span>
+    
+    <span class="ga-tag">
+        <a class="ga-highlight" href="/tag/Language_feature/">#Language_feature</a>
+    </span>
+    
+</div>
+    </section>
+
+    
+<section id="ga-content_pager">
+
+    <div class="next">
+        <h3>No More</h3>
+        <p class="yue">This is the latest one.</p>
+    </div>
+
+
+    <div class="prev">
+        <a class="ga-highlight" href="/archives/enable-osdlyrics-netease-translation/">关于 Osdlyrics 网易来源启用翻译</a>
+        <p class="yue">引言</p>
+    </div>
+
+</section>
+
+
+    
+        <script>
+            var initValine = function () {
+                new Valine({"enable": true, "el": "#vcomments", "appId": "IKRAfuPq0zrz6Wfje8ahHAIP-gzGzoHsz", "appKey": "lFaCWkd4xCs0Ng5UWs1eHNwU", "visitor": true, "recordIP": true});
+            }
+        </script>
+        <script defer src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js' onload="initValine()"></script>
+        <div id="vcomments"></div>
+    
+
+</main>
+
+                <footer class="ga-mono" id="ga-footer">
+                    <section>
+                        <span id="ga-uptime"></span>
+                        <span class="brand">poly000客栈</span>
+                    </section>
+                    <section>
+                        <p class="copyright">
+                            <span>Copyright © 2021 poly000</span>
+                            <span>Powered by <a no-style href="https://github.com/AlanDecode/Maverick" target="_blank">Maverick & Galileo</a></span>
+                        </p>
+                        <div class="copyright">
+                            <span class="footer-addon">
+                                
+                            </span>
+                            <nav class="social-links">
+                                <ul><li><a class="no-style" title="GitHub" href="https://github.com/poly000" target="_blank"><i class="gi gi-github"></i>GitHub</a></li><span class="separator">·</span><li><a class="no-style" title="Bilibili" href="https://liolok.com/" target="_blank"><i class="gi gi-bilibili"></i>Bilibili</a></li></ul>
+                            </nav>
+                        </div>
+                    </section>
+                    <script>
+                        var site_build_date = "2020-09-29:00+08:00"
+                    </script>
+                    <script src="/assets/galileo-7c8cea54ab.js"></script>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!--katex-->
+    <script defer src="/assets/katex.min.js"></script>
+    <script>
+    mathOpts = {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
+        ]
+    };
+    </script>
+    <script defer src="/assets/auto-render.min.js" onload="renderMathInElement(document.body, mathOpts);"></script>
+
+    <script src="/assets/ExSearch/jquery.min.js"></script>
+    <script src="/assets/ExSearch/ExSearch-493cb9cd89.js"></script>
+
+    
+    </body>
+</html>
