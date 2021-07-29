@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "/3d006e7075376a87ba8299989add601c.json"
+            api: "/a77dedbeb4aeba2d4b285f9b4e649064.json"
         }
     </script>
     
@@ -82,7 +82,7 @@
             </span>
             <div class="ga-content_body">
                 <h2>关于翻译</h2>
-<p>主要译者：<a href="https://github.com/poly000">poly000</a></p><p>标题翻译参考了 <a href="https://github.com/xieyuheng">@xieyuheng</a> 的建议。</p><p>术语部分翻译参考了 <a href="https://rustwiki.org/wiki/translate/english-chinese-glossary-of-rust/">Rust 语言术语中英文对照表</a>，有改动。</p><p>这个翻译<strong>尚未完成</strong>，预计需要多日努力。</p><h2>Credits</h2>
+<p>主要译者：<a href="https://github.com/poly000">poly000</a></p><p>标题翻译参考了 <a href="https://github.com/xieyuheng">@xieyuheng</a> 的建议。</p><p>术语部分翻译参考了 <a href="https://rustwiki.org/wiki/translate/english-chinese-glossary-of-rust/">Rust 语言术语中英文对照表</a>，有改动。</p><p>如果有翻译错误，请您<a href="https://github.com/poly000/poly000.github.io/issue">在仓库中指出</a>！</p><p>如果有原文错误，请联系 <a href="https://twitter.com/efun_b">Ethan Brierley</a> 且联系我更新翻译。</p><p>汉化进度： 308/845 行</p><h2>Credits</h2>
 <p><a href="https://lazy.codes/posts/awesome-unstable-rust-features/">原文</a> by <a href="https://twitter.com/efun_b">Ethan Brierley</a></p><h2>简介</h2>
 <p>这篇文章介绍了一些尚不稳定的 Rust 编译器特性。它将会简要叙述这些特性，并不会深入太多的细节。</p><h2>什么是不稳定 Rust？</h2>
 <p>Rust 发布于三个渠道： stable，beta，以及 nightly。</p><p>Nightly 编译器每天都会发布，而且唯有它允许你解锁不稳定 Rust 特性。</p><blockquote>
@@ -139,8 +139,8 @@
 <span class="n">Point</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Point</span>::<span class="n">random</span><span class="p">();</span><span class="w"></span>
 </pre></div>
 <h3>从任意块提前返回，<code>label_break_value</code></h3>
-<p>One of the less well-known Rust features is the fact that <a href="https://doc.rust-lang.org/edition-guide/rust-2018/control-flow/loops-can-break-with-a-value.html"><code>loop</code>可以带值退出</a>.
-Like many of the constructs in Rust loops are not just statements, but <a href="https://doc.rust-lang.org/reference/statements-and-expressions.html">expressions</a>.</p><div class="highlight"><pre><span></span><span class="c1">// Keep asking the user to input an number until they give us a valid one</span>
+<p>一个很少被知道的 Rust 特性是，<a href="https://doc.rust-lang.org/edition-guide/rust-2018/control-flow/loops-can-break-with-a-value.html"><code>loop</code>可以带值退出</a>。
+就像 Rust 中许多其它的结构，在 Rust 中 <code>loop</code> 并不仅仅是语句, 而是<a href="https://doc.rust-lang.org/reference/statements-and-expressions.html">表达式</a>。</p><div class="highlight"><pre><span></span><span class="c1">// 保持请求用户输入一个数字，直到他们给出一个有效的数字。</span>
 <span class="kd">let</span><span class="w"> </span><span class="n">number</span>: <span class="kt">u8</span> <span class="o">=</span><span class="w"> </span><span class="k">loop</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nb">Ok</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">input</span><span class="p">().</span><span class="n">parse</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="k">break</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"></span>
@@ -149,23 +149,23 @@ Like many of the constructs in Rust loops are not just statements, but <a href="
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">};</span><span class="w"></span>
 </pre></div>
-<p><code>label_break_value</code> extends this to work on any labelled block, not just loops.
-This acts as a kind of early <code>return</code> that works on any block of code, not just function bodies.</p><p>To label a block you use a syntax similar to lifetimes.</p><div class="highlight"><pre><span></span><span class="o">&#39;</span><span class="na">block</span>: <span class="p">{</span><span class="w"></span>
-<span class="w">     </span><span class="c1">// This block is now labelled &quot;block&quot;</span>
+<p><code>label_break_value</code> 把它拓展到可用于任何被标记的块，而不仅仅是 <code>loop</code>。
+它的行为，就像是一种提前的 <code>return</code> ，不过适用于任何代码块，而不只是函数体。</p><p>标记代码块的语法，和生命周期很相似。</p><div class="highlight"><pre><span></span><span class="o">&#39;</span><span class="na">block</span>: <span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="c1">// 这个代码块现在被标记为 &quot;block&quot; 。</span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
-<p>It is already possible to <a href="https://doc.rust-lang.org/rust-by-example/flow_control/loop/nested.html">label loops</a> much in the same way.</p><p>We can put the same label on our <code>break</code> to early return from that block.</p><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&#39;</span><span class="na">block</span>: <span class="p">{</span><span class="w"></span>
+<p>现在也可以用同样的方式<a href="https://doc.rust-lang.org/rust-by-example/flow_control/loop/nested.html">标记<code>loop</code></a>。</p><p>我们可以把标签放在 <code>break</code> 后面，从那个代码块提前返回。</p><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&#39;</span><span class="na">block</span>: <span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">is_empty</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="k">break</span><span class="w"> </span><span class="nl">&#39;block</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// Early return from block</span>
+<span class="w">      </span><span class="k">break</span><span class="w"> </span><span class="nl">&#39;block</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// 从代码块提前返回</span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="w">    </span><span class="n">s</span><span class="p">.</span><span class="n">parse</span><span class="p">().</span><span class="n">unwrap</span><span class="p">()</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 <blockquote>
-<p>This feature is <a href="http://david.tribble.com/text/goto.html">not equivalent to goto</a>.
-It does not have the same damaging effects as goto as it only goes forward and breaks from a block.</p></blockquote>
-<h3>Inlining the power of the <code>?</code> operator using <code>try_blocks</code></h3>
-<p>The <a href="https://doc.rust-lang.org/edition-guide/rust-2018/error-handling-and-panics/the-question-mark-operator-for-easier-error-handling.html">edition guide</a> uses this example to illustrate how the question mark operator works:</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">read_username_from_file</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="nb">Result</span><span class="o">&lt;</span><span class="nb">String</span><span class="p">,</span><span class="w"> </span><span class="n">io</span>::<span class="n">Error</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<p>这个特性<a href="http://david.tribble.com/text/goto.html">不等价于goto</a>。
+它没有 goto 那样的破坏性影响，他只是往后继续执行，从一个代码块中退出。</p></blockquote>
+<h3>使用 <code>try_blocks</code> 内联 <code>?</code> 操作符的功能</h3>
+<p><a href="https://doc.rust-lang.org/edition-guide/rust-2018/error-handling-and-panics/the-question-mark-operator-for-easier-error-handling.html">版本引导</a>使用这个例子展示问号运算符是如何工作的：</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">read_username_from_file</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="nb">Result</span><span class="o">&lt;</span><span class="nb">String</span><span class="p">,</span><span class="w"> </span><span class="n">io</span>::<span class="n">Error</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">File</span>::<span class="n">open</span><span class="p">(</span><span class="s">&quot;username.txt&quot;</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">match</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -181,7 +181,7 @@ It does not have the same damaging effects as goto as it only goes forward and b
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
-<p>Simplifying using the <code>?</code> operator, results in this equivalent code:</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">read_username_from_file</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="nb">Result</span><span class="o">&lt;</span><span class="nb">String</span><span class="p">,</span><span class="w"> </span><span class="n">io</span>::<span class="n">Error</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<p>使用 <code>?</code> 操作符简化代码，可以得到这样等效的代码：</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">read_username_from_file</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="nb">Result</span><span class="o">&lt;</span><span class="nb">String</span><span class="p">,</span><span class="w"> </span><span class="n">io</span>::<span class="n">Error</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">File</span>::<span class="n">open</span><span class="p">(</span><span class="s">&quot;username.txt&quot;</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">new</span><span class="p">();</span><span class="w"></span>
 
@@ -190,10 +190,10 @@ It does not have the same damaging effects as goto as it only goes forward and b
 <span class="w">    </span><span class="nb">Ok</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
-<p><code>?</code> is used in the context of functions to early return an <code>Err</code> if encountered.
-<code>try_blocks</code> unlock the same power but for any block of code rather than just functions.
-With <code>try_blocks</code> we can inline our <code>read_usernames_from_file</code> function.</p><p><code>try_blocks</code> relate to <code>?</code> in the same way that <code>label_break_value</code> relates to <code>return</code>.
-The RFC for <code>try_blocks</code> mentions <code>label_break_value</code> as a potential way of desugaring  <code>try_blocks</code>.</p><p>Let's rewrite our <code>read_username_from_file</code> function as a simple <code>let</code> binding with a <code>try</code> block.</p><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">read_username_from_file</span>: <span class="nb">Result</span><span class="o">&lt;</span><span class="nb">String</span><span class="p">,</span><span class="w"> </span><span class="n">io</span>::<span class="n">Error</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kr">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<p><code>?</code> 在函数中被用于遇到 <code>Err</code> 时提前返回它。
+<code>try_blocks</code> 解锁了适用于任意代码块而不仅仅是函数的相同功能。
+使用 <code>try_blocks</code> 我们可以内联我们的 <code>read_usernames_from_file</code> 函数。</p><p><code>try_blocks</code> 和 <code>?</code> 的关系就像是 <code>label_break_value</code> 和 <code>return</code> 的关系。
+<code>try_blocks</code> 的RFC提到了 <code>label_break_value</code> ，作为一种可能的 <code>try_blocks</code> 解读方式。</p><p>接写来重写我们的 <code>read_username_from_file</code> 成一个简单的 <code>let</code> 绑定与一个 <code>try</code> 代码块。</p><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">read_username_from_file</span>: <span class="nb">Result</span><span class="o">&lt;</span><span class="nb">String</span><span class="p">,</span><span class="w"> </span><span class="n">io</span>::<span class="n">Error</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kr">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">File</span>::<span class="n">open</span><span class="p">(</span><span class="s">&quot;username.txt&quot;</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">new</span><span class="p">();</span><span class="w"></span>
 
@@ -202,21 +202,25 @@ The RFC for <code>try_blocks</code> mentions <code>label_break_value</code> as a
 <span class="w">    </span><span class="nb">Ok</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
-<p>I love this kind of thing especially for smaller expressions that can be made easier to read when not extracted into functions.</p><h3><code>inline_const</code></h3>
-<p>Currently, the way to get a value to be evaluated at compile time is by defining a constant.</p><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">PI_APPROX</span>: <span class="kt">f64</span> <span class="o">=</span><span class="w"> </span><span class="mf">22.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">7.0</span><span class="p">;</span><span class="w"></span>
+<p>我喜欢这种东西。特别是较小的表达式，如果不提取成函数，易读性会更好。</p><h3><code>inline_const</code></h3>
+<p>目前，获取一个编译时计算的值需要定义一个常量。</p><blockquote>
+<p>译者注：或者是 <code>const fn</code></p></blockquote>
+<div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">PI_APPROX</span>: <span class="kt">f64</span> <span class="o">=</span><span class="w"> </span><span class="mf">22.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">7.0</span><span class="p">;</span><span class="w"></span>
 
 <span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">     </span><span class="kd">let</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">func</span><span class="p">(</span><span class="n">PI_APPROX</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
-<p>With <code>inline_const</code> we can do the same as an anonymous expression.</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<p>使用 <code>inline_const</code> 我们可以用匿名表达式完成同样的事。</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">     </span><span class="kd">let</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">func</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mf">22.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">7.0</span><span class="w"> </span><span class="p">});</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
-<p>With this simple example, the <code>const</code> block is almost certainly not necessary, due to compiler optimisations such as <a href="https://blog.rust-lang.org/inside-rust/2019/12/02/const-prop-on-by-default.html">constant propagation</a>,
-however, with more complex constants, it may be helpful to be explicit with the block.</p><p>This feature also allows for these blocks to be used in pattern position.
-<code>match x { 1 + 3 =&gt; {} }</code> results in a syntax error while <code>match x { const { 1 + 3 } =&gt; {} }</code>does not.</p><h3><code>if_let_guard</code></h3>
-<p>Extends the <a href="https://doc.rust-lang.org/beta/rust-by-example/flow_control/match/guard.html"><code>if</code> guards</a> that you can use with <code>match</code> statements to be able to use <code>if let</code>.</p><h3><code>let_chains</code></h3>
+<p>在这个简单的例子中， <code>const</code> 块几乎完全是不必要的，因为编译器的优化<a href="https://blog.rust-lang.org/inside-rust/2019/12/02/const-prop-on-by-default.html">constant propagation</a>。
+然而，对于更复杂的常量，用块来表示可能很有益。</p><p>这个特性也允许这些块在模式中使用。
+<code>match x { 1 + 3 =&gt; {} }</code> 会导致格式错误，而 <code>match x { const { 1 + 3 } =&gt; {} }</code> 不会。</p><h3><code>if_let_guard</code></h3>
+<p>拓展可用在 <code>match</code> 表达式中的 <a href="https://doc.rust-lang.org/beta/rust-by-example/flow_control/match/guard.html"><code>if</code> 守卫</a> ，允许使用 <code>if let</code>。</p><blockquote>
+<p>译注：原文中使用了 &quot;<code>match</code> statement&quot; 的说法，这里翻译为 <code>match</code> 表达式。</p></blockquote>
+<h3><code>let_chains</code></h3>
 <p>Currently, <code>if let</code> and <code>while let</code> expressions can not be chained with <code>||</code> or <code>&amp;&amp;</code>.
 This feature adds that support.</p><h2>Traits</h2>
 <h3><code>associated_type_bounds</code></h3>
