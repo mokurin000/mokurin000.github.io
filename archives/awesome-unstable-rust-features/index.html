@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "/86ca49a4b1751ab2cb30eaeb0d09ab3d.json"
+            api: "/669648cd1e127967e19002f07efe8d66.json"
         }
     </script>
     
@@ -82,7 +82,7 @@
             </span>
             <div class="ga-content_body">
                 <h2>关于翻译</h2>
-<p>主要译者：<a href="https://github.com/poly000">poly000</a></p><p>参考了这些人（排名不分先后）的建议：<a href="https://github.com/unsafeIO">unsafeIO</a>，<a href="https://github.com/xieyuheng">xieyuheng</a>，<a href="https://github.com/oxalica">oxa</a>。</p><p>术语部分翻译参考了 <a href="https://rustwiki.org/wiki/translate/english-chinese-glossary-of-rust/">Rust 语言术语中英文对照表</a>，有改动。</p><p>如果有翻译错误，请您<a href="https://github.com/poly000/poly000.github.io/issue">在仓库中指出</a>！</p><p>如果有原文错误，请联系 <a href="https://twitter.com/efun_b">Ethan Brierley</a> 且联系我更新翻译。</p><p>汉化进度： 361/846 行</p><h2>Credits</h2>
+<p>主要译者：<a href="https://github.com/poly000">poly000</a></p><p>参考了这些人（排名不分先后）的建议：<a href="https://github.com/unsafeIO">unsafeIO</a>，<a href="https://github.com/xieyuheng">xieyuheng</a>，<a href="https://github.com/oxalica">oxa</a>。</p><p>术语部分翻译参考了 <a href="https://rustwiki.org/wiki/translate/english-chinese-glossary-of-rust/">Rust 语言术语中英文对照表</a>，有改动。</p><p>如果有翻译错误，请您<a href="https://github.com/poly000/poly000.github.io/issue">在仓库中指出</a>！</p><p>如果有原文错误，请联系 <a href="https://twitter.com/efun_b">Ethan Brierley</a> 且联系我更新翻译。</p><p>汉化进度： 385/849 行</p><h2>Credits</h2>
 <p><a href="https://lazy.codes/posts/awesome-unstable-rust-features/">原文</a> by <a href="https://twitter.com/efun_b">Ethan Brierley</a></p><h2>简介</h2>
 <p>这篇文章介绍了一些尚不稳定的 Rust 编译器特性。它将会简要叙述这些特性，并不会深入太多的细节。</p><h2>什么是不稳定 Rust？</h2>
 <p>Rust 发布于三个渠道： stable，beta，以及 nightly。</p><p>Nightly 编译器每天都会发布，而且唯有它允许你解锁不稳定 Rust 特性。</p><blockquote>
@@ -251,10 +251,10 @@
 <span class="w">    </span><span class="n">iter</span><span class="p">.</span><span class="n">flatten</span><span class="p">().</span><span class="n">flatten</span><span class="p">()</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
-<p>Which is far easier for me to reason about.</p><h3><code>default_type_parameter_fallback</code>, <code>associated_type_defaults</code> and <code>const_generics_defaults</code></h3>
-<p>These features allow you to specify default values for <a href="https://github.com/rust-lang/rfcs/blob/master/text/0213-defaulted-type-params.md">generic types</a>, <a href="https://github.com/rust-lang/rfcs/blob/master/text/2532-associated-type-defaults.md">associated types</a> and <a href="#const-generics">const variables</a> respectively in more places.</p><p>This allows you as a developer to create nicer APIs.
-If a crate user is not interested in a detail and that item has a default then the detail can be omitted.
-This also makes it easier to extend APIs without making breaking changes for your users.</p><h3><code>negative_impls</code> and <code>auto_traits</code></h3>
+<p>这对我来说容易推导许多。</p><h3><code>default_type_parameter_fallback</code>, <code>associated_type_defaults</code> and <code>const_generics_defaults</code></h3>
+<p>这些特性允许你为 <a href="https://github.com/rust-lang/rfcs/blob/master/text/0213-defaulted-type-params.md">泛型类型</a>, <a href="https://github.com/rust-lang/rfcs/blob/master/text/2532-associated-type-defaults.md">关联类型</a> 以及 <a href="#const-%E6%B3%9B%E5%9E%8B">const 变量</a> 在更多地方指定默认值。</p><p>它们允许你作为开发者创建更好的 API 。
+如果一个crate的用户对细节不感兴趣，而且那个物件有默认值，可以忽略细节。
+它们也让拓展 API 变得容易，无需对你的用户做出破坏性变更。</p><h3><code>negative_impls</code> and <code>auto_traits</code></h3>
 <p>Both of these features are used in the standard library. The traits <a href="https://doc.rust-lang.org/std/marker/trait.Send.html"><code>Send</code></a> and <a href="https://doc.rust-lang.org/std/marker/trait.Sync.html"><code>Sync</code></a> are both examples of auto traits.</p><p>The trait <code>Send</code> is <a href="https://doc.rust-lang.org/src/core/marker.rs.html#38-40">defined in the standard library as so</a>:</p><div class="highlight"><pre><span></span><span class="k">pub</span><span class="w"> </span><span class="k">unsafe</span><span class="w"> </span><span class="n">auto</span><span class="w"> </span><span class="k">trait</span><span class="w"> </span><span class="nb">Send</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="c1">// empty.</span>
 <span class="p">}</span><span class="w"></span>
@@ -442,10 +442,12 @@ This allows us to set the <code>Err</code> variant to type <code>!</code>.</p><d
 This is important for applications that don't run in a full environment such as embedded systems.
 Embedded systems often don't have an operating system or even dynamic memory so many of the functions in <code>std</code> wouldn't work.</p><p><code>#![no_core]</code> takes it further by opting out of libcore.
 That leaves you with almost nothing, you can't even use libc.
-This makes it very difficult to implement anything useful.</p><h2>Other</h2>
-<h3>Const Generics</h3>
-<p>I spoke about the future of const_generics <a href="/posts/intro-to-const-generics/">at my talk for Rust Dublin</a>.
-Rather than me reiterating what I said there, I encourage you to <a href="/posts/intro-to-const-generics/">watch that talk</a>.</p><h2>Macros 2.0</h2>
+This makes it very difficult to implement anything useful.</p><h2>其它</h2>
+<h3>Const 泛型</h3>
+<blockquote>
+<p>这个小节由 <a href="https://t.me/Hinanawi_Tenshi_M">@Hinanawi_Tenshi_M</a> 提供翻译，有改动。</p></blockquote>
+<p>我在都柏林 Rust 集会中做过一个关于 const_generics 的未来的<a href="https://lazy.codes/posts/intro-to-const-generics/">演讲</a>。
+与其重复那些内容，我更推荐大家去<a href="https://lazy.codes/posts/intro-to-const-generics/">看这个演讲</a>。</p><h2>Macros 2.0</h2>
 <p>Rust's declarative macros are very powerful however some of the rules around <code>macro_rules!</code> have always confused me.</p><p>For one, <code>macro_rules!</code> acts as a simple token transformation.
 It takes a list of tokens and outputs a new list of tokens, nothing smarter than that.
 The publicity rules end up being the rules of where the macro is being called.
