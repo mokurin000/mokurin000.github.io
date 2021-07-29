@@ -19,21 +19,21 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "/a77dedbeb4aeba2d4b285f9b4e649064.json"
+            api: "/6d218cf853dc59d8a90daf11a54fc0f8.json"
         }
     </script>
     
-<title>令人赞叹的Rust不稳定特性 - poly000客栈</title>
+<title>一些不错的Rust不稳定特性 - poly000客栈</title>
 <meta name="author" content="Poly000" />
 <meta name="description" content="关于翻译" />
-<meta property="og:title" content="令人赞叹的Rust不稳定特性 - poly000客栈" />
+<meta property="og:title" content="一些不错的Rust不稳定特性 - poly000客栈" />
 <meta property="og:description" content="关于翻译" />
 <meta property="og:site_name" content="poly000客栈" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/archives/awesome-unstable-rust-features/" />
 <meta property="og:image" content="" />
 <meta property="article:published_time" content="2021-07-28T15:04:00+08.00" />
-<meta name="twitter:title" content="令人赞叹的Rust不稳定特性 - poly000客栈" />
+<meta name="twitter:title" content="一些不错的Rust不稳定特性 - poly000客栈" />
 <meta name="twitter:description" content="关于翻译" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:image" content="" />
@@ -63,7 +63,7 @@
 <main>    
     <section class="ga-section ga-content">
         <article class="yue">
-            <h1 class="ga-post_title">令人赞叹的Rust不稳定特性</h1>
+            <h1 class="ga-post_title">一些不错的Rust不稳定特性</h1>
             <span class="ga-post_meta ga-mono">
                 <span>Poly000</span>
                 <time>
@@ -77,12 +77,12 @@
                 
                 <span class="leancloud_visitors" 
                     id="/archives/awesome-unstable-rust-features/" 
-                    data-flag-title="令人赞叹的Rust不稳定特性"> · <i class="leancloud-visitors-count"></i> Views</span>
+                    data-flag-title="一些不错的Rust不稳定特性"> · <i class="leancloud-visitors-count"></i> Views</span>
                 
             </span>
             <div class="ga-content_body">
                 <h2>关于翻译</h2>
-<p>主要译者：<a href="https://github.com/poly000">poly000</a></p><p>标题翻译参考了 <a href="https://github.com/xieyuheng">@xieyuheng</a> 的建议。</p><p>术语部分翻译参考了 <a href="https://rustwiki.org/wiki/translate/english-chinese-glossary-of-rust/">Rust 语言术语中英文对照表</a>，有改动。</p><p>如果有翻译错误，请您<a href="https://github.com/poly000/poly000.github.io/issue">在仓库中指出</a>！</p><p>如果有原文错误，请联系 <a href="https://twitter.com/efun_b">Ethan Brierley</a> 且联系我更新翻译。</p><p>汉化进度： 308/845 行</p><h2>Credits</h2>
+<p>主要译者：<a href="https://github.com/poly000">poly000</a></p><p>标题翻译参考了 <a href="https://github.com/xieyuheng">@xieyuheng</a> 与 <a href="https://github.com/oxalica">oxa</a> 的建议。</p><p>术语部分翻译参考了 <a href="https://rustwiki.org/wiki/translate/english-chinese-glossary-of-rust/">Rust 语言术语中英文对照表</a>，有改动。</p><p>如果有翻译错误，请您<a href="https://github.com/poly000/poly000.github.io/issue">在仓库中指出</a>！</p><p>如果有原文错误，请联系 <a href="https://twitter.com/efun_b">Ethan Brierley</a> 且联系我更新翻译。</p><p>汉化进度： 361/846 行</p><h2>Credits</h2>
 <p><a href="https://lazy.codes/posts/awesome-unstable-rust-features/">原文</a> by <a href="https://twitter.com/efun_b">Ethan Brierley</a></p><h2>简介</h2>
 <p>这篇文章介绍了一些尚不稳定的 Rust 编译器特性。它将会简要叙述这些特性，并不会深入太多的细节。</p><h2>什么是不稳定 Rust？</h2>
 <p>Rust 发布于三个渠道： stable，beta，以及 nightly。</p><p>Nightly 编译器每天都会发布，而且唯有它允许你解锁不稳定 Rust 特性。</p><blockquote>
@@ -221,10 +221,10 @@
 <p>拓展可用在 <code>match</code> 表达式中的 <a href="https://doc.rust-lang.org/beta/rust-by-example/flow_control/match/guard.html"><code>if</code> 守卫</a> ，允许使用 <code>if let</code>。</p><blockquote>
 <p>译注：原文中使用了 &quot;<code>match</code> statement&quot; 的说法，这里翻译为 <code>match</code> 表达式。</p></blockquote>
 <h3><code>let_chains</code></h3>
-<p>Currently, <code>if let</code> and <code>while let</code> expressions can not be chained with <code>||</code> or <code>&amp;&amp;</code>.
-This feature adds that support.</p><h2>Traits</h2>
+<p>目前，<code>if let</code> 和 <code>while let</code> 表达式不能以 <code>||</code> 或 <code>&amp;&amp;</code> 连接，
+这个特性添加了支持。</p><h2>Traits</h2>
 <h3><code>associated_type_bounds</code></h3>
-<p>Let's take this stable Rust function:</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">fizzbuzz</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="nc">impl</span><span class="w"> </span><span class="nb">Iterator</span><span class="o">&lt;</span><span class="n">Item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<p>看看这个稳定 Rust 函数：</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">fizzbuzz</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="nc">impl</span><span class="w"> </span><span class="nb">Iterator</span><span class="o">&lt;</span><span class="n">Item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="p">(</span><span class="mi">1</span><span class="o">..</span><span class="p">).</span><span class="n">map</span><span class="p">(</span><span class="o">|</span><span class="n">val</span><span class="o">|</span><span class="w"> </span><span class="k">match</span><span class="w"> </span><span class="p">(</span><span class="n">val</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s">&quot;FizzBuzz&quot;</span><span class="p">.</span><span class="n">to_string</span><span class="p">(),</span><span class="w"></span>
 <span class="w">        </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s">&quot;Fizz&quot;</span><span class="p">.</span><span class="n">to_string</span><span class="p">(),</span><span class="w"></span>
@@ -233,9 +233,9 @@ This feature adds that support.</p><h2>Traits</h2>
 <span class="w">    </span><span class="p">})</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
-<p>With the <code>associated_type_bounds</code> feature we can use an anonymous type in this context:</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">fizzbuzz</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="nc">impl</span><span class="w"> </span><span class="nb">Iterator</span><span class="o">&lt;</span><span class="n">Item</span>: <span class="nc">Display</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">..</span><span class="p">.</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<p>通过 <code>associated_type_bounds</code> 特性，我们可以在这种情况下使用一个匿名类型。</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">fizzbuzz</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="nc">impl</span><span class="w"> </span><span class="nb">Iterator</span><span class="o">&lt;</span><span class="n">Item</span>: <span class="nc">Display</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">..</span><span class="p">.</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
 </pre></div>
-<p>Let's take a look at this horribly repetitive type signature:</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">flatten_twice</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">iter</span>: <span class="nc">T</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">Flatten</span><span class="o">&lt;</span><span class="n">Flatten</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span><span class="w"></span>
+<p>看看这个吓人地冗余的类型签名：</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">flatten_twice</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">iter</span>: <span class="nc">T</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">Flatten</span><span class="o">&lt;</span><span class="n">Flatten</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span><span class="w"></span>
 <span class="k">where</span><span class="w"></span>
 <span class="w">    </span><span class="n">T</span>: <span class="nb">Iterator</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="o">&lt;</span><span class="n">T</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">Iterator</span><span class="o">&gt;</span>::<span class="n">Item</span>: <span class="nb">IntoIterator</span><span class="p">,</span><span class="w"></span>
@@ -244,7 +244,7 @@ This feature adds that support.</p><h2>Traits</h2>
 <span class="w">    </span><span class="n">iter</span><span class="p">.</span><span class="n">flatten</span><span class="p">().</span><span class="n">flatten</span><span class="p">()</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
-<p>With this feature, we can write it simply as:</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">flatten_twice</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">iter</span>: <span class="nc">T</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">Flatten</span><span class="o">&lt;</span><span class="n">Flatten</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span><span class="w"></span>
+<p>使用这个特性，我们可以简单地写成：</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">flatten_twice</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">iter</span>: <span class="nc">T</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">Flatten</span><span class="o">&lt;</span><span class="n">Flatten</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span><span class="w"></span>
 <span class="k">where</span><span class="w"></span>
 <span class="w">    </span><span class="n">T</span>: <span class="nb">Iterator</span><span class="o">&lt;</span><span class="n">Item</span>: <span class="nb">IntoIterator</span><span class="o">&lt;</span><span class="n">Item</span>: <span class="nb">IntoIterator</span><span class="o">&gt;&gt;</span><span class="p">,</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
