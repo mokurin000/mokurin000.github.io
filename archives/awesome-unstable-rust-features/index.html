@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "/5e75fa2b19186e99717e5330223d151c.json"
+            api: "/acdd281daedf61017a900896f94105b1.json"
         }
     </script>
     
@@ -261,7 +261,6 @@
 </pre></div>
 <p>它让编译器为任意 结构体/枚举/联合 自动实现 <code>Send</code> trait，前提是构成这个类型的类型都实现了<code>Send</code>。</p><p>如果每个类型都能简单地实现 自动trait ，它们也不会那么有用。
 这正是引入 <code>negative_impls</code> 的原因。</p><p><code>negative_impls</code> 允许一个类型选择不实现自动trait。
-Take for example <code>UnsafeCell</code>. It would be very unsafe for an unrestricted <code>UnsafeCell</code> to be shared across threads, therefore it would be very unsafe for it to be <code>Sync</code>.
 例如 <code>UnsafeCell</code> 。不受限制的 <code>UnsafeCell</code> 在线程间共享是非常不安全的，因此它被标记为 <code>Sync</code> 也是很不安全的。</p><div class="highlight"><pre><span></span><span class="k">impl</span><span class="o">&lt;</span><span class="n">T</span>: <span class="o">?</span><span class="nb">Sized</span><span class="o">&gt;</span><span class="w"> </span><span class="o">!</span><span class="nb">Sync</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">UnsafeCell</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 </pre></div>
 <p>注意 <code>!</code> 创造性的使用，表示 “不<code>Sync</code>”。</p><h3><code>marker_trait_attr</code></h3>
