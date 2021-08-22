@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "/acdd281daedf61017a900896f94105b1.json"
+            api: "/57703961432867d51b1d01bee13ce521.json"
         }
     </script>
     
@@ -264,7 +264,7 @@
 例如 <code>UnsafeCell</code> 。不受限制的 <code>UnsafeCell</code> 在线程间共享是非常不安全的，因此它被标记为 <code>Sync</code> 也是很不安全的。</p><div class="highlight"><pre><span></span><span class="k">impl</span><span class="o">&lt;</span><span class="n">T</span>: <span class="o">?</span><span class="nb">Sized</span><span class="o">&gt;</span><span class="w"> </span><span class="o">!</span><span class="nb">Sync</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">UnsafeCell</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 </pre></div>
 <p>注意 <code>!</code> 创造性的使用，表示 “不<code>Sync</code>”。</p><h3><code>marker_trait_attr</code></h3>
-<p>这个特性为 trait添加了<code>#[marker]</code> attribute。</p><p>Rust disallows the defining of traits implementations that could overlap.
+<p>这个特性为 trait添加了<code>#[marker]</code> attribute。</p><p>Rust 不允许 the defining of traits implementations that could overlap.
 This is so that the compiler will always know which implementation to use because there will always be only one.</p><p>Traits marked with <code>#[marker]</code> cannot override anything in their implementations.
 That way they are allowed to have overlapping implementations because all implementations will be the same.</p><h3><code>type_alias_impl_trait</code>, <code>impl_trait_in_bindings</code> and <code>trait_alias</code></h3>
 <p><code>impl Trait</code> tells the compiler to infer a concrete type to replace it with that implements <code>Trait</code>.
@@ -539,7 +539,7 @@ I am also looking for employment opportunities so please get in touch if you wou
 
 
     <div class="prev">
-        <a class="ga-highlight" href="/archives/enable-osdlyrics-netease-translation/">关于 Osdlyrics 网易来源启用翻译</a>
+        <a class="ga-highlight" href="/archives/enable-osdlyrics-netease-translation/">Osdlyrics 网易来源启用翻译</a>
         <p class="yue">引言</p>
     </div>
 
