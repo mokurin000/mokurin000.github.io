@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "/57703961432867d51b1d01bee13ce521.json"
+            api: "/490927ff9c747c24f414e544cf94a718.json"
         }
     </script>
     
@@ -84,17 +84,16 @@
                 <h2>引言</h2>
 <p>今天偶然得知 GNU/Linux 下的 Osdlyrics 可用于桌面歌词</p><p>但是它暂不支持使用翻译。所以这次说一下怎么修改 Osdlyrics 的网易来源脚本尝试使用翻译歌词。</p><h2>原理</h2>
 <p>根据 <a href="https://github.com/Binaryify/NeteaseCloudMusicApi">NeteaseCloudMusicApi</a> ，
-我发现网易的翻译LRC和原LRC是区分的。</p><p>因此，只要修改 <code>/usr/lib/osdlyrics/lyricsources/netease/</code> 下的 <code>netease.py</code>：</p><div class="highlight"><pre><span></span><span class="o">@@</span> <span class="o">-</span><span class="mi">86</span><span class="p">,</span><span class="mi">7</span> <span class="o">+</span><span class="mi">86</span><span class="p">,</span><span class="mi">9</span> <span class="o">@@</span> <span class="k">class</span> <span class="nc">NeteaseSource</span><span class="p">(</span><span class="n">BaseLyricSourcePlugin</span><span class="p">):</span>
-         <span class="c1"># Avoid processing results with no lyrics.</span>
-         <span class="k">if</span> <span class="s1">&#39;nolyric&#39;</span> <span class="ow">in</span> <span class="n">parsed</span> <span class="ow">or</span> <span class="s1">&#39;uncollected&#39;</span> <span class="ow">in</span> <span class="n">parsed</span><span class="p">:</span>
-             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;This item has no lyrics.&#39;</span><span class="p">)</span>
-<span class="o">-</span>        <span class="n">lyric</span> <span class="o">=</span> <span class="n">parsed</span><span class="p">[</span><span class="s1">&#39;lrc&#39;</span><span class="p">][</span><span class="s1">&#39;lyric&#39;</span><span class="p">]</span>
-<span class="o">+</span>        <span class="n">lyric</span> <span class="o">=</span> <span class="n">parsed</span><span class="p">[</span><span class="s1">&#39;tlyric&#39;</span><span class="p">][</span><span class="s1">&#39;lyric&#39;</span><span class="p">]</span>
-<span class="o">+</span>        <span class="k">if</span> <span class="ow">not</span> <span class="n">lyric</span><span class="p">:</span>
-<span class="o">+</span>            <span class="n">lyric</span> <span class="o">=</span> <span class="n">parsed</span><span class="p">[</span><span class="s1">&#39;lrc&#39;</span><span class="p">][</span><span class="s1">&#39;lyric&#39;</span><span class="p">]</span> <span class="c1"># If there is no translation, use the original lyric instead</span>
-         <span class="k">return</span> <span class="n">lyric</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+我发现网易的翻译LRC和原LRC是区分的。</p><p>将以下patch应用到 <code>/usr/lib/osdlyrics/lyricsources/netease/netease.py</code>：</p><div class="highlight"><pre><span></span><span class="mi">89</span><span class="n">c89</span><span class="p">,</span><span class="mi">91</span>
+<span class="o">&lt;</span>         <span class="n">lyric</span> <span class="o">=</span> <span class="n">parsed</span><span class="p">[</span><span class="s1">&#39;lrc&#39;</span><span class="p">][</span><span class="s1">&#39;lyric&#39;</span><span class="p">]</span>
+<span class="o">---</span>
+<span class="o">&gt;</span>         <span class="n">lyric</span> <span class="o">=</span> <span class="n">parsed</span><span class="p">[</span><span class="s1">&#39;tlyric&#39;</span><span class="p">][</span><span class="s1">&#39;lyric&#39;</span><span class="p">]</span>
+<span class="o">&gt;</span>         <span class="k">if</span> <span class="ow">not</span> <span class="n">lyric</span><span class="p">:</span>
+<span class="o">&gt;</span>             <span class="n">lyric</span> <span class="o">=</span> <span class="n">parsed</span><span class="p">[</span><span class="s1">&#39;lrc&#39;</span><span class="p">][</span><span class="s1">&#39;lyric&#39;</span><span class="p">]</span>
 </pre></div>
-<p>这样修改就可以尝试使用翻译歌词。</p>
+<div class="highlight"><pre><span></span>curl https://fars.ee/AJ76D4gooIWJqsX4TnsW9WFRu8N6 <span class="p">|</span> sudo patch /usr/lib/osdlyrics/lyricsources/netease/netease.py
+</pre></div>
+
             </div>
         </article>
         <div id="ga-tags">
