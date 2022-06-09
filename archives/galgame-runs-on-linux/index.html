@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "/baf551a632c48d99524b5f9187452301.json"
+            api: "/797dd34999064da5a87d2d28d60d3818.json"
         }
     </script>
     
@@ -88,13 +88,14 @@
 <li><p>MPEG splitter faild: 安装 devenum, quartz 后解决；quartz出问题的话可以执行 <code>winetricks --force quartz</code> 重装。</p></li>
 <li><p>万能方法： 在崩溃的地方存档，换win7虚拟机走过那段内容后存档。</p></li>
 <li><p>其他OP播放崩溃：faudio（闪画面无声音），等等……（待添加）</p></li>
-<li><p>打不开游戏: 一般安装DirectX相关依赖项即可解决</p></li>
+<li><p>打不开游戏: 一般安装DirectX相关依赖项即可解决，进不去也可以试试WINED3D=1前缀</p></li>
 <li><p>启动时弹了乱码报错，或者是游戏中乱码（比如 Clover Day’s中文汉化版，rewrite），可以在wine前加启动参数LANG=en_US.UTF-8，或LANG=zh_CN.UTF-8或LANG=ja_JP.UTF-8。</p></li>
 <li><p><a href="https://appdb.winehq.org/">WineHQ-AppDB</a> 通常会有一些人提供信息。</p></li>
 </ul>
 <h3>特定游戏</h3>
 <h4>拔作岛</h4>
-<p>拔作岛使用编码 GB18030</p><p>启动时使用 <code>LANG=zh_CN.GB18030 wine ...</code> 即可解决乱码</p><p><a href="https://blog.sg4yk.com/gal_on_linux.html">参考链接</a>（需要事先进行locale-gen）</p>
+<p>拔作岛使用编码 GB18030</p><p>启动时使用 <code>LANG=zh_CN.GB18030 wine ...</code> 即可解决乱码</p><h4>多娜多娜</h4>
+<p>添加启动参数 <code>WINED3D=1</code> 即可运行。</p><p><a href="https://blog.sg4yk.com/gal_on_linux.html">参考链接</a>（需要事先进行locale-gen）</p>
             </div>
         </article>
         <div id="ga-tags">
@@ -150,7 +151,7 @@
                     </section>
                     <section>
                         <p class="copyright">
-                            <span>Copyright © 2021 poly000</span>
+                            <span>Copyright © 2022 poly000</span>
                             <span>Powered by <a no-style href="https://github.com/AlanDecode/Maverick" target="_blank">Maverick & Galileo</a></span>
                         </p>
                         <div class="copyright">
