@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "/cca2ad9b1e5286e855a100f3dafc86ea.json"
+            api: "/3027466fa8f4b5985c6a262f176875b1.json"
         }
     </script>
     
@@ -272,13 +272,13 @@
 目前，<code>impl Trait</code>只能在函数参数或返回类型中使用，无法应用于变量绑定。</p><blockquote>
 <p>注：impl_trait_in_binding 临时被移除(2022-07-26)，可能是因为<a href="https://github.com/rust-lang/rust/issues/83021">破坏性更新</a></p></blockquote>
 <p><code>type_alias_impl_trait</code> 和 <code>impl_trait_in_bindings</code> 拓展了 <code>impl trait</code>，让其可用于定义类型别名和 <code>let</code> 绑定。</p><p><code>trait_alias</code> 与 <code>type_alias_impl_trait</code> 有微妙的不同：
-Everywhere you use a type alias the type must remain constant.
-A single concrete type must be inferred by the compiler that works in all those places.
-Trait aliases are more forgiving as they can be a different type in each place they are used.</p><h3><code>fn_traits</code> and <code>unboxed_closures</code></h3>
-<p>The three traits <code>Fn</code>, <code>FnMut</code> and <code>FnOnce</code> are known as the fn traits.
-They are automatically implemented for any functions or closures that you create and are what provides the ability to pass arguments to them.</p><p>An automatic implementation is currently the only way to implement those traits.
-The <code>fn_traits</code> feature allows for custom implementations on any type.
-This is very similar to operator overloading but customising the use of <code>()</code>.</p><div class="highlight"><pre><span></span><span class="cp">#![feature(unboxed_closures)]</span><span class="w"> </span><span class="c1">// required to implement a function with `extern &quot;rust-call&quot;`</span>
+你使用类型别名的时候，类型必须是固定的。
+编译器必须推断出，并且只应用单一具体的类型。
+trait别名则较为宽松，每次使用都可以是不同的类型。</p><h3><code>fn_traits</code> and <code>unboxed_closures</code></h3>
+<p><code>Fn</code>，<code>FnMut</code>和<code>FnOnce</code>被认为是<code>fn</code>的trait。
+它们会被任何函数或者你创建的闭包自动实现，它们允许你给它们传参。</p><p>目前它们只能被自动实现。
+<code>fn_trait</code> 则允许为任意类型提供自定义实现。
+这就像是操作符重载，但要自定义的是<code>()</code>调用。</p><div class="highlight"><pre><span></span><span class="cp">#![feature(unboxed_closures)]</span><span class="w"> </span><span class="c1">// 实现带有`extern &quot;rust-call&quot;`的函数</span>
 <span class="cp">#![feature(fn_traits)]</span><span class="w"></span>
 
 <span class="k">struct</span> <span class="nc">Multiply</span><span class="p">;</span><span class="w"></span>
@@ -313,10 +313,10 @@ This is very similar to operator overloading but customising the use of <code>()
 <span class="w">    </span><span class="fm">assert_eq!</span><span class="p">(</span><span class="n">multiply</span><span class="p">(</span><span class="s">&quot;hello &quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;hello hello hello &quot;</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
-<p>Notice that this is being used to create a hacky version of <a href="https://en.wikipedia.org/wiki/Function_overloading">function overloading</a> and <a href="https://en.wikipedia.org/wiki/Variadic_function">variadic functions</a>.</p><h2>Sugar</h2>
+<p>这可被用于实现有点 hacky 的<a href="https://en.wikipedia.org/wiki/Function_overloading">函数重载</a>和<a href="https://en.wikipedia.org/wiki/Variadic_function">不定参函数</a>.</p><h2>语法糖</h2>
 <h3><code>box_patterns</code> and <code>box_syntax</code></h3>
-<p>These two features make constructing and destructing <code>Box</code>es easier.
-The <code>box</code> keyword replaces <code>Box::new(..)</code> and allows for the dereferencing <code>Box</code>es when pattern matching.</p><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="nc">TrashStack</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<p>这两个特性让<code>Box</code>的构造和析构变得更容易。
+box关键字将取代<code>Box::new(...)</code>，并且允许在模式匹配中解引用<code>Box</code>。</p><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="nc">TrashStack</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">head</span>: <span class="nc">T</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="n">body</span>: <span class="nb">Option</span><span class="o">&lt;</span><span class="nb">Box</span><span class="o">&lt;</span><span class="n">TrashStack</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;&gt;</span><span class="p">,</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>

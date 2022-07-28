@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>poly000客栈</title><link>/</link><description>poly000 的碎碎念</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>/android-chrome-512x512.png</url><title>poly000客栈</title><link>/</link></image><language>chinese</language><lastBuildDate>Fri, 29 Jul 2022 00:02:07 +0806</lastBuildDate><pubDate>Fri, 29 Jul 2022 00:02:07 +0806</pubDate><item><title>给Win32程序加图标</title><link>/archives/add-icon-to-win32-exe/</link><description>&lt;h2&gt;前言&lt;/h2&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>poly000客栈</title><link>/</link><description>poly000 的碎碎念</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>/android-chrome-512x512.png</url><title>poly000客栈</title><link>/</link></image><language>chinese</language><lastBuildDate>Fri, 29 Jul 2022 00:37:27 +0806</lastBuildDate><pubDate>Fri, 29 Jul 2022 00:37:27 +0806</pubDate><item><title>给Win32程序加图标</title><link>/archives/add-icon-to-win32-exe/</link><description>&lt;h2&gt;前言&lt;/h2&gt;
 &lt;p&gt;为了好玩咱想要试着给win32程序加图标，&lt;/p&gt;&lt;p&gt;但是只找到了用VS加图标的操作……&lt;/p&gt;&lt;p&gt;最后找到了链接操作。&lt;/p&gt;&lt;p&gt;&lt;a href="https://fragglet.livejournal.com/4448.html"&gt;原文地址（英文）&lt;/a&gt;&lt;/p&gt;&lt;h2&gt;开始动手做&lt;/h2&gt;
 &lt;p&gt;首先 我们需要写一个 &lt;code&gt;.rc&lt;/code&gt; 的文件：&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;1 ICON &amp;quot;(path-to-*.ico)&amp;quot;
 &lt;/pre&gt;&lt;/div&gt;
@@ -220,13 +220,13 @@
 目前，&lt;code&gt;impl Trait&lt;/code&gt;只能在函数参数或返回类型中使用，无法应用于变量绑定。&lt;/p&gt;&lt;blockquote&gt;
 &lt;p&gt;注：impl_trait_in_binding 临时被移除(2022-07-26)，可能是因为&lt;a href="https://github.com/rust-lang/rust/issues/83021"&gt;破坏性更新&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;&lt;code&gt;type_alias_impl_trait&lt;/code&gt; 和 &lt;code&gt;impl_trait_in_bindings&lt;/code&gt; 拓展了 &lt;code&gt;impl trait&lt;/code&gt;，让其可用于定义类型别名和 &lt;code&gt;let&lt;/code&gt; 绑定。&lt;/p&gt;&lt;p&gt;&lt;code&gt;trait_alias&lt;/code&gt; 与 &lt;code&gt;type_alias_impl_trait&lt;/code&gt; 有微妙的不同：
-Everywhere you use a type alias the type must remain constant.
-A single concrete type must be inferred by the compiler that works in all those places.
-Trait aliases are more forgiving as they can be a different type in each place they are used.&lt;/p&gt;&lt;h3&gt;&lt;code&gt;fn_traits&lt;/code&gt; and &lt;code&gt;unboxed_closures&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;The three traits &lt;code&gt;Fn&lt;/code&gt;, &lt;code&gt;FnMut&lt;/code&gt; and &lt;code&gt;FnOnce&lt;/code&gt; are known as the fn traits.
-They are automatically implemented for any functions or closures that you create and are what provides the ability to pass arguments to them.&lt;/p&gt;&lt;p&gt;An automatic implementation is currently the only way to implement those traits.
-The &lt;code&gt;fn_traits&lt;/code&gt; feature allows for custom implementations on any type.
-This is very similar to operator overloading but customising the use of &lt;code&gt;()&lt;/code&gt;.&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#![feature(unboxed_closures)]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// required to implement a function with `extern &amp;quot;rust-call&amp;quot;`&lt;/span&gt;
+你使用类型别名的时候，类型必须是固定的。
+编译器必须推断出，并且只应用单一具体的类型。
+trait别名则较为宽松，每次使用都可以是不同的类型。&lt;/p&gt;&lt;h3&gt;&lt;code&gt;fn_traits&lt;/code&gt; and &lt;code&gt;unboxed_closures&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;Fn&lt;/code&gt;，&lt;code&gt;FnMut&lt;/code&gt;和&lt;code&gt;FnOnce&lt;/code&gt;被认为是&lt;code&gt;fn&lt;/code&gt;的trait。
+它们会被任何函数或者你创建的闭包自动实现，它们允许你给它们传参。&lt;/p&gt;&lt;p&gt;目前它们只能被自动实现。
+&lt;code&gt;fn_trait&lt;/code&gt; 则允许为任意类型提供自定义实现。
+这就像是操作符重载，但要自定义的是&lt;code&gt;()&lt;/code&gt;调用。&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#![feature(unboxed_closures)]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// 实现带有`extern &amp;quot;rust-call&amp;quot;`的函数&lt;/span&gt;
 &lt;span class="cp"&gt;#![feature(fn_traits)]&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 
 &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;Multiply&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
@@ -261,10 +261,10 @@ This is very similar to operator overloading but customising the use of &lt;code
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="fm"&gt;assert_eq!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;multiply&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;hello &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;hello hello hello &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Notice that this is being used to create a hacky version of &lt;a href="https://en.wikipedia.org/wiki/Function_overloading"&gt;function overloading&lt;/a&gt; and &lt;a href="https://en.wikipedia.org/wiki/Variadic_function"&gt;variadic functions&lt;/a&gt;.&lt;/p&gt;&lt;h2&gt;Sugar&lt;/h2&gt;
+&lt;p&gt;这可被用于实现有点 hacky 的&lt;a href="https://en.wikipedia.org/wiki/Function_overloading"&gt;函数重载&lt;/a&gt;和&lt;a href="https://en.wikipedia.org/wiki/Variadic_function"&gt;不定参函数&lt;/a&gt;.&lt;/p&gt;&lt;h2&gt;语法糖&lt;/h2&gt;
 &lt;h3&gt;&lt;code&gt;box_patterns&lt;/code&gt; and &lt;code&gt;box_syntax&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;These two features make constructing and destructing &lt;code&gt;Box&lt;/code&gt;es easier.
-The &lt;code&gt;box&lt;/code&gt; keyword replaces &lt;code&gt;Box::new(..)&lt;/code&gt; and allows for the dereferencing &lt;code&gt;Box&lt;/code&gt;es when pattern matching.&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;TrashStack&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;p&gt;这两个特性让&lt;code&gt;Box&lt;/code&gt;的构造和析构变得更容易。
+box关键字将取代&lt;code&gt;Box::new(...)&lt;/code&gt;，并且允许在模式匹配中解引用&lt;code&gt;Box&lt;/code&gt;。&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="nc"&gt;TrashStack&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;: &lt;span class="nc"&gt;T&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;body&lt;/span&gt;: &lt;span class="nb"&gt;Option&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;Box&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;TrashStack&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
