@@ -19,22 +19,22 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "/5d326296c3f36d3e214466ef07290b62.json"
+            api: "/d9a08742dea1b58ab2a2244d728a50b5.json"
         }
     </script>
     
 <title>一些不错的Rust Unstable特性 - poly000客栈</title>
 <meta name="author" content="Poly000" />
-<meta name="description" content="关于翻译" />
+<meta name="description" content="注意" />
 <meta property="og:title" content="一些不错的Rust Unstable特性 - poly000客栈" />
-<meta property="og:description" content="关于翻译" />
+<meta property="og:description" content="注意" />
 <meta property="og:site_name" content="poly000客栈" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/archives/awesome-unstable-rust-features/" />
 <meta property="og:image" content="" />
 <meta property="article:published_time" content="2021-07-28T15:04:00+08.00" />
 <meta name="twitter:title" content="一些不错的Rust Unstable特性 - poly000客栈" />
-<meta name="twitter:description" content="关于翻译" />
+<meta name="twitter:description" content="注意" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:image" content="" />
 
@@ -81,7 +81,8 @@
                 
             </span>
             <div class="ga-content_body">
-                <h2>关于翻译</h2>
+                <h2>注意</h2>
+<p>本文原文发布于2021-07-26，其中部分内容可能已经过时。请以 Rust RFC 为准。</p><h2>关于翻译</h2>
 <p>主要译者：<a href="https://github.com/poly000">poly000</a>，<a href="https://t.me/Hinanawi_Tenshi_M">比那名居</a></p><p>参考了这些人（排名不分先后）的建议：<a href="https://github.com/unsafeIO">unsafeIO</a>，<a href="https://github.com/xieyuheng">xieyuheng</a>，<a href="https://github.com/oxalica">oxa</a>，<a href="https://github.com/edward-p">Edward_P</a>。</p><p>术语部分翻译参考了 <a href="https://rustwiki.org/wiki/translate/english-chinese-glossary-of-rust/">Rust 语言术语中英文对照表</a>，有改动。</p><p>如果有翻译错误，请您<a href="https://github.com/poly000/poly000.github.io/issue">在仓库中指出</a>！</p><p>如果有原文错误，请联系 <a href="https://twitter.com/efun_b">Ethan Brierley</a> 且联系我更新翻译。</p><p>汉化进度： 480/849 行</p><p>参与汉化：<a href="https://github.com/poly000/Maverick/">Maverick/demo_src</a></p><h2>Credits</h2>
 <p><a href="https://lazy.codes/posts/awesome-unstable-rust-features/">原文</a> by <a href="https://twitter.com/efun_b">Ethan Brierley</a></p><h2>简介</h2>
 <p>这篇文章介绍了一些尚不稳定的 Rust 编译器特性。它将会简要叙述这些特性，并不会深入太多的细节。</p><h2>什么是Unstable Rust？</h2>
@@ -264,11 +265,13 @@
 例如 <code>UnsafeCell</code> 。不受限制的 <code>UnsafeCell</code> 在线程间共享是非常不安全的，因此它被标记为 <code>Sync</code> 也是很不安全的。</p><div class="highlight"><pre><span></span><span class="k">impl</span><span class="o">&lt;</span><span class="n">T</span>: <span class="o">?</span><span class="nb">Sized</span><span class="o">&gt;</span><span class="w"> </span><span class="o">!</span><span class="nb">Sync</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">UnsafeCell</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 </pre></div>
 <p>注意 <code>!</code> 创造性的使用，表示 “不<code>Sync</code>”。</p><h3><code>marker_trait_attr</code></h3>
-<p>这个特性为 trait添加了<code>#[marker]</code> attribute。</p><p>Rust 不允许 the defining of traits implementations that could overlap.
-This is so that the compiler will always know which implementation to use because there will always be only one.</p><p>Traits marked with <code>#[marker]</code> cannot override anything in their implementations.
-That way they are allowed to have overlapping implementations because all implementations will be the same.</p><h3><code>type_alias_impl_trait</code>, <code>impl_trait_in_bindings</code> and <code>trait_alias</code></h3>
-<p><code>impl Trait</code> tells the compiler to infer a concrete type to replace it with that implements <code>Trait</code>.
-Currently, <code>impl Trait</code> is only used in the context of function arguments or return types.</p><p><code>type_alias_impl_trait</code> and <code>impl_trait_in_bindings</code> extend the places <code>impl trait</code> can be used to include type aliases and <code>let</code> bindings respectively.</p><p><code>trait_alias</code> is subtlely different to <code>type_alias_impl_trait</code>.
+<p>这个特性为 trait 添加了<code>#[marker]</code> attribute。</p><p>Rust 不允许trait的实现覆盖此前的实现。
+这样编译器就能确定要使用哪个实现——只有一个。</p><p>标志为 <code>#[marker]</code> 的 trait 不能在impl中覆盖任何东西。
+因此它们允许有重叠的实现，因为所有的实现都是一样的。</p><h3><code>type_alias_impl_trait</code>, <code>impl_trait_in_bindings</code> and <code>trait_alias</code></h3>
+<p><code>impl Trait</code> 让编译器推导出具体类型，替代 <code>Trait</code>。
+目前，<code>impl Trait</code>只能在函数参数或返回类型中使用，无法应用于变量绑定。</p><blockquote>
+<p>注：impl_trait_in_binding 临时被移除(2022-07-26)，可能是因为<a href="https://github.com/rust-lang/rust/issues/83021">破坏性更新</a></p></blockquote>
+<p><code>type_alias_impl_trait</code> 和 <code>impl_trait_in_bindings</code> 拓展了 <code>impl trait</code>，让其可用于定义类型别名和 <code>let</code> 绑定。</p><p><code>trait_alias</code> 与 <code>type_alias_impl_trait</code> 有微妙的不同：
 Everywhere you use a type alias the type must remain constant.
 A single concrete type must be inferred by the compiler that works in all those places.
 Trait aliases are more forgiving as they can be a different type in each place they are used.</p><h3><code>fn_traits</code> and <code>unboxed_closures</code></h3>
