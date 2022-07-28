@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "/d9a08742dea1b58ab2a2244d728a50b5.json"
+            api: "/cca2ad9b1e5286e855a100f3dafc86ea.json"
         }
     </script>
     
@@ -254,8 +254,8 @@
 </pre></div>
 <p>这对我来说容易推导许多。</p><h3><code>default_type_parameter_fallback</code>, <code>associated_type_defaults</code>以及<code>const_generics_defaults</code></h3>
 <p>这些特性允许你为 <a href="https://github.com/rust-lang/rfcs/blob/master/text/0213-defaulted-type-params.md">泛型类型</a>, <a href="https://github.com/rust-lang/rfcs/blob/master/text/2532-associated-type-defaults.md">关联类型</a> 以及 <a href="#const-%E6%B3%9B%E5%9E%8B">const 变量</a> 在更多地方指定默认值。</p><p>它们允许你作为开发者创建更好的 API 。
-如果一个crate的用户对细节不感兴趣，而且那个物件有默认值，可以忽略细节。
-它们也让拓展 API 变得容易，无需对你的用户做出破坏性更新。</p><h3><code>negative_impls</code> 和 <code>auto_traits</code></h3>
+如果一个crate的用户对细节不感兴趣，而那个对象有默认值，可以忽略细节。
+它们也让拓展 API 变得容易，无需做出破坏性更新。</p><h3><code>negative_impls</code> 和 <code>auto_traits</code></h3>
 <p>这些特性都被标准库使用。<a href="https://doc.rust-lang.org/std/marker/trait.Send.html"><code>Send</code></a> 和 <a href="https://doc.rust-lang.org/std/marker/trait.Sync.html"><code>Sync</code></a> 都是自动 trait 的例子。</p><p><code>Send</code> trait 被<a href="https://doc.rust-lang.org/src/core/marker.rs.html#38-40">这样定义在标准库中</a>：</p><div class="highlight"><pre><span></span><span class="k">pub</span><span class="w"> </span><span class="k">unsafe</span><span class="w"> </span><span class="n">auto</span><span class="w"> </span><span class="k">trait</span><span class="w"> </span><span class="nb">Send</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="c1">// 空的</span>
 <span class="p">}</span><span class="w"></span>
@@ -264,7 +264,7 @@
 这正是引入 <code>negative_impls</code> 的原因。</p><p><code>negative_impls</code> 允许一个类型选择不实现自动trait。
 例如 <code>UnsafeCell</code> 。不受限制的 <code>UnsafeCell</code> 在线程间共享是非常不安全的，因此它被标记为 <code>Sync</code> 也是很不安全的。</p><div class="highlight"><pre><span></span><span class="k">impl</span><span class="o">&lt;</span><span class="n">T</span>: <span class="o">?</span><span class="nb">Sized</span><span class="o">&gt;</span><span class="w"> </span><span class="o">!</span><span class="nb">Sync</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">UnsafeCell</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 </pre></div>
-<p>注意 <code>!</code> 创造性的使用，表示 “不<code>Sync</code>”。</p><h3><code>marker_trait_attr</code></h3>
+<p>注意 <code>!</code> 的使用，表示 “不<code>Sync</code>”。</p><h3><code>marker_trait_attr</code></h3>
 <p>这个特性为 trait 添加了<code>#[marker]</code> attribute。</p><p>Rust 不允许trait的实现覆盖此前的实现。
 这样编译器就能确定要使用哪个实现——只有一个。</p><p>标志为 <code>#[marker]</code> 的 trait 不能在impl中覆盖任何东西。
 因此它们允许有重叠的实现，因为所有的实现都是一样的。</p><h3><code>type_alias_impl_trait</code>, <code>impl_trait_in_bindings</code> and <code>trait_alias</code></h3>
