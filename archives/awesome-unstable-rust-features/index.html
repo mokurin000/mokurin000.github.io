@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "/055020fd082b8f623e7059092687854e.json"
+            api: "/7495a4a67f4b0edb06ed59fbbcaac9bc.json"
         }
     </script>
     
@@ -192,7 +192,7 @@
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 <p><code>?</code> 在函数中被用于遇到 <code>Err</code> 时提前返回它。
-<code>try_blocks</code> 解锁了适用于任意代码块而不仅仅是函数的相同功能。
+<code>try_blocks</code> 提供了适用于任意代码块而不仅仅是函数的相同功能。
 使用 <code>try_blocks</code> 我们可以内联我们的 <code>read_usernames_from_file</code> 函数。</p><p><code>try_blocks</code> 和 <code>?</code> 的关系就像是 <code>label_break_value</code> 和 <code>return</code> 的关系。
 <code>try_blocks</code> 的RFC提到了 <code>label_break_value</code> ，作为一种可能的 <code>try_blocks</code> 解读方式。</p><p>接写来重写我们的 <code>read_username_from_file</code> 成一个简单的 <code>let</code> 绑定与一个 <code>try</code> 代码块。</p><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">read_username_from_file</span>: <span class="nb">Result</span><span class="o">&lt;</span><span class="nb">String</span><span class="p">,</span><span class="w"> </span><span class="n">io</span>::<span class="n">Error</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kr">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">File</span>::<span class="n">open</span><span class="p">(</span><span class="s">&quot;username.txt&quot;</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w"></span>
@@ -203,9 +203,9 @@
 <span class="w">    </span><span class="nb">Ok</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
-<p>我喜欢这种东西。特别是较小的表达式，如果不提取成函数，易读性会更好。</p><h3><code>inline_const</code></h3>
+<p>我喜欢这东西。特别是较小的表达式，如果不提取成函数，可读性会更好。</p><h3><code>inline_const</code></h3>
 <p>目前，获取一个编译时计算的值需要定义一个常量。</p><blockquote>
-<p>译者注：或者是 <code>const fn</code></p></blockquote>
+<p>译者注：或者 <code>const fn</code></p></blockquote>
 <div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">PI_APPROX</span>: <span class="kt">f64</span> <span class="o">=</span><span class="w"> </span><span class="mf">22.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">7.0</span><span class="p">;</span><span class="w"></span>
 
 <span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
