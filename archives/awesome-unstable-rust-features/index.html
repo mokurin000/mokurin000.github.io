@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "/7495a4a67f4b0edb06ed59fbbcaac9bc.json"
+            api: "/7c887b25808082096d250bf033eaa808.json"
         }
     </script>
     
@@ -376,22 +376,23 @@ That includes <code>print!</code>, <code>format!</code>, <code>write!</code> and
 <h3><code>crate_visibility_modifier</code></h3>
 <p>这个特性允许你写 <code>crate struct Foo</code> 而不是 <code>pub(crate) struct Foo</code> ，语义不变。</p><p>这使得 <code>pub(crate)</code> 更易编写，鼓励在pub不必要的时候使用crate可见性，</p><h2>Types</h2>
 <h3><code>type_ascription</code></h3>
-<p>Take for example the <code>collect</code> method on <code>Iterator</code>.
-Collect transforms an interator into a collection.</p><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">word</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="p">.</span><span class="n">chars</span><span class="p">().</span><span class="n">collect</span><span class="p">();</span><span class="w"></span>
+<p>用<code>Iterator</code>的<code>collect</code>方法举个例子：
+collect将迭代器转换到集合</p><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">word</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="p">.</span><span class="n">chars</span><span class="p">().</span><span class="n">collect</span><span class="p">();</span><span class="w"></span>
 <span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{:?}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">word</span><span class="p">);</span><span class="w"></span>
 </pre></div>
-<p>This does not compile because Rust is unable to infer the type of <code>word</code>.
-This can be fixed by replacing the first line with:</p><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">word</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="p">.</span><span class="n">chars</span><span class="p">().</span><span class="n">collect</span><span class="p">();</span><span class="w"></span>
+<p>这个不能编译，因为rust无法推导出<code>word</code>的类型。
+可以把第一行换成：</p><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">word</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="p">.</span><span class="n">chars</span><span class="p">().</span><span class="n">collect</span><span class="p">();</span><span class="w"></span>
 </pre></div>
-<p>With <code>type_ascription</code> the <code>let</code> binding is no longer necessary and one can simply:</p><div class="highlight"><pre><span></span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{:?}&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="p">.</span><span class="n">chars</span><span class="p">().</span><span class="n">collect</span><span class="p">()</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="p">);</span><span class="w"></span>
+<p>有了<code>type_ascription</code>就不需要再加上let绑定，我们可以直接：</p><div class="highlight"><pre><span></span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{:?}&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="p">.</span><span class="n">chars</span><span class="p">().</span><span class="n">collect</span><span class="p">()</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="p">);</span><span class="w"></span>
 </pre></div>
-<p>The <code>: Type</code> syntax can be used anywhere to hint at the compiler &quot;I want this type at this point&quot;.</p><h3><code>never_type</code></h3>
-<p>It is possible to define <code>enum</code>s with zero variants.
-Such an enum exists stable in the standard library.</p><div class="highlight"><pre><span></span><span class="k">pub</span><span class="w"> </span><span class="k">enum</span> <span class="nc">Infallible</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<p><code>: Type</code> 语法可以用在任何一处，提醒编译器“我在这里想要得到这个类型”</p><h3><code>never_type</code></h3>
+<p>你可以定义没有变体的枚举体，
+这种枚举体也存在于标准库中。</p><div class="highlight"><pre><span></span><span class="k">pub</span><span class="w"> </span><span class="k">enum</span> <span class="nc">Infallible</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 </pre></div>
-<p>It is possible to use this type in generics and function signatures but never possible for it to be constructed.
-There are simply no variants to construct.</p><p>The unit type, <code>()</code> would be equivalent to an enum with a single variant.
-<code>never_type</code> introduces a new type, <code>!</code> which is equivalent to our <code>Infallible</code> enum with zero variants.</p><p>Because <code>!</code> can never be constructed it can be given special powers.
+<p>你可以在泛型或函数签名中使用该类型，但它不可能被构造。
+没有可以用来构造的变体。</p><p>The unit type, <code>()</code> would be equivalent to an enum with a single variant.
+元类型，<code>()</code> 等价于只有一个变体的枚举。
+<code>never_type</code> 引入了一种新的类型，<code>!</code>等价于我们的没有变体的 <code>Infallible</code>。</p><p>Because <code>!</code> can never be constructed it can be given special powers.
 We don't have to handle the case of <code>!</code> because we have proven it will never exist.</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="o">!</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="k">loop</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">);</span><span class="w"></span>
