@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "/7e9b8f0c2f816c5972d6407e0e857d9b.json"
+            api: "/84fd55ac33ad5da93fd65f63e2387901.json"
         }
     </script>
     
@@ -90,28 +90,26 @@
 <p>Rust 有三个发布版本： stable，beta，nightly。</p><p>Nightly 编译器每天都会发布，而且只有它允许你启用 Unstable Rust 特性。</p><blockquote>
 <p>这篇文章只讨论 Unstable 编译器特性，不讨论此版本的标准库特性。</p></blockquote>
 <h2>为什么要用 Unstable 特性？</h2>
-<p>Unstable Rust 可以让你使用在Stable Rust 中无法表示的API。正因如此，编译器与标准库都使用了 Unstable 特性。</p><p>使用 Unstable 特性总是伴随着一些风险。它们经常会有一些意想不到的行为，有时甚至会破坏 Rust 的内存安全保证，导致未定义行为。一部分特性可能开发的很好，而另一部分可能未开发完善。</p><p>对于使用不稳定特性的 Nightly 编译器，遇到“内部编译器错误”并不少见，这种情况通常称为<a href="https://github.com/rust-lang/rust/labels/I-ICE">ICE</a>。它发生于编译过程中，编译器将会panic。这可能是由于数据与查询操作因未完成的特性而被破坏，甚至可能只是因为没做完的特性中打了个 <code>todo!()</code>。</p><p>如果你遇到了ICE，检查一下这个问题是否已知，否则就把它报告给<a href="https://github.com/rust-lang/rust/issues">bug tracker</a>。</p><p>Rust 不保证在未来继续支持它的 Unstable 特性。
+<p>Unstable Rust 可以让你使用在Stable Rust 中不允许使用的API。为此，编译器与标准库都使用了 Unstable 特性。</p><p>使用 Unstable 特性总是伴随着一些风险。它们经常会有一些不期望行为，有时甚至会破坏 Rust 的内存安全保证，导致未定义行为。这些特性可能开发的很好，但也能未开发完善。</p><p>使用Unstable特性的 Nightly 编译器，遇到“内部编译器错误”并不少见，这种情况通常称为<a href="https://github.com/rust-lang/rust/labels/I-ICE">ICE</a>。它发生于编译过程中，编译器将会panic。这可能是由于数据与查询操作因未完成的特性而被破坏，甚至可能只是因为没做完的特性中打了个 <code>todo!()</code>。</p><p>如果你遇到了ICE，检查一下是否已经被反馈，没有的话就把它报告给<a href="https://github.com/rust-lang/rust/issues">bug tracker</a>。</p><p>Rust 不保证在未来继续支持它的 Unstable 特性。
 作为 Rust 开发者，我们享受着优秀的向下兼容性与稳定性，
 而启用 Unstable 特性时，Rust不再提供这些保证。
-今天工作的程序可能明天就寄了</p><p>我决定研究 Unstable 特性，不是因为我需要用它们去解决实际问题。
-我寻找它们是因为我觉得他们很有趣。
-对我来说，使用 Unstable 的特性，是一种有趣的，使我更多地参与到语言本身的开发过程的方法。</p><blockquote>
-<p>Unstable 特性的全面列表见<a href="https://github.com/rust-lang/rust/blob/135ccbaca86ed4b9c0efaf0cd31442eae57ffad7/src/librustc_feature/active.rs#L83-L530">Unstable 特性列表</a>。</p></blockquote>
+今天工作的程序可能明天就寄了！</p><p>我决定学习 Unstable 特性，不是因为我需要用它们去解决实际问题，而是觉得他们很有趣。
+对我来说，使用 Unstable 特性，是种有趣的让我更多地参与语言本身的开发过程的方法。</p><blockquote>
+<p>Unstable 特性的完整列表见<a href="https://github.com/rust-lang/rust/blob/135ccbaca86ed4b9c0efaf0cd31442eae57ffad7/src/librustc_feature/active.rs#L83-L530">Unstable 特性列表</a>。</p></blockquote>
 <h2>启用 Unstable 特性</h2>
-<p>为了开始使用 Unstable 特性，首先你需要安装 Nightly 工具链：</p><div class="highlight"><pre><span></span>rustup toolchain install nightly
+<p>为了使用 Unstable 特性，首先你需要安装 Nightly 工具链：</p><div class="highlight"><pre><span></span>rustup toolchain install nightly
 </pre></div>
-<p>若要使用 Nightly 工具链，你需要在运行命令时加上 <code>+nightly</code> 修饰符。</p><div class="highlight"><pre><span></span>&lt;rust-command&gt; +nightly &lt;args&gt;
+<p>临时使用 Nightly 工具链，你可以在运行cargo时加上 <code>+nightly</code>。</p><div class="highlight"><pre><span></span>&lt;rust-command&gt; +nightly &lt;args&gt;
 </pre></div>
 <p>例如：</p><div class="highlight"><pre><span></span>cargo +nightly run
 </pre></div>
-<p>另外，你可以将你的默认编译器改为 Nightly ，这样你就不再需要使用 <code>+nightly</code> 修饰符。
-我经常这样做，因为我不认为 nightly 编译器很不稳定，即使对于我的在 stable 上可以编译的项目也是这样。</p><div class="highlight"><pre><span></span>rustup default nightly
+<p>另外，你可以将你的默认编译器改为 Nightly ，这样你就不再需要加上 `+nightly。</p><div class="highlight"><pre><span></span>rustup default nightly
 </pre></div>
-<p>一旦你使用 nightly 编译器，你就可以直接开始使用 Unstable 特性。让我们试一试吧！</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<p>切换到 nightly 编译器后，你就可以使用 Unstable 特性。让我们试一试吧！</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">my_box</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">box</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
-<p>它会导致这样的编译错误：</p><div class="highlight"><pre><span></span><span class="n">error</span><span class="p">[</span><span class="n">E0658</span><span class="p">]</span>: <span class="nc">box</span><span class="w"> </span><span class="n">expression</span><span class="w"> </span><span class="n">syntax</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">experimental</span><span class="p">;</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">call</span><span class="w"> </span><span class="err">`</span><span class="nb">Box</span>::<span class="n">new</span><span class="err">`</span><span class="w"> </span><span class="n">instead</span><span class="w"></span>
+<p>你会得到如下编译错误：</p><div class="highlight"><pre><span></span><span class="n">error</span><span class="p">[</span><span class="n">E0658</span><span class="p">]</span>: <span class="nc">box</span><span class="w"> </span><span class="n">expression</span><span class="w"> </span><span class="n">syntax</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">experimental</span><span class="p">;</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">call</span><span class="w"> </span><span class="err">`</span><span class="nb">Box</span>::<span class="n">new</span><span class="err">`</span><span class="w"> </span><span class="n">instead</span><span class="w"></span>
 <span class="w"> </span><span class="o">-</span>-&gt; <span class="nc">src</span><span class="o">/</span><span class="n">main</span><span class="p">.</span><span class="n">rs</span>:<span class="mi">2</span>:<span class="mi">18</span><span class="w"></span>
 <span class="w">  </span><span class="o">|</span><span class="w"></span>
 <span class="mi">2</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="kd">let</span><span class="w"> </span><span class="n">my_box</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">box</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
@@ -120,20 +118,20 @@
 <span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">note</span>: <span class="nc">see</span><span class="w"> </span><span class="n">issue</span><span class="w"> </span>#<span class="mi">49733</span><span class="w"> </span><span class="o">&lt;</span><span class="n">https</span>:<span class="c1">//github.com/rust-lang/rust/issues/49733&gt; for more information</span>
 <span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">help</span>: <span class="nc">add</span><span class="w"> </span><span class="err">`</span><span class="cp">#![feature(box_syntax)]</span><span class="err">`</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">crate</span><span class="w"> </span><span class="n">attributes</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">enable</span><span class="w"></span>
 </pre></div>
-<p>正如以往，Rust 在 <code>help</code> 消息中准确地告诉了我们需要做什么。
+<p>Rust 在 <code>help</code> 消息中准确地告诉了我们应该做什么——
 我们需要用 <code>#![feature(box_syntax)]</code> 启用这个特性。</p><div class="highlight"><pre><span></span><span class="cp">#![feature(box_syntax)]</span><span class="w"></span>
 <span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">my_box</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">box</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
-<p>所有 Unstable 特性都需要在可以使用前以 <code>#![feature(..)]</code> 启用。
-如果你忘记了，编译器<strong>通常</strong>会正确地指出要如何做，然而，并非总会这样。</p><p>现在，让我们开始讨论一些特性本身。
-我把你需要启用的特性名称放在每个特性的标题中的 <code>代码块</code> 中，而在代码片段中省略它们，以保持简洁。</p><h2>控制流、模式和块</h2>
+<p>所有 Unstable 特性都需要用 <code>#![feature(..)]</code> 启用。
+即使你忘记了，编译器通常也会指出要如何做，虽然不总会是。</p><p>现在，我们看看这些特性。
+我把需要启用的特性名称放在每个特性的标题中的 <code>代码块</code> 中，在代码片段中省略，以保持简洁。</p><h2>控制流、模式和块</h2>
 <h3><code>destructuring_assignment</code></h3>
 <blockquote>
 <p>于 Rust 1.59 稳定。</p></blockquote>
-<p>在Rust中，我们经常绑定到定义时解构某个类型。
-这通常是通过 <code>let</code> 绑定完成的。</p><div class="highlight"><pre><span></span><span class="c1">// 创建两个变量, 一个是 x, 一个是 y </span>
+<p>在Rust中，我们经常在绑定到定义时解构某个类型。
+我们一般会使用<code>let</code>绑定：</p><div class="highlight"><pre><span></span><span class="c1">// 创建两个变量, 一个是 x, 一个是 y </span>
 <span class="kd">let</span><span class="w"> </span><span class="n">Point</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Point</span>::<span class="n">random</span><span class="p">();</span><span class="w"></span>
 </pre></div>
 <p>目前这种写法只得在实例化新的定义时使用。
@@ -152,7 +150,7 @@
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">};</span><span class="w"></span>
 </pre></div>
-<p><code>label_break_value</code> 把它拓展到可用于任何被标记的块，而不仅仅是 <code>loop</code>。
+<p><code>label_break_value</code> 把这拓展到任何被标记的块，而不仅仅是 <code>loop</code>。
 它的行为，就像是一种提前的 <code>return</code> ，不过适用于任何代码块，而不只是函数体。</p><p>标记代码块的语法，和生命周期很相似。</p><div class="highlight"><pre><span></span><span class="o">&#39;</span><span class="na">block</span>: <span class="p">{</span><span class="w"></span>
 <span class="w">     </span><span class="c1">// 这个代码块现在被标记为 &quot;block&quot; 。</span>
 <span class="p">}</span><span class="w"></span>
