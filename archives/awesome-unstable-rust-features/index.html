@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "/331192a6bcdc70254f8177f431f85eda.json"
+            api: "/2f6e86264d32daf10c947216f5643c25.json"
         }
     </script>
     
@@ -254,21 +254,21 @@
 <blockquote>
 <p><code>const_generics_defaults</code> 于 Rust 1.59 稳定。</p></blockquote>
 <p>这些特性允许你为 <a href="https://github.com/rust-lang/rfcs/blob/master/text/0213-defaulted-type-params.md">泛型类型</a>, <a href="https://github.com/rust-lang/rfcs/blob/master/text/2532-associated-type-defaults.md">关联类型</a> 以及 <a href="#const-%E6%B3%9B%E5%9E%8B">const 变量</a> 在更多地方指定默认值。</p><p>它们允许你作为开发者创建更好的 API 。
-如果一个crate的用户对细节不感兴趣，而那个对象有默认值，可以忽略细节。
-它们也让拓展 API 变得容易，无需做出破坏性更新。</p><h3><code>negative_impls</code> 和 <code>auto_traits</code></h3>
-<p>这些特性都被标准库使用。<a href="https://doc.rust-lang.org/std/marker/trait.Send.html"><code>Send</code></a> 和 <a href="https://doc.rust-lang.org/std/marker/trait.Sync.html"><code>Sync</code></a> 都是自动 trait 的例子。</p><p><code>Send</code> trait 被<a href="https://doc.rust-lang.org/src/core/marker.rs.html#38-40">这样定义在标准库中</a>：</p><div class="highlight"><pre><span></span><span class="k">pub</span><span class="w"> </span><span class="k">unsafe</span><span class="w"> </span><span class="n">auto</span><span class="w"> </span><span class="k">trait</span><span class="w"> </span><span class="nb">Send</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+如果一个crate的用户对细节不感兴趣，而它有默认值，则可以忽略细节。
+这也让拓展 API 变得容易，无需做出破坏性更新。</p><h3><code>negative_impls</code> 和 <code>auto_traits</code></h3>
+<p>这些特性都被标准库使用。<a href="https://doc.rust-lang.org/std/marker/trait.Send.html"><code>Send</code></a> 和 <a href="https://doc.rust-lang.org/std/marker/trait.Sync.html"><code>Sync</code></a> 都是自动 trait。</p><p><code>Send</code> trait 被<a href="https://doc.rust-lang.org/src/core/marker.rs.html#38-40">这样定义在标准库中</a>：</p><div class="highlight"><pre><span></span><span class="k">pub</span><span class="w"> </span><span class="k">unsafe</span><span class="w"> </span><span class="n">auto</span><span class="w"> </span><span class="k">trait</span><span class="w"> </span><span class="nb">Send</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="c1">// 空的</span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
-<p>它让编译器为任意 结构体/枚举/联合 自动实现 <code>Send</code> trait，前提是构成这个类型的类型都实现了<code>Send</code>。</p><p>如果每个类型都能简单地实现 自动trait ，它们也不会那么有用。
-这正是引入 <code>negative_impls</code> 的原因。</p><p><code>negative_impls</code> 允许一个类型不实现auto trait。
-例如 <code>UnsafeCell</code> 。不受限制的 <code>UnsafeCell</code> 在线程间共享是非常不安全的，因此它被标记为 <code>Sync</code> 也是很不安全的。</p><div class="highlight"><pre><span></span><span class="k">impl</span><span class="o">&lt;</span><span class="n">T</span>: <span class="o">?</span><span class="nb">Sized</span><span class="o">&gt;</span><span class="w"> </span><span class="o">!</span><span class="nb">Sync</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">UnsafeCell</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<p>注意<code>auto</code>关键字，它让编译器为任意结构体/枚举体/联合体自动实现 <code>Send</code> trait，（前提是构成这个类型的类型都实现了<code>Send</code>）</p><p>如果每个类型都能简单地实现自动trait ，它们也不会那么有用。
+这正是引入 <code>negative_impls</code> 的原因。</p><p><code>negative_impls</code> 允许一个类型不实现某个auto trait。
+举个例子，<code>UnsafeCell</code>。不受限制的 <code>UnsafeCell</code> 在线程间共享非常不安全，因此它被标记为 <code>Sync</code> 也不安全。</p><div class="highlight"><pre><span></span><span class="k">impl</span><span class="o">&lt;</span><span class="n">T</span>: <span class="o">?</span><span class="nb">Sized</span><span class="o">&gt;</span><span class="w"> </span><span class="o">!</span><span class="nb">Sync</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">UnsafeCell</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 </pre></div>
-<p>注意 <code>!</code> 的使用，表示 “不<code>Sync</code>”。</p><h3><code>marker_trait_attr</code></h3>
-<p>这个特性为 trait 添加了<code>#[marker]</code> attribute。</p><p>Rust 不允许trait的实现覆盖此前的实现。
+<p>注意 <code>!</code> ，表示 “不<code>Sync</code>”。</p><h3><code>marker_trait_attr</code></h3>
+<p>这个特性为 trait 添加了<code>#[marker]</code> 属性。</p><p>Rust 不允许trait的实现定义覆盖此前的实现。
 这样编译器就能确定要使用哪个实现——只有一个。</p><p>标志为 <code>#[marker]</code> 的 trait 不能在impl中覆盖任何东西。
 因此它们允许有重叠的实现，因为所有的实现都是一样的。</p><h3><code>type_alias_impl_trait</code>, <code>impl_trait_in_bindings</code> and <code>trait_alias</code></h3>
-<p><code>impl Trait</code> 让编译器推导出具体类型，替代 <code>Trait</code>。
+<p><code>impl Trait</code> 让编译器推导具体类型，把它换成实现了<code>Trait</code>的类型。
 目前，<code>impl Trait</code>只能在函数参数或返回类型中使用，无法应用于变量绑定。</p><blockquote>
 <p>注：impl_trait_in_binding 临时被移除(2022-07-26)，可能是因为<a href="https://github.com/rust-lang/rust/issues/83021">破坏性更新</a></p></blockquote>
 <p><code>type_alias_impl_trait</code> 和 <code>impl_trait_in_bindings</code> 拓展了 <code>impl trait</code>，让其可用于定义类型别名和 <code>let</code> 绑定。</p><p><code>trait_alias</code> 与 <code>type_alias_impl_trait</code> 有微妙的不同：
