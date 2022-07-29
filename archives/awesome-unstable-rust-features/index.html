@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "/2f6e86264d32daf10c947216f5643c25.json"
+            api: "/42b563ad3cc9efe3f2522d1000dab1cf.json"
         }
     </script>
     
@@ -265,9 +265,11 @@
 举个例子，<code>UnsafeCell</code>。不受限制的 <code>UnsafeCell</code> 在线程间共享非常不安全，因此它被标记为 <code>Sync</code> 也不安全。</p><div class="highlight"><pre><span></span><span class="k">impl</span><span class="o">&lt;</span><span class="n">T</span>: <span class="o">?</span><span class="nb">Sized</span><span class="o">&gt;</span><span class="w"> </span><span class="o">!</span><span class="nb">Sync</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">UnsafeCell</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 </pre></div>
 <p>注意 <code>!</code> ，表示 “不<code>Sync</code>”。</p><h3><code>marker_trait_attr</code></h3>
-<p>这个特性为 trait 添加了<code>#[marker]</code> 属性。</p><p>Rust 不允许trait的实现定义覆盖此前的实现。
-这样编译器就能确定要使用哪个实现——只有一个。</p><p>标志为 <code>#[marker]</code> 的 trait 不能在impl中覆盖任何东西。
-因此它们允许有重叠的实现，因为所有的实现都是一样的。</p><h3><code>type_alias_impl_trait</code>, <code>impl_trait_in_bindings</code> and <code>trait_alias</code></h3>
+<p>这个特性为 trait 添加了<code>#[marker]</code> 属性。</p><blockquote>
+<p>详见 <a href="https://doc.rust-lang.org/beta/unstable-book/language-features/marker-trait-attr.html">Unstable Book</a></p></blockquote>
+<p>Rust 不允许定义trait的实现时覆盖此前的实现。
+这样编译器就能确定要使用哪个实现——只有一个。</p><p>标志为 <code>#[marker]</code> 的 trait 不能在实现中覆盖任何东西。
+这样它们就能允许重叠的实现，因为所有的实现都是一样的。</p><h3><code>type_alias_impl_trait</code>, <code>impl_trait_in_bindings</code> and <code>trait_alias</code></h3>
 <p><code>impl Trait</code> 让编译器推导具体类型，把它换成实现了<code>Trait</code>的类型。
 目前，<code>impl Trait</code>只能在函数参数或返回类型中使用，无法应用于变量绑定。</p><blockquote>
 <p>注：impl_trait_in_binding 临时被移除(2022-07-26)，可能是因为<a href="https://github.com/rust-lang/rust/issues/83021">破坏性更新</a></p></blockquote>
