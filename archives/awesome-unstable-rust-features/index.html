@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "/bb509b847f47aa779cd354806fc5c318.json"
+            api: "/ff39cc874d82d6fe1b4d2df4c8bf19fb.json"
         }
     </script>
     
@@ -462,10 +462,10 @@ This allows us to set the <code>Err</code> variant to type <code>!</code>.</p><d
 <p>这个小节由 <a href="https://t.me/Hinanawi_Tenshi_M">@Hinanawi_Tenshi_M</a> 提供翻译，有改动。</p></blockquote>
 <p>我在都柏林 Rust 集会中做过一个关于 const_generics 的未来的<a href="https://lazy.codes/posts/intro-to-const-generics/">演讲</a>。
 与其重复那些内容，我更推荐大家去<a href="https://lazy.codes/posts/intro-to-const-generics/">看这个演讲</a>。</p><h2>Macros 2.0</h2>
-<p>Rust's declarative macros are very powerful however some of the rules around <code>macro_rules!</code> have always confused me.</p><p>For one, <code>macro_rules!</code> acts as a simple token transformation.
-It takes a list of tokens and outputs a new list of tokens, nothing smarter than that.
-The publicity rules end up being the rules of where the macro is being called.
-This is obvious because the codes is being simply pasted into that place.</p><p>Macros 2.0 is an rfc describing a replacement to <code>macro_rules!</code> with a new construct simply using the keyword <code>macro</code>.</p><p>One of the main improvements the new syntax introduces is macro hygiene which allows macros to use the publicity rules of where they are written rather than where they are called.</p><h3><code>generators</code></h3>
+<p>Rust的声明式宏非常强大，然而有些 <code>macro_rules!</code> 的规则让我很困惑。</p><p>比如，<code>macro_rules!</code>是一个简单的token转换过程。
+它接受一个token列表，输出新的token列表，仅仅如此。
+可见性原则会遵从宏的调用处的规则。
+这很显然——因为代码只是被简单地粘贴回原处。</p><p>Macros 2.0 是一个 RFC，介绍了<code>macro_rules!</code>的一种替代，它的构造只需要简单地使用关键字<code>macro</code></p><p>它的主要改进中，引入了一种新的格式（macro hygiene），允许宏使用它们定义处的可见性规则，而不是调用处。</p><h3><code>generators</code></h3>
 <p>Generators/coroutines provide a special kind of function that can be paused during execution to &quot;yield&quot; intermediate values to the caller.</p><p>Generators can return multiple values using the <code>yield</code> keyword, each time pausing the function and returning to the caller.
 A generator can then <code>return</code> a single value after which it can no longer be resumed.</p><p>About three years ago I attempted to write an algorithm to traverse an infinite matrix along its diagonals.
 I found it very difficult to write that with Rust's iterators and ended up giving up.</p><p>Here is an implementation using Rust's generators/coroutines along with a number of other features we've discussed already.</p><div class="highlight"><pre><span></span><span class="cp">#![feature(</span>
@@ -585,7 +585,7 @@ I am also looking for employment opportunities so please get in touch if you wou
                                 
                             </span>
                             <nav class="social-links">
-                                <ul><li><a class="no-style" title="GitHub" href="https://github.com/poly000" target="_blank"><i class="gi gi-github"></i>GitHub</a></li><span class="separator">·</span><li><a class="no-style" title="Bilibili" href="https://liolok.com/" target="_blank"><i class="gi gi-bilibili"></i>Bilibili</a></li></ul>
+                                <ul><li><a class="no-style" title="GitHub" href="https://github.com/poly000" target="_blank"><i class="gi gi-github"></i>GitHub</a></li><span class="separator">·</span><li><a class="no-style" title="Bilibili" href="https://space.bilibili.com/25382793" target="_blank"><i class="gi gi-bilibili"></i>Bilibili</a></li></ul>
                             </nav>
                         </div>
                     </section>
