@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>poly000客栈</title><link>/</link><description>poly000 的碎碎念</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>/android-chrome-512x512.png</url><title>poly000客栈</title><link>/</link></image><language>chinese</language><lastBuildDate>Sat, 01 Oct 2022 19:38:08 +0806</lastBuildDate><pubDate>Sat, 01 Oct 2022 19:38:08 +0806</pubDate><item><title>给Win32程序加图标</title><link>/archives/add-icon-to-win32-exe/</link><description>&lt;h2&gt;前言&lt;/h2&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>poly000客栈</title><link>/</link><description>poly000 的碎碎念</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>/android-chrome-512x512.png</url><title>poly000客栈</title><link>/</link></image><language>chinese</language><lastBuildDate>Sat, 01 Oct 2022 20:19:09 +0806</lastBuildDate><pubDate>Sat, 01 Oct 2022 20:19:09 +0806</pubDate><item><title>给Win32程序加图标</title><link>/archives/add-icon-to-win32-exe/</link><description>&lt;h2&gt;前言&lt;/h2&gt;
 &lt;p&gt;为了好玩咱想要试着给win32程序加图标，&lt;/p&gt;&lt;p&gt;但是只找到了用VS加图标的操作……&lt;/p&gt;&lt;p&gt;最后找到了链接操作。&lt;/p&gt;&lt;p&gt;&lt;a href="https://fragglet.livejournal.com/4448.html"&gt;原文地址（英文）&lt;/a&gt;&lt;/p&gt;&lt;h2&gt;开始动手做&lt;/h2&gt;
 &lt;p&gt;首先 我们需要写一个 &lt;code&gt;.rc&lt;/code&gt; 的文件：&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;1 ICON &amp;quot;(path-to-*.ico)&amp;quot;
 &lt;/pre&gt;&lt;/div&gt;
@@ -476,7 +476,7 @@ The best way to support me is by following my &lt;a href="https://twitter.com/ef
 I am also looking for employment opportunities so please get in touch if you would like to talk about that.&lt;/p&gt;</description><author>1348292515@qq.com (Poly000)</author><guid isPermaLink="true">/archives/awesome-unstable-rust-features/</guid><pubDate>Wed, 28 Jul 2021 15:04:00 +0806</pubDate></item><item><title>C23特性简介</title><link>/archives/c23-quickview/</link><description>&lt;h2&gt;WIP&lt;/h2&gt;
 &lt;p&gt;这篇文章正在编写。已有内容可能在近期被修改/移除&lt;/p&gt;&lt;h2&gt;为什么要学C23&lt;/h2&gt;
 &lt;p&gt;C23加了好多现代语言的特性，虽然目前各个编译器支持并不完善，但是这些特性应该不会很快发生巨大变化。&lt;/p&gt;&lt;p&gt;其中像是nodiscard（must_use）等标志，以及标志本身的引入，都让C看起来更加modern。&lt;/p&gt;&lt;!-- 虽然用C写 该手动管理内存还是手动管理内存 --&gt;
-&lt;h2&gt;移除的特性&lt;/h2&gt;
+&lt;h2&gt;移除&lt;/h2&gt;
 &lt;h3&gt;K&amp;amp;R风格函数声明与定义&lt;/h3&gt;
 &lt;p&gt;比如 &lt;code&gt;int main()&lt;/code&gt;，是经常被使用的旧式写法。&lt;/p&gt;&lt;p&gt;或者&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;add1&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
@@ -487,12 +487,31 @@ I am also looking for employment opportunities so please get in touch if you wou
 &lt;h3&gt;其他&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;2的补码以外的有符号整数&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;不再允许u/U前缀的字符串字面量/字符常量为非UTF-16/32字符&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;不再允许&lt;code&gt;u&lt;/code&gt;/&lt;code&gt;U&lt;/code&gt;前缀的字符串字面量/字符常量为非UTF-16/32字符&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;混合使用宽字符连接&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;对 reaclloc() 传递0大小的调用（实现定义改为未定义）&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;__alignof_is_defined 和 __alignas_is_defined 宏&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;static_assert宏（改为关键字）&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;thread_local宏（改为关键字）&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;对 &lt;code&gt;realloc()&lt;/code&gt; 传递0大小的调用（实现定义改为未定义）&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;__alignof_is_defined&lt;/code&gt; 和 &lt;code&gt;__alignas_is_defined&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;static_assert&lt;/code&gt;宏（改为关键字）&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;thread_local&lt;/code&gt;宏（改为关键字）&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h2&gt;废弃&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&amp;lt;stdnoreturn.h&amp;gt;，可使用 &lt;code&gt;[[noreturn]]标志&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;_Noreturn&lt;/code&gt; 函数specifier&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;_Noreturn&lt;/code&gt; 标志token&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;特性测试宏: &lt;code&gt;__STDC_IEC_559__&lt;/code&gt;，&lt;code&gt;__STDC_IEC_559_COMPLEX__&lt;/code&gt;，&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;可使用&lt;code&gt;__STDC_IEC_60559_BFP__&lt;/code&gt;和&lt;code&gt;__STDC_IEC_559_COMPLEX__&lt;/code&gt;。&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://zh.cppreference.com/w/c/chrono/asctime"&gt;&lt;code&gt;asctime()&lt;/code&gt;&lt;/a&gt;，可使用 &lt;code&gt;asctime_s()&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://zh.cppreference.com/w/c/chrono/ctime"&gt;&lt;code&gt;ctime()&lt;/code&gt;&lt;/a&gt;，可使用 &lt;code&gt;ctime_s()&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://zh.cppreference.com/w/c/types/limits"&gt;&lt;code&gt;DECIMAL_DIG&lt;/code&gt;&lt;/a&gt;，序列化/反序列化&lt;code&gt;long double&lt;/code&gt;可能需要的十进制精度&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;&amp;lt;math.h&amp;gt;&lt;/code&gt; 定义的数值界限（移动到 &lt;code&gt;&amp;lt;limits.h&lt;/code&gt;）&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;INFINITY&lt;/code&gt;，&lt;code&gt;DEC_INFINITY&lt;/code&gt;，&lt;code&gt;NAN&lt;/code&gt;，&lt;code&gt;DEC_NAN&lt;/code&gt;&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;__bool_true_false_are_defeined （现在true/false都成了关键字）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;新语言特性&lt;/h2&gt;
+&lt;h3&gt;&lt;a href="https://zh.cppreference.com/w/c/language/arithmetic_types"&gt;&lt;code&gt;十进制浮点类型&lt;/code&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;_Decimal32&lt;/code&gt;，&lt;code&gt;_Decimal64&lt;/code&gt; 以及 &lt;code&gt;_Decimal128&lt;/code&gt;。&lt;/p&gt;&lt;p&gt;详见 &lt;a href="https://en.wikipedia.org/wiki/Decimal64_floating-point_format"&gt;IEEE定义&lt;/a&gt;。&lt;/p&gt;&lt;h2&gt;新标准库特性&lt;/h2&gt;
 &lt;h2&gt;参考资料&lt;/h2&gt;
 &lt;p&gt;&lt;a href="https://en.cppreference.com/w/c/23"&gt;cppreference - c23&lt;/a&gt;&lt;/p&gt;</description><author>1348292515@qq.com (Poly000)</author><guid isPermaLink="true">/archives/c23-quickview/</guid><pubDate>Sat, 01 Oct 2022 17:38:00 +0806</pubDate></item></channel></rss>
