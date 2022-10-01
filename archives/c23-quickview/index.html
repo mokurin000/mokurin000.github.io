@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "/8e8efbe801cd84e04e9ae5278c035568.json"
+            api: "/59a0183a418344f67c61a0ef94864ec4.json"
         }
     </script>
     <script>
@@ -156,10 +156,25 @@
 </ul>
 <h2>新语言特性</h2>
 <h3><a href="https://zh.cppreference.com/w/c/language/arithmetic_types"><code>十进制浮点类型</code></a></h3>
-<p><code>_Decimal32</code>，<code>_Decimal64</code> 以及 <code>_Decimal128</code>。</p><p>详见 <a href="https://en.wikipedia.org/wiki/Decimal64_floating-point_format">IEEE定义</a>。</p><h3><a href="https://zh.cppreference.com/w/c/language/attributes">属性</a></h3>
+<p><code>_Decimal32</code>，<code>_Decimal64</code> 以及 <code>_Decimal128</code>。</p><p>详见 <a href="https://en.wikipedia.org/wiki/Decimal64_floating-point_format">IEEE定义</a>。</p><h3><a href="https://zh.cppreference.com/w/c/language/attributes">属性 (attribute)</a></h3>
 <h4><a href="https://en.cppreference.com/w/c/language/attributes/deprecated"><code>[[deprecated]]</code></a></h4>
 <p>可以通过<code>(&quot;reason&quot;)</code>添加说明：<code>[[deprecated(&quot;WTH are u using this&quot;)]]</code></p><h4><a href="https://en.cppreference.com/w/c/language/attributes/fallthrough"><code>[[fallthrough]]</code></a></h4>
-<p>表示从这里直落是有意的，编译器不要警告。</p><h4><a href="https://en.cppreference.com/w/c/language/attributes/maybe_unused"><code>[[maybe_unused]]</code></a></h4>
+<p>表示从这里直落是有意的，编译器不要警告。</p><div class="highlight"><pre><span></span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">cond</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">A</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">([</span><span class="n">expression</span><span class="p">])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="n">doSomething</span><span class="p">();</span><span class="w"></span>
+<span class="w">          </span><span class="p">[[</span><span class="n">fallthrough</span><span class="p">]];</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">B</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">C</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Error: ...&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="p">[[</span><span class="n">fallthrough</span><span class="p">]];</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">D</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="n">doSomething</span><span class="p">();</span><span class="w"></span>
+<span class="w">      </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<h4><a href="https://en.cppreference.com/w/c/language/attributes/maybe_unused"><code>[[maybe_unused]]</code></a></h4>
 <p>告诉编译器不要因为未使用警告。</p><h4><a href="https://en.cppreference.com/w/c/language/attributes/nodiscard"><code>[[nodiscard]]</code></a></h4>
 <p>该类型/该函数的返回值不希望被直接丢弃。如错误信息，或者结果存储在返回值的函数。</p><p>可以通过 <code>(&quot;reason&quot;)</code>添加说明：<code>[[nodiscard(&quot;Error info should be processed&quot;)]]</code>。</p><h4><a href="https://en.cppreference.com/w/c/language/attributes/noreturn"><code>[[noreturn]]</code></a></h4>
 <p>该函数不通过return语句或达到底部返回。</p><h4><a href="https://open-std.org/JTC1/SC22/WG14/www/docs/n2956.htm"><code>[[unsequenced]]</code>和<code>[[reproducible]]</code></a></h4>
