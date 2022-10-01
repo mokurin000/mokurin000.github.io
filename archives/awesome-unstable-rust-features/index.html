@@ -8,19 +8,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="keywords" content="poly000,blog" />
     <meta name="generator" content="Maverick 1.2.1" />
-    <meta name="template" content="Galileo" />
+    <meta name="template" content="Kepler" />
     <link rel="alternate" type="application/rss+xml" title="poly000客栈 &raquo; RSS 2.0" href="/feed/index.xml" />
     <link rel="alternate" type="application/atom+xml" title="poly000客栈 &raquo; ATOM 1.0" href="/feed/atom/index.xml" />
-    <link rel="stylesheet" href="/assets/galileo-8d8763e752.css">
+    <link rel="stylesheet" href="/assets/kepler-426969802d.css">
     <link rel="stylesheet" href="/assets/ExSearch/ExSearch-182e5a8868.css">
-    <link rel="stylesheet" href="/assets/katex.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Fira+Code&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.10.0/dist/tocbot.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
     <script>
         var ExSearchConfig = {
             root: "",
             api: "/a2d1996105b5e71f670894dc707ad7e9.json"
         }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            if(/Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent)){
+                document.body.classList.add('safari')
+            }else{
+                document.body.classList.remove('safari')
+            }
+        });
     </script>
     
 <title>一些不错的Rust Unstable特性 - poly000客栈</title>
@@ -42,46 +51,77 @@
     
     </head>
     
-    <body>
-        
-        <div class="container">
-            <header id="ga-header">
-                <div first>
-                    <aside id="ga-brand">
-                        <h1 class="brand"><a class="no-style" href="/">poly000客栈</a></h1>
-                        <p>poly000 的碎碎念</p>
-                    </aside>
-                </div>
-                <div second id="ga-nav">
-                    <nav class="navs">
-                        <ul><li><a class="ga-highlight" href="/" target="_self">Home</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/archives/" target="_self">Archives</a></li><span class="separator">·</span><li><a class="ga-highlight" href="/about/" target="_self">About</a></li><span class="separator">·</span><li><a href="#" target="_self" class="search-form-input ga-highlight">Search</a></li></ul>
+    <body class="content">
+        <header>
+            <div class="container">
+                <section>
+                    <a href="/"><img src="/android-chrome-512x512.png">poly000客栈</a>
+                </section>
+                <section>
+                    <nav>
+                        <ul>
+                            
+                                <li><a href="https://liolok.com/" target="_blank">liolok</a></li>
+                            
+                        </ul>
                     </nav>
-                </div>
-            </header>
-            <div class="wrapper">
+                </section>
+    
+                <section>
+                    <a hidden class="toggle-toc" target="_self" href="javascript:void(0)" onclick="$(body).toggleClass('toc-open')"><i class="fa fa-align-right"></i></a>
+                    <a hidden class="toggle-navbar" target="_self" href="javascript:void(0)" onclick="$(body).toggleClass('navbar-open')"><i class="fa fa-indent"></i></a>
+                    <button class="search-form-input"><i class="fa fa-search"></i></button>
+                </section>
+            </div>
+        </header>
+
+        <main>
+            <div id="pjax-container" class="container">
+                <aside id="navbar" class="no-scrollbar">
+                    
+                    <section class="sidebar-nav">
+                        
+                            <div class="None" ><span><a href="/">Home</a></span></div>
+                        
+                            <div class="None" ><span><a href="/archives/">Archives</a></span></div>
+                        
+                            <div class="None" ><span><a href="/about/">About</a></span></div>
+                        
+                    </section>
+                    
+                    <section>
+                        
+    <div class="open "><span><a href="/category/Programming/">Programming</a><button class="toggle_sidebar fa"></button></span><ul><li class=""><a href="/archives/c23-quickview/">C23特性简介</a></li><li class="current"><a href="/archives/awesome-unstable-rust-features/">一些不错的Rust Unstable特性</a></li></ul></div><div class=" "><span><a href="/category/Linux/">Linux</a><button class="toggle_sidebar fa"></button></span><ul><li class=""><a href="/archives/enable-osdlyrics-netease-translation/">Osdlyrics 网易来源启用翻译</a></li><li class=""><a href="/archives/opengl-flipping/">OpenGL Flipping——记一次游戏直播闪屏修复过程</a></li></ul></div><div class=" "><span><a href="/category/Windows/">Windows</a><button class="toggle_sidebar fa"></button></span><ul><li class=""><a href="/archives/windirstat-recommend/">WinDirStat——Windows下存储分析的优秀方案</a></li><li class=""><a href="/archives/ScreenPlay/">Wallpaper Engine的开源替代品：ScreenPlay</a></li><li class=""><a href="/archives/add-icon-to-win32-exe/">给Win32程序加图标</a></li></ul></div><div class=" "><span><a href="/category/Galgame/">Galgame</a><button class="toggle_sidebar fa"></button></span><ul><li class=""><a href="/archives/galgame-runs-on-linux/">在wine下运行galgame常见问题解决方案</a></li><li class=""><a href="/archives/vm-on-linux-use-gpu-passthough/">GPU直通教程汉化</a></li></ul></div>
+
+                    </section>
+                    <section hidden class="sidebar-external-link">
+                        
+                            <div class="external"><span><a href="https://liolok.com/">liolok</a><button class="go-external"><i class="fa fa-external-link"></i></button></span></div>
+                        
+                    </section>
+                    <section class="maverick">
+                        <div><span style="border: 1px solid #d4dadf;"><a href="https://github.com/AlanDecode/Maverick" target="_blank">Maverick & Kepler</a></span></div>
+                    </section>
+                </aside>
+                <div id="content-wrapper">
+                    <div id="content">
+    <section>
+        <h1 class="post-title">一些不错的Rust Unstable特性</h1>
+        <p class="post-meta">
+            <time>July 28 2021</time>
+            <span class="tags">
                 
-<main>    
-    <section class="ga-section ga-content">
-        <article class="yue">
-            <h1 class="ga-post_title">一些不错的Rust Unstable特性</h1>
-            <span class="ga-post_meta ga-mono">
-                <span>Poly000</span>
-                <time>
-                    2021-07-28
-                </time>
+                <span>
+                    <a href="/tag/Rust/">#Rust</a>
+                </span>
                 
-                in <a no-style class="category" href="/category/Programming/">
-                    Programming
-                </a>
-                
-                
-                <span class="leancloud_visitors" 
-                    id="/archives/awesome-unstable-rust-features/" 
-                    data-flag-title="一些不错的Rust Unstable特性"> · <i class="leancloud-visitors-count"></i> Views</span>
+                <span>
+                    <a href="/tag/Language_feature/">#Language_feature</a>
+                </span>
                 
             </span>
-            <div class="ga-content_body">
-                <h2>注意</h2>
+        </p>
+        <article class="yue"><h2>注意</h2>
 <p>本文原文发布于2021-07-26，其中部分内容可能已经过时。请以 Rust RFC 为准。
 已经稳定的特性见 <a href="https://github.com/rust-lang/rust/blob/master/compiler/rustc_feature/src/accepted.rs">accepted.rs</a>。</p><h2>关于翻译</h2>
 <p>主要译者：<a href="https://github.com/poly000">poly000</a>，<a href="https://t.me/Hinanawi_Tenshi_M">比那名居</a></p><p>术语翻译部分参考了 <a href="https://rustwiki.org/wiki/translate/english-chinese-glossary-of-rust/">Rust 语言术语中英文对照表</a>。</p><p>如果有原文错误，请联系 <a href="https://twitter.com/efun_b">Ethan Brierley</a> 且联系我更新翻译。</p><p>参与：<a href="https://github.com/poly000/Maverick/">Maverick/demo_src</a></p><h2>Credits</h2>
@@ -525,96 +565,116 @@ I simply did not feel able to give these features justice in this article but I 
 The unstable book then links to a <a href="https://github.com/rust-lang/rust/labels/C-tracking-issue">tracking issue</a> which then often, in turn, links to an <a href="https://rust-lang.github.io/rfcs/">RFC</a>.
 With this combination of sources, you can then build up a picture of the details surrounding a feature.</p><p>Thank you for reading my first blog post 😃.
 The best way to support me is by following my <a href="https://twitter.com/efun_b">Twitter</a>.
-I am also looking for employment opportunities so please get in touch if you would like to talk about that.</p>
-            </div>
-        </article>
-        <div id="ga-tags">
-    
-    <span class="ga-tag">
-        <a class="ga-highlight" href="/tag/Rust/">#Rust</a>
-    </span>
-    
-    <span class="ga-tag">
-        <a class="ga-highlight" href="/tag/Language_feature/">#Language_feature</a>
-    </span>
-    
-</div>
+I am also looking for employment opportunities so please get in touch if you would like to talk about that.</p></article>
     </section>
 
     
-<section id="ga-content_pager">
-
-    <div class="next">
-        <a class="ga-highlight" href="/archives/c23-quickview/">C23特性简介</a>
-        <p class="yue">WIP</p>
-    </div>
-
-
-    <div class="prev">
-        <a class="ga-highlight" href="/archives/enable-osdlyrics-netease-translation/">Osdlyrics 网易来源启用翻译</a>
-        <p class="yue">引言</p>
-    </div>
-
-</section>
-
+    <section id="content-pager">
+        
+            <div class="next">
+                <a class="card" href="/archives/c23-quickview/">
+                    <time>October 01 2022</time>
+                    <span>C23特性简介</span>
+                </a>
+            </div>
+        
+        
+            <div class="prev">
+                <a class="card" href="/archives/enable-osdlyrics-netease-translation/">
+                    <time>July 25 2021</time>
+                    <span>Osdlyrics 网易来源启用翻译</span>
+                </a>
+            </div>
+        
+    </section>
+    
 
     
+        <section id="comments">
+            <div id="vcomments"></div>
+        </section>
         <script>
-            var initValine = function () {
-                new Valine({"enable": true, "el": "#vcomments", "appId": "IKRAfuPq0zrz6Wfje8ahHAIP-gzGzoHsz", "appKey": "lFaCWkd4xCs0Ng5UWs1eHNwU", "visitor": true, "recordIP": true});
+            window.ValineOpt = {"enable": true, "el": "#vcomments", "appId": "IKRAfuPq0zrz6Wfje8ahHAIP-gzGzoHsz", "appKey": "lFaCWkd4xCs0Ng5UWs1eHNwU", "visitor": true, "recordIP": true};
+            window.ValineOpt.path = window.location.pathname;
+        </script>
+    
+
+    <script>
+        document.body.classList.add('content');
+        document.body.classList.remove('archive');
+    </script>
+</div>
+                    <footer>
+                        <span>Copyright © 2022 poly000</span>
+                        
+    <span class="leancloud_visitors"
+            id="/archives/awesome-unstable-rust-features/" 
+            data-flag-title="一些不错的Rust Unstable特性">
+            <i class="fa fa-eye"></i> <i style="font-style: normal" class="leancloud-visitors-count"></i> Views
+        </span>
+
+                        
+                    </footer>
+                </div>
+                
+<aside id="toc-container" class="no-scrollbar">
+    <span><i class="fa fa-align-right"></i> CONTENTS</span>
+    <div id="toc"></div>
+</aside>
+
+            </div>
+        </main>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-pjax@2.0.1/jquery.pjax.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tocbot@4.10.0/dist/tocbot.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+        <script src="/assets/kepler-ef161b04d5.js"></script>
+        <script>
+            function ExSearchCall(item){
+                if (item && item.length) {
+                    $('.ins-close').click(); // 关闭搜索框
+                    $('input.ins-search-input').val(''); // 清空
+                    let url = item.attr('data-url'); // 获取目标页面 URL
+                    $.pjax({url: url, 
+                        container: '#pjax-container',
+                        fragment: '#pjax-container',
+                        timeout: 8000, }); // 发起一次 PJAX 请求
+                }
             }
         </script>
-        <script defer src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js' onload="initValine()"></script>
-        <div id="vcomments"></div>
-    
 
-</main>
+        <!--Valine-->
+        
+            <script>
+                var initValine = function () {
+                    if (typeof window.ValineOpt === 'object' && $(window.ValineOpt.el).length) {
+                        new Valine(window.ValineOpt);
+                    }
+                }
+            </script>
+            <script async src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js' onload="initValine()"></script>
+        
 
-                <footer class="ga-mono" id="ga-footer">
-                    <section>
-                        <span id="ga-uptime"></span>
-                        <span class="brand">poly000客栈</span>
-                    </section>
-                    <section>
-                        <p class="copyright">
-                            <span>Copyright © 2022 poly000</span>
-                            <span>Powered by <a no-style href="https://github.com/AlanDecode/Maverick" target="_blank">Maverick & Galileo</a></span>
-                        </p>
-                        <div class="copyright">
-                            <span class="footer-addon">
-                                
-                            </span>
-                            <nav class="social-links">
-                                <ul><li><a class="no-style" title="GitHub" href="https://github.com/poly000" target="_blank"><i class="gi gi-github"></i>GitHub</a></li><span class="separator">·</span><li><a class="no-style" title="Bilibili" href="https://space.bilibili.com/25382793" target="_blank"><i class="gi gi-bilibili"></i>Bilibili</a></li></ul>
-                            </nav>
-                        </div>
-                    </section>
-                    <script>
-                        var site_build_date = "2020-09-29:00+08:00"
-                    </script>
-                    <script src="/assets/galileo-7c8cea54ab.js"></script>
-                </footer>
-            </div>
-        </div>
-    </div>
+        <!--ExSearch-->
+        <script src="/assets/ExSearch/ExSearch-493cb9cd89.js"></script>
+        
+        <!--katex-->
+        <link rel="stylesheet" href="/assets/katex.min.css">
+        <script defer src="/assets/katex.min.js"></script>
+        <script>
+        mathOpts = {
+            delimiters: [
+                {left: "$$", right: "$$", display: true},
+                {left: "\\[", right: "\\]", display: true},
+                {left: "$", right: "$", display: false},
+                {left: "\\(", right: "\\)", display: false}
+            ]
+        };
+        </script>
+        <script defer src="/assets/auto-render.min.js" onload="renderMathInElement(document.body, mathOpts);"></script>
 
-    <!--katex-->
-    <script defer src="/assets/katex.min.js"></script>
-    <script>
-    mathOpts = {
-        delimiters: [
-            {left: "$$", right: "$$", display: true},
-            {left: "\\[", right: "\\]", display: true},
-            {left: "$", right: "$", display: false},
-            {left: "\\(", right: "\\)", display: false}
-        ]
-    };
-    </script>
-    <script defer src="/assets/auto-render.min.js" onload="renderMathInElement(document.body, mathOpts);"></script>
-
-    <script src="/assets/ExSearch/jquery.min.js"></script>
-    <script src="/assets/ExSearch/ExSearch-493cb9cd89.js"></script>
-
-    
+        
     </body>
 </html>
