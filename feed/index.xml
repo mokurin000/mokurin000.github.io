@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>poly000客栈</title><link>/</link><description>poly000 的碎碎念</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>/android-chrome-512x512.png</url><title>poly000客栈</title><link>/</link></image><language>chinese</language><lastBuildDate>Sat, 01 Oct 2022 20:28:51 +0806</lastBuildDate><pubDate>Sat, 01 Oct 2022 20:28:51 +0806</pubDate><item><title>给Win32程序加图标</title><link>/archives/add-icon-to-win32-exe/</link><description>&lt;h2&gt;前言&lt;/h2&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>poly000客栈</title><link>/</link><description>poly000 的碎碎念</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>/android-chrome-512x512.png</url><title>poly000客栈</title><link>/</link></image><language>chinese</language><lastBuildDate>Sat, 01 Oct 2022 21:33:32 +0806</lastBuildDate><pubDate>Sat, 01 Oct 2022 21:33:32 +0806</pubDate><item><title>给Win32程序加图标</title><link>/archives/add-icon-to-win32-exe/</link><description>&lt;h2&gt;前言&lt;/h2&gt;
 &lt;p&gt;为了好玩咱想要试着给win32程序加图标，&lt;/p&gt;&lt;p&gt;但是只找到了用VS加图标的操作……&lt;/p&gt;&lt;p&gt;最后找到了链接操作。&lt;/p&gt;&lt;p&gt;&lt;a href="https://fragglet.livejournal.com/4448.html"&gt;原文地址（英文）&lt;/a&gt;&lt;/p&gt;&lt;h2&gt;开始动手做&lt;/h2&gt;
 &lt;p&gt;首先 我们需要写一个 &lt;code&gt;.rc&lt;/code&gt; 的文件：&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;1 ICON &amp;quot;(path-to-*.ico)&amp;quot;
 &lt;/pre&gt;&lt;/div&gt;
@@ -472,9 +472,7 @@ The unstable book then links to a &lt;a href="https://github.com/rust-lang/rust/
 With this combination of sources, you can then build up a picture of the details surrounding a feature.&lt;/p&gt;&lt;p&gt;Thank you for reading my first blog post 😃.
 The best way to support me is by following my &lt;a href="https://twitter.com/efun_b"&gt;Twitter&lt;/a&gt;.
 I am also looking for employment opportunities so please get in touch if you would like to talk about that.&lt;/p&gt;</description><author>1348292515@qq.com (Poly000)</author><guid isPermaLink="true">/archives/awesome-unstable-rust-features/</guid><pubDate>Wed, 28 Jul 2021 15:04:00 +0806</pubDate></item><item><title>C23特性简介</title><link>/archives/c23-quickview/</link><description>&lt;h2&gt;WIP&lt;/h2&gt;
-&lt;p&gt;这篇文章正在编写。已有内容可能在近期被修改/移除&lt;/p&gt;&lt;h2&gt;为什么要学C23&lt;/h2&gt;
-&lt;p&gt;C23加了好多现代语言的特性，虽然目前各个编译器支持并不完善，但是这些特性应该不会很快发生巨大变化。&lt;/p&gt;&lt;p&gt;其中像是nodiscard（must_use）等标志，以及标志本身的引入，都让C看起来更加modern。&lt;/p&gt;&lt;!-- 虽然用C写 该手动管理内存还是手动管理内存 --&gt;
-&lt;h2&gt;移除&lt;/h2&gt;
+&lt;p&gt;这篇文章正在编写。已有内容可能在近期被修改/移除&lt;/p&gt;&lt;h2&gt;移除&lt;/h2&gt;
 &lt;h3&gt;K&amp;amp;R风格函数声明与定义&lt;/h3&gt;
 &lt;p&gt;比如 &lt;code&gt;int main()&lt;/code&gt;，是经常被使用的旧式写法。&lt;/p&gt;&lt;p&gt;或者&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;add1&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
@@ -507,7 +505,29 @@ I am also looking for employment opportunities so please get in touch if you wou
 &lt;li&gt;&lt;p&gt;__bool_true_false_are_defeined （现在true/false都成了关键字）&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;新语言特性&lt;/h2&gt;
-&lt;h3&gt;&lt;a href="https://zh.cppreference.com/w/c/language/arithmetic_types"&gt;&lt;code&gt;十进制浮点类型&lt;/code&gt;&lt;/a&gt; &lt;code&gt;_Decimal32&lt;/code&gt;，&lt;code&gt;_Decimal64&lt;/code&gt; 以及 &lt;code&gt;_Decimal128&lt;/code&gt;。&lt;/h3&gt;
-&lt;p&gt;详见 &lt;a href="https://en.wikipedia.org/wiki/Decimal64_floating-point_format"&gt;IEEE定义&lt;/a&gt;。&lt;/p&gt;&lt;h2&gt;新标准库特性&lt;/h2&gt;
+&lt;h3&gt;&lt;a href="https://zh.cppreference.com/w/c/language/arithmetic_types"&gt;&lt;code&gt;十进制浮点类型&lt;/code&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;_Decimal32&lt;/code&gt;，&lt;code&gt;_Decimal64&lt;/code&gt; 以及 &lt;code&gt;_Decimal128&lt;/code&gt;。&lt;/p&gt;&lt;p&gt;详见 &lt;a href="https://en.wikipedia.org/wiki/Decimal64_floating-point_format"&gt;IEEE定义&lt;/a&gt;。&lt;/p&gt;&lt;h3&gt;&lt;a href="https://zh.cppreference.com/w/c/language/attributes"&gt;属性&lt;/a&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;a href="https://en.cppreference.com/w/c/language/attributes/deprecated"&gt;&lt;code&gt;[[deprecated]]&lt;/code&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;可以通过&lt;code&gt;(&amp;quot;reason&amp;quot;)&lt;/code&gt;添加说明：&lt;code&gt;[[deprecated(&amp;quot;WTH are u using this&amp;quot;)]]&lt;/code&gt;&lt;/p&gt;&lt;h4&gt;&lt;a href="https://en.cppreference.com/w/c/language/attributes/fallthrough"&gt;&lt;code&gt;[[fallthrough]]&lt;/code&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;表示从这里直落是有意的，编译器不要警告。&lt;/p&gt;&lt;h4&gt;&lt;a href="https://en.cppreference.com/w/c/language/attributes/maybe_unused"&gt;&lt;code&gt;[[maybe_unused]]&lt;/code&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;告诉编译器不要因为未使用警告。&lt;/p&gt;&lt;h4&gt;&lt;a href="https://en.cppreference.com/w/c/language/attributes/nodiscard"&gt;&lt;code&gt;[[nodiscard]]&lt;/code&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;该类型/该函数的返回值不希望被直接丢弃。如错误信息，或者结果存储在返回值的函数。&lt;/p&gt;&lt;p&gt;可以通过 &lt;code&gt;(&amp;quot;reason&amp;quot;)&lt;/code&gt;添加说明：&lt;code&gt;[[nodiscard(&amp;quot;Error info should be processed&amp;quot;)]]&lt;/code&gt;。&lt;/p&gt;&lt;h4&gt;&lt;a href="https://en.cppreference.com/w/c/language/attributes/noreturn"&gt;&lt;code&gt;[[noreturn]]&lt;/code&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;该函数不通过return语句或达到底部返回。&lt;/p&gt;&lt;h4&gt;&lt;a href="https://open-std.org/JTC1/SC22/WG14/www/docs/n2956.htm"&gt;&lt;code&gt;[[unsequenced]]&lt;/code&gt;和&lt;code&gt;[[reproducible]]&lt;/code&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;[[unsequenced]]&lt;/code&gt; 要求函数无状态，无副作用，幂等，并且独立。&lt;/p&gt;&lt;p&gt;其中：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;无状态：没有定义可修改的静态或线程本地对象，也不调用有这种行为的函数。&lt;/li&gt;
+&lt;li&gt;无副作用：没有可观测的副作用。&lt;/li&gt;
+&lt;li&gt;幂等：重复的求值应当得到同样的结果。（可以读取全局状态）&lt;/li&gt;
+&lt;li&gt;独立：不依赖参数和常量以外的状态（可以写入全局变量）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;[[reproducible]]&lt;/code&gt; 则只要求函数无副作用且幂等。&lt;/p&gt;&lt;h4&gt;&lt;/h4&gt;
+&lt;h3&gt;其他&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;位精度整数，&lt;a href="https://www.open-std.org/jtc1/sc22/wg14/www/docs/n2763.pdf"&gt;&lt;code&gt;_BitInt(N)&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;二进制整数常量，以0b/0B前缀。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;u8&lt;/code&gt;前缀的 UTF-8 字符常量（u8'?'为单字节，u8&amp;quot;...&amp;quot; 为 &lt;code&gt;unsigned char [N]&lt;/code&gt;）&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;数字分隔符 &lt;code&gt;'&lt;/code&gt;，如 114'514'1919L&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;空初始化器 &lt;code&gt;= {}&lt;/code&gt; ，同样适用于指针，整数，浮点数和自定义数据结构。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;新标准库特性&lt;/h2&gt;
 &lt;h2&gt;参考资料&lt;/h2&gt;
 &lt;p&gt;&lt;a href="https://en.cppreference.com/w/c/23"&gt;cppreference - c23&lt;/a&gt;&lt;/p&gt;</description><author>1348292515@qq.com (Poly000)</author><guid isPermaLink="true">/archives/c23-quickview/</guid><pubDate>Sat, 01 Oct 2022 17:38:00 +0806</pubDate></item></channel></rss>
