@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>poly000客栈</title><link>/</link><description>poly000 的碎碎念</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>/android-chrome-512x512.png</url><title>poly000客栈</title><link>/</link></image><language>chinese</language><lastBuildDate>Sun, 02 Oct 2022 13:11:30 +0806</lastBuildDate><pubDate>Sun, 02 Oct 2022 13:11:30 +0806</pubDate><item><title>给Win32程序加图标</title><link>/archives/add-icon-to-win32-exe/</link><description>&lt;h2&gt;前言&lt;/h2&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>poly000客栈</title><link>/</link><description>poly000 的碎碎念</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>/android-chrome-512x512.png</url><title>poly000客栈</title><link>/</link></image><language>chinese</language><lastBuildDate>Sun, 02 Oct 2022 13:14:06 +0806</lastBuildDate><pubDate>Sun, 02 Oct 2022 13:14:06 +0806</pubDate><item><title>给Win32程序加图标</title><link>/archives/add-icon-to-win32-exe/</link><description>&lt;h2&gt;前言&lt;/h2&gt;
 &lt;p&gt;为了好玩咱想要试着给win32程序加图标，&lt;/p&gt;&lt;p&gt;但是只找到了用VS加图标的操作……&lt;/p&gt;&lt;p&gt;最后找到了链接操作。&lt;/p&gt;&lt;p&gt;&lt;a href="https://fragglet.livejournal.com/4448.html"&gt;原文地址（英文）&lt;/a&gt;&lt;/p&gt;&lt;h2&gt;开始动手做&lt;/h2&gt;
 &lt;p&gt;首先 我们需要写一个 &lt;code&gt;.rc&lt;/code&gt; 的文件：&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;1 ICON &amp;quot;(path-to-*.ico)&amp;quot;
 &lt;/pre&gt;&lt;/div&gt;
@@ -511,8 +511,7 @@ I am also looking for employment opportunities so please get in touch if you wou
 &lt;li&gt;&lt;p&gt;__bool_true_false_are_defeined （现在true/false都成了关键字）&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;新语言特性&lt;/h2&gt;
-&lt;h3&gt;&lt;a href="https://zh.cppreference.com/w/c/language/arithmetic_types"&gt;&lt;code&gt;十进制浮点类型&lt;/code&gt;&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;_Decimal32&lt;/code&gt;，&lt;code&gt;_Decimal64&lt;/code&gt; 以及 &lt;code&gt;_Decimal128&lt;/code&gt;。&lt;/p&gt;&lt;p&gt;详见 &lt;a href="https://en.wikipedia.org/wiki/Decimal64_floating-point_format"&gt;IEEE定义&lt;/a&gt;。&lt;/p&gt;&lt;h3&gt;&lt;a href="https://zh.cppreference.com/w/c/language/attributes"&gt;属性 (attribute)&lt;/a&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;a href="https://zh.cppreference.com/w/c/language/attributes"&gt;属性 (attribute)&lt;/a&gt;&lt;/h3&gt;
 &lt;h4&gt;&lt;a href="https://en.cppreference.com/w/c/language/attributes/fallthrough"&gt;&lt;code&gt;[[fallthrough]]&lt;/code&gt;&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;表示从这里直落是有意的，编译器不应警告。&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;switch&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cond&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;case&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="no"&gt;A&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
@@ -566,6 +565,9 @@ I am also looking for employment opportunities so please get in touch if you wou
 &lt;h3&gt;宏&lt;/h3&gt;
 &lt;p&gt;不带messsage的 &lt;code&gt;_Static_assert&lt;/code&gt; 宏（现在应使用&lt;code&gt;static_assert&lt;/code&gt;关键字）&lt;/p&gt;&lt;h3&gt;数据类型&lt;/h3&gt;
 &lt;ul&gt;
+&lt;li&gt;&lt;a href="https://zh.cppreference.com/w/c/language/arithmetic_types"&gt;&lt;code&gt;十进制浮点类型&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;_Decimal32&lt;/code&gt;，&lt;code&gt;_Decimal64&lt;/code&gt; 以及 &lt;code&gt;_Decimal128&lt;/code&gt;。&lt;/p&gt;&lt;ul&gt;
 &lt;li&gt;位精度整数，&lt;a href="https://www.open-std.org/jtc1/sc22/wg14/www/docs/n2763.pdf"&gt;&lt;code&gt;_BitInt(N)&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;二进制整数常量，以0b/0B前缀。&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://zh.cppreference.com/w/c/language/initialization"&gt;空初始化&lt;/a&gt;器 &lt;code&gt;= {}&lt;/code&gt; 对于数组或自定义数据结构：对其成员空初始化；对于基本类型变量：对其本身空初始化。&lt;/li&gt;
