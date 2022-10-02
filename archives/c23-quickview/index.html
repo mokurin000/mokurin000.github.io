@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "/e835c1e9b87b825877beb7ea10cc6864.json"
+            api: "/c87c486d12f492caf840af07465165aa.json"
         }
     </script>
     <script>
@@ -123,22 +123,28 @@
         </p>
         <article class="yue"><h2>WIP</h2>
 <p>这篇文章正在编写。已有内容可能在近期被修改/移除</p><h2>移除</h2>
-<h3>K&amp;R风格函数声明与定义</h3>
+<h3>数据类型</h3>
+<ul>
+<li>2的补码以外的有符号整数</li>
+</ul>
+<h3>语言特性</h3>
+<ul>
+<li>不再允许<code>u</code>/<code>U</code>前缀的字符串字面量/字符常量为非UTF-16/32字符</li>
+<li><code>__alignof_is_defined</code> 和 <code>__alignas_is_defined</code></li>
+</ul>
+<h4>K&amp;R风格函数声明与定义</h4>
 <p>比如 <code>int main()</code>，是经常被使用的旧式写法。</p><p>或者</p><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">add1</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="w"></span>
 <span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">;</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
-<h3>其他</h3>
+<h3>标准库</h3>
 <ul>
-<li><p>2的补码以外的有符号整数</p></li>
-<li><p>不再允许<code>u</code>/<code>U</code>前缀的字符串字面量/字符常量为非UTF-16/32字符</p></li>
-<li><p>混合使用宽字符的连接</p></li>
-<li><p>对 <code>realloc()</code> 传递0大小的调用（实现定义改为未定义）</p></li>
-<li><p><code>__alignof_is_defined</code> 和 <code>__alignas_is_defined</code></p></li>
-<li><p><code>static_assert</code>宏（改为关键字）</p></li>
-<li><p><code>thread_local</code>宏（改为关键字）</p></li>
+<li>混合使用宽字符的连接</li>
+<li>对 <code>realloc()</code> 传递0大小的调用（实现定义改为未定义）</li>
+<li><code>static_assert</code>宏（改为关键字）</li>
+<li><code>thread_local</code>宏（改为关键字）</li>
 </ul>
 <h2>废弃</h2>
 <ul>
@@ -158,7 +164,7 @@
 <h3><a href="https://zh.cppreference.com/w/c/language/arithmetic_types"><code>十进制浮点类型</code></a></h3>
 <p><code>_Decimal32</code>，<code>_Decimal64</code> 以及 <code>_Decimal128</code>。</p><p>详见 <a href="https://en.wikipedia.org/wiki/Decimal64_floating-point_format">IEEE定义</a>。</p><h3><a href="https://zh.cppreference.com/w/c/language/attributes">属性 (attribute)</a></h3>
 <h4><a href="https://en.cppreference.com/w/c/language/attributes/deprecated"><code>[[deprecated]]</code></a></h4>
-<p>可以通过<code>(&quot;reason&quot;)</code>添加说明：<code>[[deprecated(&quot;WTH are u using this&quot;)]]</code></p><h4><a href="https://en.cppreference.com/w/c/language/attributes/fallthrough"><code>[[fallthrough]]</code></a></h4>
+<p>可通过<code>(&quot;reason&quot;)</code>添加说明：<code>[[deprecated(&quot;WTH are u using this&quot;)]]</code></p><h4><a href="https://en.cppreference.com/w/c/language/attributes/fallthrough"><code>[[fallthrough]]</code></a></h4>
 <p>表示从这里直落是有意的，编译器不应警告。</p><div class="highlight"><pre><span></span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">cond</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">A</span><span class="p">:</span><span class="w"></span>
 <span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">([</span><span class="n">expression</span><span class="p">])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -176,7 +182,7 @@
 </pre></div>
 <h4><a href="https://en.cppreference.com/w/c/language/attributes/maybe_unused"><code>[[maybe_unused]]</code></a></h4>
 <p>告诉编译器不要因为未使用警告。</p><h4><a href="https://en.cppreference.com/w/c/language/attributes/nodiscard"><code>[[nodiscard]]</code></a></h4>
-<p>该类型/该函数的返回值不希望被直接丢弃。如错误信息，或者结果存储在返回值的函数。</p><p>可以通过 <code>(&quot;reason&quot;)</code>添加说明：<code>[[nodiscard(&quot;Error info should be processed&quot;)]]</code>。</p><h4><a href="https://en.cppreference.com/w/c/language/attributes/noreturn"><code>[[noreturn]]</code></a></h4>
+<p>该类型/该函数的返回值不希望被直接丢弃。如错误信息，或者结果存储在返回值的函数。</p><p>可通过 <code>(&quot;reason&quot;)</code>添加说明：<code>[[nodiscard(&quot;Error info should be processed&quot;)]]</code>。</p><h4><a href="https://en.cppreference.com/w/c/language/attributes/noreturn"><code>[[noreturn]]</code></a></h4>
 <p>该函数不通过return语句或达到底部返回。</p><h4><a href="https://open-std.org/JTC1/SC22/WG14/www/docs/n2956.htm"><code>[[unsequenced]]</code>和<code>[[reproducible]]</code></a></h4>
 <p><code>[[unsequenced]]</code> 要求函数无状态，无副作用，幂等，并且独立。</p><p>其中：</p><ul>
 <li>无状态：没有定义可修改的静态或线程本地对象，也不调用有这种行为的函数。</li>
@@ -184,14 +190,32 @@
 <li>幂等：重复的求值应当得到同样的结果。（可以读取全局状态）</li>
 <li>独立：不依赖参数和常量以外的状态（可以写入全局变量）</li>
 </ul>
-<p><code>[[reproducible]]</code> 则只要求函数无副作用且幂等。</p><h4></h4>
+<p><code>[[reproducible]]</code> 则只要求函数无副作用且幂等。</p><h3>应用于数组的限定修饰符</h3>
+<p>数组类型和它的成员的类型现在被认为总是被同样地限定</p><blockquote>
+<p><code>_Atomic</code>限定不可应用于数组。</p></blockquote>
+<div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">;</span><span class="w"> </span><span class="c1">// OK until C23</span>
+</pre></div>
 <h3>其他</h3>
+<h4>关键字</h4>
+<blockquote>
+<p>可为兼容性定义为宏</p></blockquote>
+<ul>
+<li><code>static_assert</code></li>
+<li><code>thread_local</code></li>
+<li><code>true</code>, <code>false</code></li>
+</ul>
+<h4>宏</h4>
+<p>不带messsage的 <code>_Static_assert</code> 宏（现在应使用<code>static_assert</code>关键字）</p><h4>语法</h4>
 <ul>
 <li><p>位精度整数，<a href="https://www.open-std.org/jtc1/sc22/wg14/www/docs/n2763.pdf"><code>_BitInt(N)</code></a></p></li>
 <li><p>二进制整数常量，以0b/0B前缀。</p></li>
 <li><p><code>u8</code>前缀的 UTF-8 字符常量（u8'?'为单字节，u8&quot;...&quot; 为 <code>unsigned char [N]</code>）</p></li>
 <li><p>数字分隔符 <code>'</code>，如 114'514'1919L</p></li>
-<li><p>空初始化器 <code>= {}</code> ，同样适用于指针，整数，浮点数和自定义数据结构。</p></li>
+<li><p><a href="https://zh.cppreference.com/w/c/language/initialization">空初始化</a>器 <code>= {}</code> 对于数组或自定义数据结构：对其成员空初始化；对于基本类型变量：对其本身空初始化。</p></li>
+<li><p><a href="https://open-std.org/JTC1/SC22/WG14/www/docs/n2480.pdf">函数定义中的不具名参数</a></p></li>
+<li><p><a href="https://open-std.org/JTC1/SC22/WG14/www/docs/n2508.pdf">声明或块结尾前的label</a></p></li>
+<li><p><a href="https://en.cppreference.com/w/c/language/nullptr">nullptr</a>常量和相关的<a href="https://en.cppreference.com/w/c/types/nullptr_t">nullptr_t</a>类型</p></li>
 </ul>
 <h2>新标准库特性</h2>
 <h2>参考资料</h2>
