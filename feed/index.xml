@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>poly000客栈</title><link>/</link><description>poly000 的碎碎念</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>/android-chrome-512x512.png</url><title>poly000客栈</title><link>/</link></image><language>chinese</language><lastBuildDate>Sun, 02 Oct 2022 13:19:05 +0806</lastBuildDate><pubDate>Sun, 02 Oct 2022 13:19:05 +0806</pubDate><item><title>给Win32程序加图标</title><link>/archives/add-icon-to-win32-exe/</link><description>&lt;h2&gt;前言&lt;/h2&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>poly000客栈</title><link>/</link><description>poly000 的碎碎念</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>/android-chrome-512x512.png</url><title>poly000客栈</title><link>/</link></image><language>chinese</language><lastBuildDate>Sun, 02 Oct 2022 13:50:38 +0806</lastBuildDate><pubDate>Sun, 02 Oct 2022 13:50:38 +0806</pubDate><item><title>给Win32程序加图标</title><link>/archives/add-icon-to-win32-exe/</link><description>&lt;h2&gt;前言&lt;/h2&gt;
 &lt;p&gt;为了好玩咱想要试着给win32程序加图标，&lt;/p&gt;&lt;p&gt;但是只找到了用VS加图标的操作……&lt;/p&gt;&lt;p&gt;最后找到了链接操作。&lt;/p&gt;&lt;p&gt;&lt;a href="https://fragglet.livejournal.com/4448.html"&gt;原文地址（英文）&lt;/a&gt;&lt;/p&gt;&lt;h2&gt;开始动手做&lt;/h2&gt;
 &lt;p&gt;首先 我们需要写一个 &lt;code&gt;.rc&lt;/code&gt; 的文件：&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;1 ICON &amp;quot;(path-to-*.ico)&amp;quot;
 &lt;/pre&gt;&lt;/div&gt;
@@ -574,7 +574,6 @@ I am also looking for employment opportunities so please get in touch if you wou
 &lt;p&gt;&lt;code&gt;_Decimal32&lt;/code&gt;，&lt;code&gt;_Decimal64&lt;/code&gt; 以及 &lt;code&gt;_Decimal128&lt;/code&gt;。&lt;/p&gt;&lt;ul&gt;
 &lt;li&gt;位精度整数，&lt;a href="https://www.open-std.org/jtc1/sc22/wg14/www/docs/n2763.pdf"&gt;&lt;code&gt;_BitInt(N)&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;二进制整数常量，以0b/0B前缀。&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zh.cppreference.com/w/c/language/initialization"&gt;空初始化&lt;/a&gt;器 &lt;code&gt;= {}&lt;/code&gt; 对于数组或自定义数据结构：对其成员空初始化；对于基本类型变量：对其本身空初始化。&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://en.cppreference.com/w/c/language/nullptr"&gt;nullptr&lt;/a&gt;常量和相关的&lt;a href="https://en.cppreference.com/w/c/types/nullptr_t"&gt;nullptr_t&lt;/a&gt;类型&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;字面量&lt;/h3&gt;
@@ -582,8 +581,29 @@ I am also looking for employment opportunities so please get in touch if you wou
 &lt;li&gt;&lt;code&gt;u8&lt;/code&gt;前缀的 UTF-8 字符常量（u8'?'为单字节，u8&amp;quot;...&amp;quot; 为 &lt;code&gt;unsigned char [N]&lt;/code&gt;）&lt;/li&gt;
 &lt;li&gt;数字分隔符 &lt;code&gt;'&lt;/code&gt;，如 114'514'1919L&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3&gt;语法&lt;/h3&gt;
+&lt;h3&gt;预处理器指令&lt;/h3&gt;
+&lt;h4&gt;&lt;a href="https://www.open-std.org/jtc1/sc22/wg14/www/docs/n2499.pdf"&gt;&lt;code&gt;#embed&lt;/code&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kt"&gt;unsigned&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;icon_data&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// unsigned char为默认类型&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="cp"&gt;#embed &amp;quot;art.png&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="k"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;blob&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="cp"&gt;#embed char &amp;quot;data.bin&amp;quot; &lt;/span&gt;&lt;span class="c1"&gt;// 其中char为类型名&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+
+&lt;span class="k"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;qwq&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="cp"&gt;#embed 32 &amp;quot;/dev/urandom&amp;quot; &lt;/span&gt;&lt;span class="c1"&gt;// 限制参数放在文件名之前；最多可以读入32字节。&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// 注意这是上界，并不意味着一定会读入这么多。&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;该资源的内容以实现定义的方式映射到数据中，它为每个元素使用 &lt;code&gt;CHAR_BIT * sizeof(type-name)&lt;/code&gt; 比特。如果该文件不足以多次填充这些位，则需要进行diagnostic。&lt;/p&gt;&lt;p&gt;其中类型名必须是基本整数类型。&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;#elifsef&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;#elifndef&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;#warning&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;其他&lt;/h3&gt;
 &lt;ul&gt;
+&lt;li&gt;&lt;a href="https://zh.cppreference.com/w/c/language/initialization"&gt;空初始化&lt;/a&gt;器 &lt;code&gt;= {}&lt;/code&gt; 对于数组或自定义数据结构：对其成员空初始化；对于基本类型变量：对其本身空初始化。&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://open-std.org/JTC1/SC22/WG14/www/docs/n2480.pdf"&gt;函数定义中的不具名参数&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://open-std.org/JTC1/SC22/WG14/www/docs/n2508.pdf"&gt;声明或块结尾前的label&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
