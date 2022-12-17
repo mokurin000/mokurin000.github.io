@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "/81a31323ea3c224d88d6fef77ac014ff.json"
+            api: "/23bcdef14cae844fafe31c68068429f7.json"
         }
     </script>
     <script>
@@ -212,6 +212,8 @@
 <p><code>_Atomic</code>限定不可应用于数组。</p></blockquote>
 <div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span><span class="w"></span>
 <span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">;</span><span class="w"> </span><span class="c1">// OK until C23</span>
+<span class="c1">// clang: cannot initialize a variable of type &#39;int *&#39; with an lvalue of type &#39;const int[1]&#39;</span>
+<span class="c1">// Note clang will apply this rule even in C89-C17</span>
 </pre></div>
 <h3>关键字</h3>
 <blockquote>
@@ -230,6 +232,7 @@
 <li>位精度整数，<a href="https://www.open-std.org/jtc1/sc22/wg14/www/docs/n2763.pdf"><code>_BitInt(N)</code></a></li>
 <li>二进制整数常量，以0b/0B前缀。</li>
 <li><a href="https://en.cppreference.com/w/c/language/nullptr">nullptr</a>常量和相关的<a href="https://en.cppreference.com/w/c/types/nullptr_t">nullptr_t</a>类型</li>
+<li>char16_t 和 char32_t 字符串字面量 <a href="https://www.open-std.org/jtc1/sc22/wg14/www/docs/n2728.htm">必须是 UTF-16 和 UTF-32</a></li>
 </ul>
 <h3>字面量</h3>
 <ul>
@@ -263,8 +266,29 @@
 <li><a href="https://open-std.org/JTC1/SC22/WG14/www/docs/n2508.pdf">声明或块结尾前的label</a></li>
 </ul>
 <h2>标准库特性</h2>
-<h1>参考资料</h1>
-<p><a href="https://en.cppreference.com/w/c/23">cppreference - c23</a></p></article>
+<h3>printf()对整数的二进制格式化支持</h3>
+<p><a href="https://www.open-std.org/jtc1/sc22/WG14/www/docs/n2630.pdf">标准</a></p><p>使用“%b”描述符输出整数为二进制。</p><h3>为格式化指定位长</h3>
+<p><a href="https://www.open-std.org/Jtc1/sc22/WG14/www/docs/n2680.pdf">标准</a></p><p>当你想要输出一个很大的整数，之前的可移植做法是：</p><div class="highlight"><pre><span></span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%jd&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">intmax_t</span><span class="p">)</span><span class="n">some_integer</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+<p>但是 int128_t ， int256_t 得以支持后，我们也不能修改现存平台的 <code>intmax_t</code> 定义。于是：</p><div class="highlight"><pre><span></span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%w128d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">my_128b_integer</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+<p>你也可以指定打印该数字的低位：</p><div class="highlight"><pre><span></span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%w8d&quot;</span><span class="p">,</span><span class="w"> </span><span class="mh">0x114</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+<h3>带溢出检查的整数运算</h3>
+<p><a href="https://www.open-std.org/jtc1/sc22/wg14/www/docs/n2683.pdf">标准</a></p><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdckdint.h&gt;</span><span class="cp"></span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="nf">ckd_add</span><span class="p">(</span><span class="n">type1</span><span class="w"> </span><span class="o">*</span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="n">type2</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">type3</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w"></span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">ckd_sub</span><span class="p">(</span><span class="n">type1</span><span class="w"> </span><span class="o">*</span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="n">type2</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">type3</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w"></span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">ckd_mul</span><span class="p">(</span><span class="n">type1</span><span class="w"> </span><span class="o">*</span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="n">type2</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">type3</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+<p>这三个函数支持任意内建整数类型。</p><h2>参考资料</h2>
+<ul>
+<li><a href="https://en.cppreference.com/w/c/23">cppreference - c23</a></li>
+<li><a href="https://thephd.dev/c-the-improvements-june-september-virtual-c-meeting">C-ing the Improvement: Progress on C23</a></li>
+<li><a href="https://thephd.dev/ever-closer-c23-improvements">Ever Closer - C23 Draws Nearer</a></li>
+<li><a href="https://thephd.dev/c23-is-coming-here-is-what-is-on-the-menu">C23 is Finished: Here is What is on the Menu</a></li>
+</ul>
+</article>
     </section>
 
     

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>poly000客栈</title><link>/</link><description>poly000 的碎碎念</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>/android-chrome-512x512.png</url><title>poly000客栈</title><link>/</link></image><language>chinese</language><lastBuildDate>Tue, 06 Dec 2022 17:54:17 +0806</lastBuildDate><pubDate>Tue, 06 Dec 2022 17:54:17 +0806</pubDate><item><title>给Win32程序加图标</title><link>/archives/add-icon-to-win32-exe/</link><description>&lt;h2&gt;前言&lt;/h2&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>poly000客栈</title><link>/</link><description>poly000 的碎碎念</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>/android-chrome-512x512.png</url><title>poly000客栈</title><link>/</link></image><language>chinese</language><lastBuildDate>Sat, 17 Dec 2022 10:13:11 +0806</lastBuildDate><pubDate>Sat, 17 Dec 2022 10:13:11 +0806</pubDate><item><title>给Win32程序加图标</title><link>/archives/add-icon-to-win32-exe/</link><description>&lt;h2&gt;前言&lt;/h2&gt;
 &lt;p&gt;为了好玩咱想要试着给win32程序加图标，&lt;/p&gt;&lt;p&gt;但是只找到了用VS加图标的操作……&lt;/p&gt;&lt;p&gt;最后找到了链接操作。&lt;/p&gt;&lt;p&gt;&lt;a href="https://fragglet.livejournal.com/4448.html"&gt;原文地址（英文）&lt;/a&gt;&lt;/p&gt;&lt;h2&gt;开始动手做&lt;/h2&gt;
 &lt;p&gt;首先 我们需要写一个 &lt;code&gt;.rc&lt;/code&gt; 的文件：&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;1 ICON &amp;quot;(path-to-*.ico)&amp;quot;
 &lt;/pre&gt;&lt;/div&gt;
@@ -558,6 +558,8 @@ I am also looking for employment opportunities so please get in touch if you wou
 &lt;p&gt;&lt;code&gt;_Atomic&lt;/code&gt;限定不可应用于数组。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{};&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ptr&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// OK until C23&lt;/span&gt;
+&lt;span class="c1"&gt;// clang: cannot initialize a variable of type &amp;#39;int *&amp;#39; with an lvalue of type &amp;#39;const int[1]&amp;#39;&lt;/span&gt;
+&lt;span class="c1"&gt;// Note clang will apply this rule even in C89-C17&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3&gt;关键字&lt;/h3&gt;
 &lt;blockquote&gt;
@@ -576,6 +578,7 @@ I am also looking for employment opportunities so please get in touch if you wou
 &lt;li&gt;位精度整数，&lt;a href="https://www.open-std.org/jtc1/sc22/wg14/www/docs/n2763.pdf"&gt;&lt;code&gt;_BitInt(N)&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;二进制整数常量，以0b/0B前缀。&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://en.cppreference.com/w/c/language/nullptr"&gt;nullptr&lt;/a&gt;常量和相关的&lt;a href="https://en.cppreference.com/w/c/types/nullptr_t"&gt;nullptr_t&lt;/a&gt;类型&lt;/li&gt;
+&lt;li&gt;char16_t 和 char32_t 字符串字面量 &lt;a href="https://www.open-std.org/jtc1/sc22/wg14/www/docs/n2728.htm"&gt;必须是 UTF-16 和 UTF-32&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;字面量&lt;/h3&gt;
 &lt;ul&gt;
@@ -609,5 +612,26 @@ I am also looking for employment opportunities so please get in touch if you wou
 &lt;li&gt;&lt;a href="https://open-std.org/JTC1/SC22/WG14/www/docs/n2508.pdf"&gt;声明或块结尾前的label&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;标准库特性&lt;/h2&gt;
-&lt;h1&gt;参考资料&lt;/h1&gt;
-&lt;p&gt;&lt;a href="https://en.cppreference.com/w/c/23"&gt;cppreference - c23&lt;/a&gt;&lt;/p&gt;</description><author>1348292515@qq.com (Poly000)</author><guid isPermaLink="true">/archives/c23-quickview/</guid><pubDate>Sat, 01 Oct 2022 17:38:00 +0806</pubDate></item></channel></rss>
+&lt;h3&gt;printf()对整数的二进制格式化支持&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://www.open-std.org/jtc1/sc22/WG14/www/docs/n2630.pdf"&gt;标准&lt;/a&gt;&lt;/p&gt;&lt;p&gt;使用“%b”描述符输出整数为二进制。&lt;/p&gt;&lt;h3&gt;为格式化指定位长&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://www.open-std.org/Jtc1/sc22/WG14/www/docs/n2680.pdf"&gt;标准&lt;/a&gt;&lt;/p&gt;&lt;p&gt;当你想要输出一个很大的整数，之前的可移植做法是：&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%jd&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;intmax_t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;some_integer&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;但是 int128_t ， int256_t 得以支持后，我们也不能修改现存平台的 &lt;code&gt;intmax_t&lt;/code&gt; 定义。于是：&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%w128d&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;my_128b_integer&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;你也可以指定打印该数字的低位：&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%w8d&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x114&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;带溢出检查的整数运算&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://www.open-std.org/jtc1/sc22/wg14/www/docs/n2683.pdf"&gt;标准&lt;/a&gt;&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="cpf"&gt;&amp;lt;stdckdint.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="kt"&gt;bool&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;ckd_add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;type1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;type2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;type3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="kt"&gt;bool&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;ckd_sub&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;type1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;type2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;type3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="kt"&gt;bool&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;ckd_mul&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;type1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;type2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;type3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这三个函数支持任意内建整数类型。&lt;/p&gt;&lt;h2&gt;参考资料&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://en.cppreference.com/w/c/23"&gt;cppreference - c23&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://thephd.dev/c-the-improvements-june-september-virtual-c-meeting"&gt;C-ing the Improvement: Progress on C23&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://thephd.dev/ever-closer-c23-improvements"&gt;Ever Closer - C23 Draws Nearer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://thephd.dev/c23-is-coming-here-is-what-is-on-the-menu"&gt;C23 is Finished: Here is What is on the Menu&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description><author>1348292515@qq.com (Poly000)</author><guid isPermaLink="true">/archives/c23-quickview/</guid><pubDate>Sat, 01 Oct 2022 17:38:00 +0806</pubDate></item></channel></rss>
