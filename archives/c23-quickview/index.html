@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "/23bcdef14cae844fafe31c68068429f7.json"
+            api: "/056180025969d6d47f7f939336d95175.json"
         }
     </script>
     <script>
@@ -217,14 +217,44 @@
 </pre></div>
 <h3>关键字</h3>
 <blockquote>
-<p>可为兼容性定义为宏</p></blockquote>
+<p>前三项可被编译器为兼容性定义为宏</p></blockquote>
 <ul>
 <li><code>static_assert</code></li>
 <li><code>thread_local</code></li>
 <li><code>true</code>, <code>false</code></li>
+<li><a href="https://thephd.dev/c23-is-coming-here-is-what-is-on-the-menu#n3006--n3018---constexpr-for-object-definitions"><code>constexpr</code></a> 存储周期修饰符/函数修饰符</li>
 </ul>
 <h3>宏</h3>
-<p>不带message的 <code>_Static_assert</code> 宏（现在应使用<code>static_assert</code>关键字）</p><h3>数据类型</h3>
+<ul>
+<li>不带message的 <code>_Static_assert</code> 宏（现在应使用<code>static_assert</code>关键字）</li>
+<li><code>unreachable()</code>，表示代码不可达。</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdint.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stddef.h&gt;</span><span class="c1"> // size_t and not has unreachable()</span><span class="cp"></span>
+
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">color</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="n">color</span><span class="p">;</span><span class="w"></span>
+
+<span class="c1">// color_vec that works over pointer-to-array</span>
+<span class="cp">#define VEC_TYPE color</span>
+<span class="cp">#define VEC_NAME color_vec</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vec.h&gt;</span><span class="cp"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">generate_texture</span><span class="p">(</span><span class="n">color</span><span class="o">**</span><span class="w"> </span><span class="n">p_texture</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">square_wh</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">square_wh</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">128</span><span class="p">:</span><span class="w"> </span><span class="p">[[</span><span class="n">fallthrough</span><span class="p">]];</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">256</span><span class="p">:</span><span class="w"> </span><span class="p">[[</span><span class="n">fallthrough</span><span class="p">]];</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">512</span><span class="p">:</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"></span>
+<span class="w">        </span><span class="n">color_vec_clear</span><span class="p">(</span><span class="n">p_texture</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">color_vec_resize_init</span><span class="p">(</span><span class="n">p_texture</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">square_wh</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">square_wh</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="p">(</span><span class="n">color</span><span class="p">){</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">});</span><span class="w"></span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">default</span><span class="o">:</span><span class="w"></span>
+<span class="w">        </span><span class="n">unreachable</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+<h3>数据类型</h3>
 <ul>
 <li><a href="https://zh.cppreference.com/w/c/language/arithmetic_types"><code>十进制浮点类型</code></a></li>
 </ul>
@@ -264,6 +294,7 @@
 <li><a href="https://zh.cppreference.com/w/c/language/initialization">空初始化</a>器 <code>= {}</code> 对于数组或自定义数据结构：对其成员空初始化；对于基本类型变量：对其本身空初始化。</li>
 <li><a href="https://open-std.org/JTC1/SC22/WG14/www/docs/n2480.pdf">函数定义中的不具名参数</a></li>
 <li><a href="https://open-std.org/JTC1/SC22/WG14/www/docs/n2508.pdf">声明或块结尾前的label</a></li>
+<li><a href="https://www.open-std.org/jtc1/sc22/wg14/www/docs/n2780.pdf">函数参数定义转发</a>，可能在对ABI时需要使用。</li>
 </ul>
 <h2>标准库特性</h2>
 <h3>printf()对整数的二进制格式化支持</h3>
