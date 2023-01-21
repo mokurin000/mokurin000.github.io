@@ -65,6 +65,8 @@
                             
                                 <li><a href="https://blog.integral.org.cn/" target="_blank">Integral</a></li>
                             
+                                <li><a href="https://www.aidenpers.xyz" target="_blank">aidenpers</a></li>
+                            
                                 <li><a href="https://controlnet.space/" target="_blank">ControlNet</a></li>
                             
                         </ul>
@@ -104,6 +106,8 @@
                         
                             <div class="external"><span><a href="https://blog.integral.org.cn/">Integral</a><button class="go-external"><i class="fa fa-external-link"></i></button></span></div>
                         
+                            <div class="external"><span><a href="https://www.aidenpers.xyz">aidenpers</a><button class="go-external"><i class="fa fa-external-link"></i></button></span></div>
+                        
                             <div class="external"><span><a href="https://controlnet.space/">ControlNet</a><button class="go-external"><i class="fa fa-external-link"></i></button></span></div>
                         
                     </section>
@@ -137,11 +141,11 @@
 </ul>
 <h3>语言特性</h3>
 <h4>K&amp;R风格函数声明与定义</h4>
-<p>比如 <code>int main()</code>，是经常被使用的旧式写法。</p><p>或者</p><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">add1</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="w"></span>
-<span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">;</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<p>比如 <code>int main()</code>，是经常被使用的旧式写法。</p><p>或者</p><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">add1</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">;</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 <ul>
 <li>不再允许<code>u</code>/<code>U</code>前缀的字符串字面量/字符常量为非UTF-16/32字符</li>
@@ -176,20 +180,20 @@
 <h2>语言特性</h2>
 <h3><a href="https://zh.cppreference.com/w/c/language/attributes">属性 (attribute)</a></h3>
 <h4><a href="https://en.cppreference.com/w/c/language/attributes/fallthrough"><code>[[fallthrough]]</code></a></h4>
-<p>表示从这里直落是有意的，编译器不应警告。</p><div class="highlight"><pre><span></span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">cond</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">A</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">([</span><span class="n">expression</span><span class="p">])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">          </span><span class="n">doSomething</span><span class="p">();</span><span class="w"></span>
-<span class="w">          </span><span class="p">[[</span><span class="n">fallthrough</span><span class="p">]];</span><span class="w"></span>
-<span class="w">      </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">B</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">C</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Error: ...&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">      </span><span class="p">[[</span><span class="n">fallthrough</span><span class="p">]];</span><span class="w"></span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">D</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="n">doSomething</span><span class="p">();</span><span class="w"></span>
-<span class="w">      </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<p>表示从这里直落是有意的，编译器不应警告。</p><div class="highlight"><pre><span></span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">cond</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">A</span><span class="p">:</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">([</span><span class="n">expression</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">doSomething</span><span class="p">();</span>
+<span class="w">          </span><span class="p">[[</span><span class="n">fallthrough</span><span class="p">]];</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">B</span><span class="p">:</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">C</span><span class="p">:</span>
+<span class="w">      </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Error: ...&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="p">[[</span><span class="n">fallthrough</span><span class="p">]];</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">D</span><span class="p">:</span>
+<span class="w">      </span><span class="n">doSomething</span><span class="p">();</span>
+<span class="w">      </span><span class="k">break</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 <h4><a href="https://open-std.org/JTC1/SC22/WG14/www/docs/n2956.htm"><code>[[unsequenced]]</code>和<code>[[reproducible]]</code></a></h4>
 <p><code>[[unsequenced]]</code> 要求函数无状态，无副作用，幂等，并且独立。</p><p>其中：</p><ul>
@@ -214,7 +218,7 @@
 <p>该函数不通过return语句或达到底部返回。</p><h3>应用于数组的限定修饰符</h3>
 <p>数组类型和它的成员的类型现在被认为总是被同样地限定</p><blockquote>
 <p><code>_Atomic</code>限定不可应用于数组。</p></blockquote>
-<div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span><span class="w"></span>
+<div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span>
 <span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">;</span><span class="w"> </span><span class="c1">// OK until C23</span>
 <span class="c1">// clang: cannot initialize a variable of type &#39;int *&#39; with an lvalue of type &#39;const int[1]&#39;</span>
 <span class="c1">// Note clang will apply this rule even in C89-C17</span>
@@ -233,30 +237,30 @@
 <li>不带message的 <code>_Static_assert</code> 宏（现在应使用<code>static_assert</code>关键字）</li>
 <li><code>unreachable()</code>，表示代码不可达。</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdint.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stddef.h&gt;</span><span class="c1"> // size_t and not has unreachable()</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdint.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stddef.h&gt;</span><span class="c1"> // size_t and not has unreachable()</span>
 
-<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">color</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="n">color</span><span class="p">;</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">color</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="n">color</span><span class="p">;</span>
 
 <span class="c1">// color_vec that works over pointer-to-array</span>
 <span class="cp">#define VEC_TYPE color</span>
 <span class="cp">#define VEC_NAME color_vec</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vec.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vec.h&gt;</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="nf">generate_texture</span><span class="p">(</span><span class="n">color</span><span class="o">**</span><span class="w"> </span><span class="n">p_texture</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">square_wh</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">square_wh</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">128</span><span class="p">:</span><span class="w"> </span><span class="p">[[</span><span class="n">fallthrough</span><span class="p">]];</span><span class="w"></span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">256</span><span class="p">:</span><span class="w"> </span><span class="p">[[</span><span class="n">fallthrough</span><span class="p">]];</span><span class="w"></span>
-<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">512</span><span class="p">:</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"></span>
-<span class="w">        </span><span class="n">color_vec_clear</span><span class="p">(</span><span class="n">p_texture</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">color_vec_resize_init</span><span class="p">(</span><span class="n">p_texture</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="n">square_wh</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">square_wh</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="p">(</span><span class="n">color</span><span class="p">){</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">});</span><span class="w"></span>
-<span class="w">        </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">default</span><span class="o">:</span><span class="w"></span>
-<span class="w">        </span><span class="n">unreachable</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">generate_texture</span><span class="p">(</span><span class="n">color</span><span class="o">**</span><span class="w"> </span><span class="n">p_texture</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">square_wh</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">square_wh</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">128</span><span class="p">:</span><span class="w"> </span><span class="p">[[</span><span class="n">fallthrough</span><span class="p">]];</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">256</span><span class="p">:</span><span class="w"> </span><span class="p">[[</span><span class="n">fallthrough</span><span class="p">]];</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="mi">512</span><span class="p">:</span><span class="w"> </span><span class="cm">/* ... */</span>
+<span class="w">        </span><span class="n">color_vec_clear</span><span class="p">(</span><span class="n">p_texture</span><span class="p">);</span>
+<span class="w">        </span><span class="n">color_vec_resize_init</span><span class="p">(</span><span class="n">p_texture</span><span class="p">,</span>
+<span class="w">            </span><span class="n">square_wh</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">square_wh</span><span class="p">,</span>
+<span class="w">            </span><span class="p">(</span><span class="n">color</span><span class="p">){</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">});</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="k">default</span><span class="o">:</span>
+<span class="w">        </span><span class="n">unreachable</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 <h3>数据类型</h3>
 <ul>
@@ -277,16 +281,16 @@
 <h4><a href="https://www.open-std.org/jtc1/sc22/wg14/www/docs/n2499.pdf"><code>#embed</code></a></h4>
 <div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">icon_data</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// unsigned char为默认类型</span>
 <span class="w">    </span><span class="cp">#embed &quot;art.png&quot;</span>
-<span class="p">};</span><span class="w"></span>
+<span class="p">};</span>
 
-<span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">blob</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">blob</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="cp">#embed char &quot;data.bin&quot; </span><span class="c1">// 其中char为类型名</span>
-<span class="p">};</span><span class="w"></span>
+<span class="p">};</span>
 
-<span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">qwq</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">qwq</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="cp">#embed 32 &quot;/dev/urandom&quot; </span><span class="c1">// 限制参数放在文件名之前；最多可以读入32字节。</span>
 <span class="w">    </span><span class="c1">// 注意这是上界，并不意味着一定会读入这么多。</span>
-<span class="p">};</span><span class="w"></span>
+<span class="p">};</span>
 </pre></div>
 <p>该资源的内容以实现定义的方式映射到数据中，它为每个元素使用 <code>CHAR_BIT * sizeof(type-name)</code> 比特。如果该文件不足以多次填充这些位，则需要进行diagnostic。</p><p>其中类型名必须是基本整数类型。</p><ul>
 <li><code>#elifdef</code></li>
@@ -304,18 +308,18 @@
 <h3>现代的位运算工具</h3>
 <p><a href="https://thephd.dev/c23-is-coming-here-is-what-is-on-the-menu#n3022---modern-bit-utilities">stdbit.h</a></p><p>有端序的宏和一些常见的位运算工具。</p><h3>printf()对整数的二进制格式化支持</h3>
 <p><a href="https://www.open-std.org/jtc1/sc22/WG14/www/docs/n2630.pdf">标准</a></p><p>使用“%b”描述符输出整数为二进制。</p><h3>为格式化指定位长</h3>
-<p><a href="https://www.open-std.org/Jtc1/sc22/WG14/www/docs/n2680.pdf">标准</a></p><p>当你想要输出一个很大的整数，之前的可移植做法是：</p><div class="highlight"><pre><span></span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%jd&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">intmax_t</span><span class="p">)</span><span class="n">some_integer</span><span class="p">);</span><span class="w"></span>
+<p><a href="https://www.open-std.org/Jtc1/sc22/WG14/www/docs/n2680.pdf">标准</a></p><p>当你想要输出一个很大的整数，之前的可移植做法是：</p><div class="highlight"><pre><span></span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%jd&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">intmax_t</span><span class="p">)</span><span class="n">some_integer</span><span class="p">);</span>
 </pre></div>
-<p>但是 int128_t ， int256_t 得以支持后，我们也不能修改现存平台的 <code>intmax_t</code> 定义。于是：</p><div class="highlight"><pre><span></span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%w128d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">my_128b_integer</span><span class="p">);</span><span class="w"></span>
+<p>但是 int128_t ， int256_t 得以支持后，我们也不能修改现存平台的 <code>intmax_t</code> 定义。于是：</p><div class="highlight"><pre><span></span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%w128d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">my_128b_integer</span><span class="p">);</span>
 </pre></div>
-<p>你也可以指定打印该数字的低位：</p><div class="highlight"><pre><span></span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%w8d&quot;</span><span class="p">,</span><span class="w"> </span><span class="mh">0x114</span><span class="p">)</span><span class="w"></span>
+<p>你也可以指定打印该数字的低位：</p><div class="highlight"><pre><span></span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%w8d&quot;</span><span class="p">,</span><span class="w"> </span><span class="mh">0x114</span><span class="p">)</span>
 </pre></div>
 <h3>带溢出检查的整数运算</h3>
-<p><a href="https://www.open-std.org/jtc1/sc22/wg14/www/docs/n2683.pdf">标准</a></p><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdckdint.h&gt;</span><span class="cp"></span>
+<p><a href="https://www.open-std.org/jtc1/sc22/wg14/www/docs/n2683.pdf">标准</a></p><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdckdint.h&gt;</span>
 
-<span class="kt">bool</span><span class="w"> </span><span class="nf">ckd_add</span><span class="p">(</span><span class="n">type1</span><span class="w"> </span><span class="o">*</span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="n">type2</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">type3</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w"></span>
-<span class="kt">bool</span><span class="w"> </span><span class="nf">ckd_sub</span><span class="p">(</span><span class="n">type1</span><span class="w"> </span><span class="o">*</span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="n">type2</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">type3</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w"></span>
-<span class="kt">bool</span><span class="w"> </span><span class="nf">ckd_mul</span><span class="p">(</span><span class="n">type1</span><span class="w"> </span><span class="o">*</span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="n">type2</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">type3</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w"></span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">ckd_add</span><span class="p">(</span><span class="n">type1</span><span class="w"> </span><span class="o">*</span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="n">type2</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">type3</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">ckd_sub</span><span class="p">(</span><span class="n">type1</span><span class="w"> </span><span class="o">*</span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="n">type2</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">type3</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">ckd_mul</span><span class="p">(</span><span class="n">type1</span><span class="w"> </span><span class="o">*</span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="n">type2</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">type3</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
 </pre></div>
 <p>这三个函数支持任意内建整数类型。</p><h2>参考资料</h2>
 <ul>
@@ -357,7 +361,7 @@
     </script>
 </div>
                     <footer>
-                        <span>Copyright © 2022 poly000</span>
+                        <span>Copyright © 2023 poly000</span>
                         
     <span class="leancloud_visitors"
             id="/archives/c23-quickview/" 
