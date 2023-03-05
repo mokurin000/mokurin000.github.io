@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>poly000客栈</title><link>/</link><description>poly000 的碎碎念</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>/android-chrome-512x512.png</url><title>poly000客栈</title><link>/</link></image><language>chinese</language><lastBuildDate>Fri, 24 Feb 2023 23:16:58 +0806</lastBuildDate><pubDate>Fri, 24 Feb 2023 23:16:58 +0806</pubDate><item><title>给Win32程序加图标</title><link>/archives/add-icon-to-win32-exe/</link><description>&lt;h2&gt;前言&lt;/h2&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>poly000客栈</title><link>/</link><description>poly000 的碎碎念</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>/android-chrome-512x512.png</url><title>poly000客栈</title><link>/</link></image><language>chinese</language><lastBuildDate>Sun, 05 Mar 2023 17:49:27 +0806</lastBuildDate><pubDate>Sun, 05 Mar 2023 17:49:27 +0806</pubDate><item><title>给Win32程序加图标</title><link>/archives/add-icon-to-win32-exe/</link><description>&lt;h2&gt;前言&lt;/h2&gt;
 &lt;p&gt;为了好玩咱想要试着给win32程序加图标，&lt;/p&gt;&lt;p&gt;但是只找到了用VS加图标的操作……&lt;/p&gt;&lt;p&gt;最后找到了链接操作。&lt;/p&gt;&lt;p&gt;&lt;a href="https://fragglet.livejournal.com/4448.html"&gt;原文地址（英文）&lt;/a&gt;&lt;/p&gt;&lt;h2&gt;开始动手做&lt;/h2&gt;
 &lt;p&gt;首先 我们需要写一个 &lt;code&gt;.rc&lt;/code&gt; 的文件：&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;1 ICON &amp;quot;(path-to-*.ico)&amp;quot;
 &lt;/pre&gt;&lt;/div&gt;
@@ -668,31 +668,6 @@ I am also looking for employment opportunities so please get in touch if you wou
 &lt;/ul&gt;
 </description><author>1348292515@qq.com (Poly000)</author><guid isPermaLink="true">/archives/c23-quickview/</guid><pubDate>Sat, 01 Oct 2022 17:38:00 +0806</pubDate></item><item><title>软RAID vs 硬RAID</title><link>/archives/software-raid-versus-hardware-raid/</link><description>&lt;h2&gt;Credit&lt;/h2&gt;
 &lt;p&gt;&lt;a href="https://utcc.utoronto.ca/~cks/space/blog/tech/HardwareVsSoftwareRAID"&gt;原文地址&lt;/a&gt;&lt;/p&gt;&lt;h2&gt;正文&lt;/h2&gt;
-&lt;!--
-Here's a good argument-starting question: which is faster and/or better, hardware RAID or software RAID?
---&gt;
-&lt;!--
-A lot of conventional wisdom says hardware RAID, but I mostly disagree. Let's ask the inverse question: how (or when) can hardware RAID be faster than software RAID?
---&gt;
-&lt;!--
-If you're doing RAID-5, the hardware could do XOR faster than your CPU can. But in modern systems XOR performance is pretty much constrained by the memory bandwidth, not CPU power. It is possible to have better memory bandwidth than the CPU (graphics cards do), but it's not cheap.
---&gt;
-&lt;!--
-If you're doing RAID-1, hardware RAID can reduce the bus bandwidth needed for writes from N DMA transfers to N disks to one DMA transfer to itself. But for this to make your system faster, you need to be saturating the PCI bus bandwidth with write traffic, which is not exactly common. (In theory you might see this with RAID-5 too.)
---&gt;
-&lt;!--
-I believe that's it. (Additions and corrections welcome.)
---&gt;
-&lt;!--
-The usual retort for all this is that while hardware RAID may be no faster than software RAID, at least you're offloading the work from your main CPU so the system's overall speed goes up. However, for this to matter your system needs to be CPU constrained and doing significant write IO (if you only have insignificant write IO, the extra CPU usage for software RAID will also be small). This is not exactly common either.
---&gt;
-&lt;!--
-There is one downside for software RAID: the operating system has to be running in order to use it, which can complicate early boot. But software RAID also has a lot of upsides, including hardware independence. (You're dependent on software, but you pretty much are anyways; only a few crazy people try moving filesystems between different operating systems.)
---&gt;
-&lt;!--
-The one wildcard I can see in hardware RAID's favour is virtualization, which might deliver a future of heavily used hardware running close to both CPU and IO saturation.
---&gt;
-&lt;!--
-(This entry is brought to you by the Tivoli Storage Manager documentation I was plowing through today, which made me grind my teeth by tossing off a 'hardware RAID is better than software RAID' bit in passing.)
---&gt;
-</description><author>1348292515@qq.com (Poly000)</author><guid isPermaLink="true">/archives/software-raid-versus-hardware-raid/</guid><pubDate>Fri, 24 Feb 2023 22:08:00 +0806</pubDate></item></channel></rss>
+&lt;p&gt;一个很容易引起争论的问题：硬RAID和软RAID哪个更快和（或）更好？&lt;/p&gt;&lt;p&gt;很多传统观点认为是硬RAID，但我很不同意。让我们问一个相反的问题：硬件RAID如何（或何时）比软件RAID快？&lt;/p&gt;&lt;p&gt;如果你要用RAID-5，硬件可以比你的CPU更快XOR。但是，在现代系统中，XOR的性能基本上受制于内存带宽，而不是CPU的能力。你可能有比CPU更好的内存带宽（显卡就是这样），但这并不便宜。&lt;/p&gt;&lt;p&gt;如果你要用RAID-1，硬件RAID可以减少写的总线带宽，从N个DMA传输到N个磁盘到一个DMA传输到自己。但是，为了使你的系统更快，你需要用写流量使PCI总线带宽饱和，这并不常见。(理论上，你也可以在RAID-5中遇到这种情况）。&lt;/p&gt;&lt;p&gt;就是这样。(欢迎补充和更正）&lt;/p&gt;&lt;p&gt;通常的反驳是，虽然硬件RAID可能不比软件RAID快，但至少把负荷从你的主CPU上转移了，所以系统的整体速度提高了。然而，要达到这种情况，你的系统需要在CPU方面很差，并且要做大量的写入IO（如果你的写入IO不是特别多，那么软RAID的额外CPU使用率也会很小）。这种情况也不太常见。&lt;/p&gt;&lt;p&gt;软件RAID有一个缺点：启动操作系统后才可以使用。这会使早期启动变得复杂。但软件RAID也有很多优点，如不依赖硬件。&lt;/p&gt;&lt;blockquote&gt;
+&lt;p&gt;The one wildcard I can see in hardware RAID's favour is virtualization, which might deliver a future of heavily used hardware running close to both CPU and IO saturation.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;我认为虚拟化是硬RAID的优势所在，可以帮你压榨硬件，达到CPU和IO饱和。&lt;/p&gt;&lt;p&gt;DeepL翻译后润色。&lt;/p&gt;</description><author>1348292515@qq.com (Poly000)</author><guid isPermaLink="true">/archives/software-raid-versus-hardware-raid/</guid><pubDate>Fri, 24 Feb 2023 22:08:00 +0806</pubDate></item></channel></rss>
