@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>poly000客栈</title><link>/</link><description>poly000 的碎碎念</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>/android-chrome-512x512.png</url><title>poly000客栈</title><link>/</link></image><language>chinese</language><lastBuildDate>Thu, 08 Feb 2024 13:37:01 +0806</lastBuildDate><pubDate>Thu, 08 Feb 2024 13:37:01 +0806</pubDate><item><title>给Win32程序加图标</title><link>/archives/add-icon-to-win32-exe/</link><description>&lt;h2&gt;前言&lt;/h2&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>poly000客栈</title><link>/</link><description>poly000 的碎碎念</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>/android-chrome-512x512.png</url><title>poly000客栈</title><link>/</link></image><language>chinese</language><lastBuildDate>Thu, 08 Feb 2024 13:51:12 +0806</lastBuildDate><pubDate>Thu, 08 Feb 2024 13:51:12 +0806</pubDate><item><title>给Win32程序加图标</title><link>/archives/add-icon-to-win32-exe/</link><description>&lt;h2&gt;前言&lt;/h2&gt;
 &lt;p&gt;为了好玩咱想要试着给win32程序加图标，&lt;/p&gt;&lt;p&gt;但是只找到了用VS加图标的操作……&lt;/p&gt;&lt;p&gt;最后找到了链接操作。&lt;/p&gt;&lt;p&gt;&lt;a href="https://fragglet.livejournal.com/4448.html"&gt;原文地址（英文）&lt;/a&gt;&lt;/p&gt;&lt;h2&gt;开始动手做&lt;/h2&gt;
 &lt;p&gt;首先 我们需要写一个 &lt;code&gt;.rc&lt;/code&gt; 的文件：&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;1 ICON &amp;quot;(path-to-*.ico)&amp;quot;
 &lt;/pre&gt;&lt;/div&gt;
@@ -322,8 +322,7 @@ box关键字将取代&lt;code&gt;Box::new(...)&lt;/code&gt;，并且允许在模
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;blockquote&gt;
-&lt;p&gt;正如原文作者所说，rust（包括内部实现）正在减少box syntax的使用。
-所以这个章节咕了（理直气壮）&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;正如原文作者所说，rust（包括内部实现）正在减少box syntax的使用。&lt;/p&gt;&lt;p&gt;所以这个章节咕了（理直气壮）&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;This makes things a little more ergonomic but I don't think there is much chance that this feature will ever be stabilised.
 It seems to have existed forever with no plan for stabilisation but instead a little discussion about removing the feature.
 &lt;code&gt;box_synatx&lt;/code&gt; is used heavily in the compiler's source and a little in the standard library.&lt;/p&gt;&lt;p&gt;It is interesting to note that &lt;code&gt;box&lt;/code&gt; does not desugar to &lt;code&gt;Box::new&lt;/code&gt; but &lt;code&gt;Box::new&lt;/code&gt; is implemented in the standard library with &lt;code&gt;box&lt;/code&gt;.&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;impl&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;Box&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
@@ -341,8 +340,7 @@ It seems to have existed forever with no plan for stabilisation but instead a li
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3&gt;&lt;code&gt;in_band_lifetimes&lt;/code&gt;&lt;/h3&gt;
 &lt;blockquote&gt;
-&lt;p&gt;于 &lt;a href="https://github.com/rust-lang/rust/pull/93845"&gt;Rust #93845&lt;/a&gt; 移除；原始 RFC 中，不单独标注的提案被 Rust 拒绝。
-详见 &lt;a href="https://github.com/rust-lang/rust/issues/44524#issuecomment-988260463"&gt;Rust #44524&lt;/a&gt; 。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;于 &lt;a href="https://github.com/rust-lang/rust/pull/93845"&gt;Rust #93845&lt;/a&gt; 移除；&lt;/p&gt;&lt;p&gt;原始 RFC 中，不单独标注的提案被 Rust 拒绝。&lt;/p&gt;&lt;p&gt;详见 &lt;a href="https://github.com/rust-lang/rust/issues/44524#issuecomment-988260463"&gt;Rust #44524&lt;/a&gt; 。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;使用生命周期标记时，必须事先定义：&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;fn&lt;/span&gt; &lt;span class="nf"&gt;select&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&amp;#39;&lt;/span&gt;&lt;span class="na"&gt;data&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;: &lt;span class="kp"&gt;&amp;amp;&lt;/span&gt;&lt;span class="o"&gt;&amp;#39;&lt;/span&gt;&lt;span class="na"&gt;data&lt;/span&gt; &lt;span class="nc"&gt;Data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;params&lt;/span&gt;: &lt;span class="kp"&gt;&amp;amp;&lt;/span&gt;&lt;span class="nc"&gt;Params&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-&amp;gt; &lt;span class="kp"&gt;&amp;amp;&lt;/span&gt;&lt;span class="o"&gt;&amp;#39;&lt;/span&gt;&lt;span class="na"&gt;data&lt;/span&gt; &lt;span class="nc"&gt;Item&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;使用 &lt;code&gt;in_band_lifetimes&lt;/code&gt; ，生命周期可以不先显式定义。&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;fn&lt;/span&gt; &lt;span class="nf"&gt;select&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;: &lt;span class="kp"&gt;&amp;amp;&lt;/span&gt;&lt;span class="o"&gt;&amp;#39;&lt;/span&gt;&lt;span class="na"&gt;data&lt;/span&gt; &lt;span class="nc"&gt;Data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;params&lt;/span&gt;: &lt;span class="kp"&gt;&amp;amp;&lt;/span&gt;&lt;span class="nc"&gt;Params&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-&amp;gt; &lt;span class="kp"&gt;&amp;amp;&lt;/span&gt;&lt;span class="o"&gt;&amp;#39;&lt;/span&gt;&lt;span class="na"&gt;data&lt;/span&gt; &lt;span class="nc"&gt;Item&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -363,8 +361,7 @@ That includes &lt;code&gt;print!&lt;/code&gt;, &lt;code&gt;format!&lt;/code&gt;,
 &lt;p&gt;这个特性允许你写 &lt;code&gt;crate struct Foo&lt;/code&gt; 而不是 &lt;code&gt;pub(crate) struct Foo&lt;/code&gt; ，语义不变。&lt;/p&gt;&lt;h2&gt;Types&lt;/h2&gt;
 &lt;h3&gt;&lt;code&gt;type_ascription&lt;/code&gt;&lt;/h3&gt;
 &lt;blockquote&gt;
-&lt;p&gt;已于 &lt;a href="https://github.com/rust-lang/rust/issues/101728"&gt;Rust #101728&lt;/a&gt; 移除
-理由：语法不Rust&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;已于 &lt;a href="https://github.com/rust-lang/rust/issues/101728"&gt;Rust #101728&lt;/a&gt; 移除&lt;/p&gt;&lt;p&gt;理由：语法不Rust&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;用&lt;code&gt;Iterator&lt;/code&gt;的&lt;code&gt;collect&lt;/code&gt;方法举个例子：
 collect将迭代器转换到集合&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;word&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;hello&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;chars&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="n"&gt;collect&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
 &lt;span class="fm"&gt;println!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;{:?}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;word&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
@@ -405,9 +402,7 @@ This allows us to set the &lt;code&gt;Err&lt;/code&gt; variant to type &lt;code&
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3&gt;&lt;code&gt;exhaustive_patterns&lt;/code&gt;&lt;/h3&gt;
 &lt;blockquote&gt;
-&lt;p&gt;译注：原作者的解释和 RFC，Issue 都对不上。
-原Issue目标为，不可达的分支可以省略
-如析构一个 &lt;code&gt;Result&amp;lt;T, !&amp;gt;&lt;/code&gt; ，&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;fn&lt;/span&gt; &lt;span class="nf"&gt;safe_unwrap&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;: &lt;span class="nb"&gt;Result&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;!&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-&amp;gt; &lt;span class="nc"&gt;T&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;p&gt;译注：原作者的解释和 RFC，Issue 都对不上。&lt;/p&gt;&lt;p&gt;原Issue目标为，不可达的分支可以省略&lt;/p&gt;&lt;p&gt;如析构一个 &lt;code&gt;Result&amp;lt;T, !&amp;gt;&lt;/code&gt; ，&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;fn&lt;/span&gt; &lt;span class="nf"&gt;safe_unwrap&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;: &lt;span class="nb"&gt;Result&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;!&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-&amp;gt; &lt;span class="nc"&gt;T&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;match&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
 &lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nb"&gt;Ok&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
@@ -453,8 +448,7 @@ This allows us to set the &lt;code&gt;Err&lt;/code&gt; variant to type &lt;code&
 （比如说，你希望你的crate可以成为libcore的依赖。）&lt;/p&gt;&lt;h2&gt;其它&lt;/h2&gt;
 &lt;h3&gt;Const 泛型&lt;/h3&gt;
 &lt;blockquote&gt;
-&lt;p&gt;这个小节由 &lt;a href="https://t.me/Hinanawi_Tenshi_M"&gt;@Hinanawi_Tenshi_M&lt;/a&gt; 提供翻译，有改动。
-已经在 Stable Rust 部分实现。 &lt;sup class="footnote-ref" id="fnref-2"&gt;&lt;a href="#fn-2"&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;这个小节由 &lt;a href="https://t.me/Hinanawi_Tenshi_M"&gt;@Hinanawi_Tenshi_M&lt;/a&gt; 提供翻译，有改动。&lt;/p&gt;&lt;p&gt;已经在 Stable Rust 部分实现。 &lt;sup class="footnote-ref" id="fnref-2"&gt;&lt;a href="#fn-2"&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;我在都柏林 Rust 集会中做过一个关于 const_generics 的未来的&lt;a href="https://lazy.codes/posts/intro-to-const-generics/"&gt;演讲&lt;/a&gt;。
 与其重复那些内容，我更推荐大家去&lt;a href="https://lazy.codes/posts/intro-to-const-generics/"&gt;看这个演讲&lt;/a&gt;。&lt;/p&gt;&lt;h3&gt;Macros 2.0&lt;/h3&gt;
 &lt;p&gt;Rust的声明式宏非常强大，然而有些 &lt;code&gt;macro_rules!&lt;/code&gt; 的规则让我很困惑。&lt;/p&gt;&lt;p&gt;比如，&lt;code&gt;macro_rules!&lt;/code&gt;是一个简单的token转换过程。

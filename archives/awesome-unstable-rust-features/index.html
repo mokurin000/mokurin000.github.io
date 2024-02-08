@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "/d397d8ef7566caf183a764e55de268f2.json"
+            api: "/07957e8f76b4e4e8d229256ef79d934a.json"
         }
     </script>
     <script>
@@ -440,8 +440,7 @@ box关键字将取代<code>Box::new(...)</code>，并且允许在模式匹配中
 <span class="p">}</span>
 </pre></div>
 <blockquote>
-<p>正如原文作者所说，rust（包括内部实现）正在减少box syntax的使用。
-所以这个章节咕了（理直气壮）</p></blockquote>
+<p>正如原文作者所说，rust（包括内部实现）正在减少box syntax的使用。</p><p>所以这个章节咕了（理直气壮）</p></blockquote>
 <p>This makes things a little more ergonomic but I don't think there is much chance that this feature will ever be stabilised.
 It seems to have existed forever with no plan for stabilisation but instead a little discussion about removing the feature.
 <code>box_synatx</code> is used heavily in the compiler's source and a little in the standard library.</p><p>It is interesting to note that <code>box</code> does not desugar to <code>Box::new</code> but <code>Box::new</code> is implemented in the standard library with <code>box</code>.</p><div class="highlight"><pre><span></span><span class="k">impl</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="nb">Box</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
@@ -459,8 +458,7 @@ It seems to have existed forever with no plan for stabilisation but instead a li
 </pre></div>
 <h3><code>in_band_lifetimes</code></h3>
 <blockquote>
-<p>于 <a href="https://github.com/rust-lang/rust/pull/93845">Rust #93845</a> 移除；原始 RFC 中，不单独标注的提案被 Rust 拒绝。
-详见 <a href="https://github.com/rust-lang/rust/issues/44524#issuecomment-988260463">Rust #44524</a> 。</p></blockquote>
+<p>于 <a href="https://github.com/rust-lang/rust/pull/93845">Rust #93845</a> 移除；</p><p>原始 RFC 中，不单独标注的提案被 Rust 拒绝。</p><p>详见 <a href="https://github.com/rust-lang/rust/issues/44524#issuecomment-988260463">Rust #44524</a> 。</p></blockquote>
 <p>使用生命周期标记时，必须事先定义：</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">select</span><span class="o">&lt;&#39;</span><span class="na">data</span><span class="o">&gt;</span><span class="p">(</span><span class="n">data</span>: <span class="kp">&amp;</span><span class="o">&#39;</span><span class="na">data</span> <span class="nc">Data</span><span class="p">,</span><span class="w"> </span><span class="n">params</span>: <span class="kp">&amp;</span><span class="nc">Params</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kp">&amp;</span><span class="o">&#39;</span><span class="na">data</span> <span class="nc">Item</span><span class="p">;</span>
 </pre></div>
 <p>使用 <code>in_band_lifetimes</code> ，生命周期可以不先显式定义。</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">select</span><span class="p">(</span><span class="n">data</span>: <span class="kp">&amp;</span><span class="o">&#39;</span><span class="na">data</span> <span class="nc">Data</span><span class="p">,</span><span class="w"> </span><span class="n">params</span>: <span class="kp">&amp;</span><span class="nc">Params</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kp">&amp;</span><span class="o">&#39;</span><span class="na">data</span> <span class="nc">Item</span><span class="p">;</span>
@@ -481,8 +479,7 @@ That includes <code>print!</code>, <code>format!</code>, <code>write!</code> and
 <p>这个特性允许你写 <code>crate struct Foo</code> 而不是 <code>pub(crate) struct Foo</code> ，语义不变。</p><h2>Types</h2>
 <h3><code>type_ascription</code></h3>
 <blockquote>
-<p>已于 <a href="https://github.com/rust-lang/rust/issues/101728">Rust #101728</a> 移除
-理由：语法不Rust</p></blockquote>
+<p>已于 <a href="https://github.com/rust-lang/rust/issues/101728">Rust #101728</a> 移除</p><p>理由：语法不Rust</p></blockquote>
 <p>用<code>Iterator</code>的<code>collect</code>方法举个例子：
 collect将迭代器转换到集合</p><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">word</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="p">.</span><span class="n">chars</span><span class="p">().</span><span class="n">collect</span><span class="p">();</span>
 <span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{:?}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">word</span><span class="p">);</span>
@@ -523,9 +520,7 @@ This allows us to set the <code>Err</code> variant to type <code>!</code>.</p><d
 </pre></div>
 <h3><code>exhaustive_patterns</code></h3>
 <blockquote>
-<p>译注：原作者的解释和 RFC，Issue 都对不上。
-原Issue目标为，不可达的分支可以省略
-如析构一个 <code>Result&lt;T, !&gt;</code> ，</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">safe_unwrap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">x</span>: <span class="nb">Result</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="o">!&gt;</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">T</span><span class="w"> </span><span class="p">{</span>
+<p>译注：原作者的解释和 RFC，Issue 都对不上。</p><p>原Issue目标为，不可达的分支可以省略</p><p>如析构一个 <code>Result&lt;T, !&gt;</code> ，</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">safe_unwrap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">x</span>: <span class="nb">Result</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="o">!&gt;</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">T</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">match</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nb">Ok</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">y</span><span class="p">,</span>
 <span class="w">    </span><span class="p">}</span>
@@ -571,8 +566,7 @@ This allows us to set the <code>Err</code> variant to type <code>!</code>.</p><d
 （比如说，你希望你的crate可以成为libcore的依赖。）</p><h2>其它</h2>
 <h3>Const 泛型</h3>
 <blockquote>
-<p>这个小节由 <a href="https://t.me/Hinanawi_Tenshi_M">@Hinanawi_Tenshi_M</a> 提供翻译，有改动。
-已经在 Stable Rust 部分实现。 <sup class="footnote-ref" id="fnref-2"><a href="#fn-2">2</a></sup></p></blockquote>
+<p>这个小节由 <a href="https://t.me/Hinanawi_Tenshi_M">@Hinanawi_Tenshi_M</a> 提供翻译，有改动。</p><p>已经在 Stable Rust 部分实现。 <sup class="footnote-ref" id="fnref-2"><a href="#fn-2">2</a></sup></p></blockquote>
 <p>我在都柏林 Rust 集会中做过一个关于 const_generics 的未来的<a href="https://lazy.codes/posts/intro-to-const-generics/">演讲</a>。
 与其重复那些内容，我更推荐大家去<a href="https://lazy.codes/posts/intro-to-const-generics/">看这个演讲</a>。</p><h3>Macros 2.0</h3>
 <p>Rust的声明式宏非常强大，然而有些 <code>macro_rules!</code> 的规则让我很困惑。</p><p>比如，<code>macro_rules!</code>是一个简单的token转换过程。
