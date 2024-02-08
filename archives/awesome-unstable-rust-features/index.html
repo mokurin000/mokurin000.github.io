@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "/4999bcb93c5cfbff991af2cf7ae1e563.json"
+            api: "/d397d8ef7566caf183a764e55de268f2.json"
         }
     </script>
     <script>
@@ -147,7 +147,7 @@
         </p>
         <article class="yue"><h2>注意</h2>
 <p>本文原文发布于2021-07-26，其中部分内容可能已经过时。请以 Rust RFC 为准。
-已经稳定的特性见 <a href="https://github.com/rust-lang/rust/blob/master/compiler/rustc_feature/src/accepted.rs">accepted.rs</a>。</p><h2>关于翻译</h2>
+已经稳定的特性见 <a href="https://github.com/rust-lang/rust/blob/master/compiler/rustc_feature/src/accepted.rs">accepted.rs</a>。</p><p>最后一次更新：2024-02-08</p><h2>关于翻译</h2>
 <p>主要译者：<a href="https://github.com/poly000">poly000</a>，<a href="https://t.me/Hinanawi_Tenshi_M">比那名居</a></p><p>术语翻译部分参考了 <a href="https://rustwiki.org/wiki/translate/english-chinese-glossary-of-rust/">Rust 语言术语中英文对照表</a>。</p><p>如果有原文错误，请联系 <a href="https://twitter.com/efun_b">Ethan Brierley</a> 且联系我更新翻译。</p><p>参与：<a href="https://github.com/poly000/Maverick/">Maverick/demo_src</a></p><h2>Credits</h2>
 <p><a href="https://lazy.codes/posts/awesome-unstable-rust-features/">原文</a> by <a href="https://twitter.com/efun_b">Ethan Brierley</a></p><h2>简介</h2>
 <p>这篇文章介绍了一些尚不稳定的 Rust 编译器特性。我将会简单叙述这些特性，并不会深入太多细节。</p><h2>什么是Unstable Rust？</h2>
@@ -157,11 +157,11 @@
 <p>Unstable Rust 可以让你使用在Stable Rust 中不允许使用的API。为此，编译器与标准库都使用了 Unstable 特性。</p><p>使用 Unstable 特性总是伴随着一些风险。它们经常会有一些不期望行为，有时甚至会破坏 Rust 的内存安全保证，导致未定义行为。这些特性可能开发的很好，但也能未开发完善。</p><p>使用Unstable特性的 Nightly 编译器，遇到“内部编译器错误”并不少见，这种情况通常称为<a href="https://github.com/rust-lang/rust/labels/I-ICE">ICE</a>。它发生于编译过程中，编译器将会panic。这可能是由于数据与查询操作因未完成的特性而被破坏，甚至可能只是因为没做完的特性中打了个 <code>todo!()</code>。</p><p>如果你遇到了ICE，检查一下是否已经被反馈，没有的话就把它报告给<a href="https://github.com/rust-lang/rust/issues">bug tracker</a>。</p><p>Rust 不保证在未来继续支持它的 Unstable 特性。
 作为 Rust 开发者，我们享受着优秀的向下兼容性与稳定性，
 而启用 Unstable 特性时，Rust不再提供这些保证。
-今天工作的程序可能明天就寄了！</p><p>我决定学习 Unstable 特性，不是因为我需要用它们去解决实际问题，而是觉得他们很有趣。
-对我来说，使用 Unstable 特性，是种有趣的让我更多地参与语言本身的开发过程的方法。</p><blockquote>
+今天工作的程序可能明天就寄了！</p><p>我决定学习 Unstable 特性，不是因为我需要用它们去解决实际问题，而是觉得他们很有意思。
+对我来说，使用 Unstable 特性，可以让我有趣地，更多的参与语言本身的开发过程。</p><blockquote>
 <p>Unstable 特性的完整列表见<a href="https://github.com/rust-lang/rust/blob/135ccbaca86ed4b9c0efaf0cd31442eae57ffad7/src/librustc_feature/active.rs#L83-L530">Unstable 特性列表</a>。</p></blockquote>
 <h2>启用 Unstable 特性</h2>
-<p>为了使用 Unstable 特性，首先你需要安装 Nightly 工具链：</p><div class="highlight"><pre><span></span>rustup<span class="w"> </span>toolchain<span class="w"> </span>install<span class="w"> </span>nightly
+<p>若要使用 Unstable 特性，首先你需要安装 Nightly 工具链：</p><div class="highlight"><pre><span></span>rustup<span class="w"> </span>toolchain<span class="w"> </span>install<span class="w"> </span>nightly
 </pre></div>
 <p>临时使用 Nightly 工具链，你可以在运行cargo时加上 <code>+nightly</code>。</p><div class="highlight"><pre><span></span>&lt;rust-command&gt;<span class="w"> </span>+nightly<span class="w"> </span>&lt;args&gt;
 </pre></div>
@@ -281,8 +281,8 @@
 <span class="w">     </span><span class="kd">let</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">func</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mf">22.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">7.0</span><span class="w"> </span><span class="p">});</span>
 <span class="p">}</span>
 </pre></div>
-<p>在这个简单的例子中， 因为编译器优化<a href="https://blog.rust-lang.org/inside-rust/2019/12/02/const-prop-on-by-default.html">constant propagation</a>，<code>const</code> 块几乎可以说是不必要的。
-但是对于更复杂的常量，用块来表示可能更好。</p><p>这个特性也允许在模式匹配中使用const块。
+<p>在这个简单的例子中， 因为编译器优化 <a href="https://blog.rust-lang.org/inside-rust/2019/12/02/const-prop-on-by-default.html">constant propagation</a>，<code>const</code> 块是不必要的。
+但是对于更复杂的常量，用块来表示，可能会更好。</p><p>这个特性也允许在const块中使用模式匹配。
 如 <code>match x { 1 + 3 =&gt; {} }</code> 会导致语法错误，而 <code>match x { const { 1 + 3 } =&gt; {} }</code> 不会。</p><h3><code>if_let_guard</code></h3>
 <p>拓展 <code>match</code> 中的 <a href="https://doc.rust-lang.org/beta/rust-by-example/flow_control/match/guard.html"><code>if</code> 守卫</a> ，使其允许使用 <code>if let</code>。</p><h3><code>let_chains</code></h3>
 <blockquote>
@@ -290,7 +290,7 @@
 <p>目前，<code>if let</code> 和 <code>while let</code> 表达式不能以 <code>||</code> 或 <code>&amp;&amp;</code> 连接，
 这个特性添加了支持。</p><h2>Traits</h2>
 <h3><code>associated_type_bounds</code></h3>
-<p>看看这个 stable Rust 函数：</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">fizzbuzz</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="nc">impl</span><span class="w"> </span><span class="nb">Iterator</span><span class="o">&lt;</span><span class="n">Item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<p>这是一个 stable Rust 函数：</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">fizzbuzz</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="nc">impl</span><span class="w"> </span><span class="nb">Iterator</span><span class="o">&lt;</span><span class="n">Item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="p">(</span><span class="mi">1</span><span class="o">..</span><span class="p">).</span><span class="n">map</span><span class="p">(</span><span class="o">|</span><span class="n">val</span><span class="o">|</span><span class="w"> </span><span class="k">match</span><span class="w"> </span><span class="p">(</span><span class="n">val</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s">&quot;FizzBuzz&quot;</span><span class="p">.</span><span class="n">to_string</span><span class="p">(),</span>
 <span class="w">        </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s">&quot;Fizz&quot;</span><span class="p">.</span><span class="n">to_string</span><span class="p">(),</span>
@@ -299,9 +299,9 @@
 <span class="w">    </span><span class="p">})</span>
 <span class="p">}</span>
 </pre></div>
-<p>有了 <code>associated_type_bounds</code> 特性，我们可以在这种情况下使用一个匿名类型：</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">fizzbuzz</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="nc">impl</span><span class="w"> </span><span class="nb">Iterator</span><span class="o">&lt;</span><span class="n">Item</span>: <span class="nc">Display</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">..</span><span class="p">.</span><span class="w"> </span><span class="p">}</span>
+<p>有了 <code>associated_type_bounds</code> 特性，对于这种情况，我们可以使用一个匿名类型：</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">fizzbuzz</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="nc">impl</span><span class="w"> </span><span class="nb">Iterator</span><span class="o">&lt;</span><span class="n">Item</span>: <span class="nc">Display</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">..</span><span class="p">.</span><span class="w"> </span><span class="p">}</span>
 </pre></div>
-<p>看看这个吓人地冗长的类型签名：</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">flatten_twice</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">iter</span>: <span class="nc">T</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">Flatten</span><span class="o">&lt;</span><span class="n">Flatten</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span>
+<p>看看这个冗长重复的函数签名：</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">flatten_twice</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">iter</span>: <span class="nc">T</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">Flatten</span><span class="o">&lt;</span><span class="n">Flatten</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span>
 <span class="k">where</span>
 <span class="w">    </span><span class="n">T</span>: <span class="nb">Iterator</span><span class="p">,</span>
 <span class="w">    </span><span class="o">&lt;</span><span class="n">T</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">Iterator</span><span class="o">&gt;</span>::<span class="n">Item</span>: <span class="nb">IntoIterator</span><span class="p">,</span>
@@ -323,7 +323,7 @@
 <p>这些特性允许你为 <a href="https://github.com/rust-lang/rfcs/blob/master/text/0213-defaulted-type-params.md">泛型类型</a>, <a href="https://github.com/rust-lang/rfcs/blob/master/text/2532-associated-type-defaults.md">关联类型</a> 以及 <a href="#const-%E6%B3%9B%E5%9E%8B">const 变量</a> 在更多地方指定默认值。</p><p>它们允许你作为开发者创建更好的 API 。
 如果一个crate的用户对细节不感兴趣，而它有默认值，则可以忽略细节。
 这也让拓展 API 变得容易，无需做出破坏性更新。</p><h3><code>negative_impls</code> 和 <code>auto_traits</code></h3>
-<p>这些特性都被标准库使用。<a href="https://doc.rust-lang.org/std/marker/trait.Send.html"><code>Send</code></a> 和 <a href="https://doc.rust-lang.org/std/marker/trait.Sync.html"><code>Sync</code></a> 都是自动 trait。</p><p><code>Send</code> trait 被<a href="https://doc.rust-lang.org/src/core/marker.rs.html#38-40">这样定义在标准库中</a>：</p><div class="highlight"><pre><span></span><span class="k">pub</span><span class="w"> </span><span class="k">unsafe</span><span class="w"> </span><span class="n">auto</span><span class="w"> </span><span class="k">trait</span><span class="w"> </span><span class="nb">Send</span><span class="w"> </span><span class="p">{</span>
+<p>这些特性都被标准库使用。<a href="https://doc.rust-lang.org/std/marker/trait.Send.html"><code>Send</code></a> 和 <a href="https://doc.rust-lang.org/std/marker/trait.Sync.html"><code>Sync</code></a> 都是自动 trait。</p><p><code>Send</code> trait <a href="https://doc.rust-lang.org/src/core/marker.rs.html#38-40">定义于标准库</a>：</p><div class="highlight"><pre><span></span><span class="k">pub</span><span class="w"> </span><span class="k">unsafe</span><span class="w"> </span><span class="n">auto</span><span class="w"> </span><span class="k">trait</span><span class="w"> </span><span class="nb">Send</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// 空的</span>
 <span class="p">}</span>
 </pre></div>
@@ -339,11 +339,39 @@
 这样它们就能允许重叠的实现，因为所有的实现都是一样的。</p><h3><code>type_alias_impl_trait</code>, <code>impl_trait_in_bindings</code> and <code>trait_alias</code></h3>
 <p><code>impl Trait</code> 让编译器推导具体类型，把它换成实现了<code>Trait</code>的类型。
 目前，<code>impl Trait</code>只能在函数参数或返回类型中使用，无法应用于变量绑定。</p><blockquote>
-<p>注：impl_trait_in_binding 临时被移除(2022-07-26)，可能是因为<a href="https://github.com/rust-lang/rust/issues/83021">破坏性更新</a></p></blockquote>
-<p><code>type_alias_impl_trait</code> 和 <code>impl_trait_in_bindings</code> 拓展了 <code>impl trait</code>，让其可用于定义类型别名和 <code>let</code> 绑定。</p><p><code>trait_alias</code> 与 <code>type_alias_impl_trait</code> 有微妙的不同：
-你使用类型别名的时候，类型必须是固定的。
-编译器必须推断出，并且只应用单一具体的类型。
-trait别名则较为宽松，每次使用都可以是不同的类型。</p><h3><code>fn_traits</code> and <code>unboxed_closures</code></h3>
+<p>注：impl_trait_in_binding 临时被移除(2022-07-26)，可能是因为它导致了<a href="https://github.com/rust-lang/rust/issues/83021">破坏性更新</a></p></blockquote>
+<p>需要注意的是，使用 <code>type_alias_impl_trait</code> 时，类型必须是固定的。编译器会推断且应用单一具体的类型。</p><div class="highlight"><pre><span></span><span class="cp">#![feature(type_alias_impl_trait)]</span>
+
+<span class="k">type</span> <span class="nc">Foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">impl</span><span class="w"> </span><span class="nb">AsRef</span><span class="o">&lt;</span><span class="kt">str</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="k">fn</span> <span class="nf">foo</span><span class="p">(</span><span class="n">_</span>: <span class="nc">Foo</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">foo</span><span class="p">(</span><span class="nb">String</span>::<span class="n">new</span><span class="p">());</span>
+<span class="w">    </span><span class="n">foo</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<pre><code>error[E0308]: mismatched types
+ --&gt; src/main.rs:9:9
+  |
+3 | type Foo = impl AsRef&lt;str&gt;;
+  |            --------------- the expected opaque type
+...
+9 |     foo(&quot;&quot;);
+  |     --- ^^ expected opaque type, found `&amp;str`
+  |     |
+  |     arguments to this function are incorrect
+  |
+  = note: expected opaque type `Foo`
+               found reference `&amp;'static str`
+note: function defined here
+ --&gt; src/main.rs:5:4
+  |
+5 | fn foo(_: Foo) {}
+  |    ^^^ ------
+</code></pre>
+<h3><code>fn_traits</code> and <code>unboxed_closures</code></h3>
 <p><code>Fn</code>，<code>FnMut</code>和<code>FnOnce</code>被认为是<code>fn</code>的trait。
 它们会被任何函数或者你创建的闭包自动实现，它们允许你给它们传参。</p><p>目前它们只能被自动实现。
 <code>fn_trait</code> 则允许为任意类型提供自定义实现。
@@ -430,11 +458,14 @@ It seems to have existed forever with no plan for stabilisation but instead a li
 <p><code>async_closure</code> 允许你将闭包本身标记为异步的，像异步函数那样写</p><div class="highlight"><pre><span></span><span class="n">app</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">).</span><span class="n">get</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="o">|</span><span class="n">_</span><span class="o">|</span><span class="w"> </span><span class="nb">Ok</span><span class="p">(</span><span class="s">&quot;Hi&quot;</span><span class="p">));</span>
 </pre></div>
 <h3><code>in_band_lifetimes</code></h3>
-<p>To use a lifetime it must be explicitly brought into scope.</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">select</span><span class="o">&lt;&#39;</span><span class="na">data</span><span class="o">&gt;</span><span class="p">(</span><span class="n">data</span>: <span class="kp">&amp;</span><span class="o">&#39;</span><span class="na">data</span> <span class="nc">Data</span><span class="p">,</span><span class="w"> </span><span class="n">params</span>: <span class="kp">&amp;</span><span class="nc">Params</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kp">&amp;</span><span class="o">&#39;</span><span class="na">data</span> <span class="nc">Item</span><span class="p">;</span>
+<blockquote>
+<p>于 <a href="https://github.com/rust-lang/rust/pull/93845">Rust #93845</a> 移除；原始 RFC 中，不单独标注的提案被 Rust 拒绝。
+详见 <a href="https://github.com/rust-lang/rust/issues/44524#issuecomment-988260463">Rust #44524</a> 。</p></blockquote>
+<p>使用生命周期标记时，必须事先定义：</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">select</span><span class="o">&lt;&#39;</span><span class="na">data</span><span class="o">&gt;</span><span class="p">(</span><span class="n">data</span>: <span class="kp">&amp;</span><span class="o">&#39;</span><span class="na">data</span> <span class="nc">Data</span><span class="p">,</span><span class="w"> </span><span class="n">params</span>: <span class="kp">&amp;</span><span class="nc">Params</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kp">&amp;</span><span class="o">&#39;</span><span class="na">data</span> <span class="nc">Item</span><span class="p">;</span>
 </pre></div>
-<p>With <code>in_band_lifetimes</code> the lifetimes can be used without bringing them into scope first.</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">select</span><span class="p">(</span><span class="n">data</span>: <span class="kp">&amp;</span><span class="o">&#39;</span><span class="na">data</span> <span class="nc">Data</span><span class="p">,</span><span class="w"> </span><span class="n">params</span>: <span class="kp">&amp;</span><span class="nc">Params</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kp">&amp;</span><span class="o">&#39;</span><span class="na">data</span> <span class="nc">Item</span><span class="p">;</span>
+<p>使用 <code>in_band_lifetimes</code> ，生命周期可以不先显式定义。</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">select</span><span class="p">(</span><span class="n">data</span>: <span class="kp">&amp;</span><span class="o">&#39;</span><span class="na">data</span> <span class="nc">Data</span><span class="p">,</span><span class="w"> </span><span class="n">params</span>: <span class="kp">&amp;</span><span class="nc">Params</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kp">&amp;</span><span class="o">&#39;</span><span class="na">data</span> <span class="nc">Item</span><span class="p">;</span>
 </pre></div>
-<p>有趣的是这正是<a href="https://github.com/rust-lang/rfcs/pull/2115#issuecomment-323221054">生命周期</a>在rust <code>1.0.0</code>前的写法。</p><h3><code>format_args_capture</code></h3>
+<p>这是<a href="https://github.com/rust-lang/rfcs/pull/2115#issuecomment-323221054">生命周期</a>在rust <code>1.0.0</code>前的写法。</p><h3><code>format_args_capture</code></h3>
 <blockquote>
 <p>于 Rust 1.58 稳定。</p></blockquote>
 <p>This allows for named arguments to be placed inside of strings inside any macro that depends on <code>std::format_args!</code>.
@@ -443,8 +474,15 @@ That includes <code>print!</code>, <code>format!</code>, <code>write!</code> and
 <span class="fm">println!</span><span class="p">(</span><span class="s">&quot;你好{name}，你{age}岁了。&quot;</span><span class="p">);</span>
 </pre></div>
 <h3><code>crate_visibility_modifier</code></h3>
-<p>这个特性允许你写 <code>crate struct Foo</code> 而不是 <code>pub(crate) struct Foo</code> ，语义不变。</p><p>这使得 <code>pub(crate)</code> 更易编写，鼓励在pub不必要的时候使用crate可见性，</p><h2>Types</h2>
+<blockquote>
+<p>已于 <a href="https://github.com/rust-lang/rust/pull/97254">Rust #97254</a> 移除。</p><p>理由：</p><div class="highlight"><pre><span></span><span class="k">pub</span><span class="w"> </span><span class="k">struct</span> <span class="nc">Foo</span><span class="p">(</span><span class="k">crate</span><span class="w"> </span>::<span class="n">std</span>::<span class="n">path</span>::<span class="n">Path</span><span class="p">);</span>
+</pre></div>
+<p>会产生歧义 <sup class="footnote-ref" id="fnref-1"><a href="#fn-1">1</a></sup></p></blockquote>
+<p>这个特性允许你写 <code>crate struct Foo</code> 而不是 <code>pub(crate) struct Foo</code> ，语义不变。</p><h2>Types</h2>
 <h3><code>type_ascription</code></h3>
+<blockquote>
+<p>已于 <a href="https://github.com/rust-lang/rust/issues/101728">Rust #101728</a> 移除
+理由：语法不Rust</p></blockquote>
 <p>用<code>Iterator</code>的<code>collect</code>方法举个例子：
 collect将迭代器转换到集合</p><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">word</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="p">.</span><span class="n">chars</span><span class="p">().</span><span class="n">collect</span><span class="p">();</span>
 <span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{:?}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">word</span><span class="p">);</span>
@@ -458,10 +496,8 @@ collect将迭代器转换到集合</p><div class="highlight"><pre><span></span><
 <p>你可以定义没有变体的枚举体，
 这种枚举体也存在于标准库中。</p><div class="highlight"><pre><span></span><span class="k">pub</span><span class="w"> </span><span class="k">enum</span> <span class="nc">Infallible</span><span class="w"> </span><span class="p">{}</span>
 </pre></div>
-<p>你可以在泛型或函数签名中使用该类型，但它不可能被构造。
-没有可以用来构造的变体。</p><p>The unit type, <code>()</code> would be equivalent to an enum with a single variant.
-元类型，<code>()</code> 等价于只有一个变体的枚举。
-<code>never_type</code> 引入了一种新的类型，<code>!</code>等价于我们的没有变体的 <code>Infallible</code>。</p><p>Because <code>!</code> can never be constructed it can be given special powers.
+<p>你可以在泛型或函数签名中使用该类型，但它不可能被构造。</p><p>元类型 <code>()</code> 等价于只有一个变体的枚举。
+<code>never_type</code> 引入了一种新的类型，<code>!</code>等价于没有变体的 <code>Infallible</code>。</p><p>Because <code>!</code> can never be constructed it can be given special powers.
 We don't have to handle the case of <code>!</code> because we have proven it will never exist.</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="o">!</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">loop</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">);</span>
@@ -486,6 +522,16 @@ This allows us to set the <code>Err</code> variant to type <code>!</code>.</p><d
 <span class="p">};</span>
 </pre></div>
 <h3><code>exhaustive_patterns</code></h3>
+<blockquote>
+<p>译注：原作者的解释和 RFC，Issue 都对不上。
+原Issue目标为，不可达的分支可以省略
+如析构一个 <code>Result&lt;T, !&gt;</code> ，</p><div class="highlight"><pre><span></span><span class="k">fn</span> <span class="nf">safe_unwrap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">x</span>: <span class="nb">Result</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="o">!&gt;</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">T</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">match</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nb">Ok</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">y</span><span class="p">,</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</blockquote>
 <p>With the feature <code>exhaustive_patterns</code> the type system becomes smart enough for us to eliminate the <code>Err</code> branch altogether.</p><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">user_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">match</span><span class="w"> </span><span class="n">UserName</span>::<span class="n">from_str</span><span class="p">(</span><span class="s">&quot;ethan&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nb">Ok</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">u</span><span class="p">,</span>
 <span class="p">};</span>
@@ -506,8 +552,8 @@ This allows us to set the <code>Err</code> variant to type <code>!</code>.</p><d
 <span class="w">     </span><span class="o">..</span><span class="p">.</span>
 <span class="p">}</span>
 </pre></div>
-<p>这对微调应用程序非常有用，在这些应用程序中，尺寸和性能之间的权衡特别明显，例如在使用 <a href="https://webassembly.org/">web assembly</a> 时。</p><h3><code>stmt_expr_attributes</code></h3>
-<p>这个特性让你可以在几乎任何地方标记属性，而不仅仅是顶层项目。例如，你可以在一个闭包上放一个<a href="#optimize-attribute">optimize attribute</a></p><h3><code>cfg_version</code></h3>
+<p>这对微调应用程序非常有用。在这些应用程序中，尺寸和性能之间的权衡特别重要。例如使用 <a href="https://webassembly.org/">web assembly</a> 时。</p><h3><code>stmt_expr_attributes</code></h3>
+<p>这个特性让你可以在几乎任何地方标记属性，而不仅仅是顶层项目。例如，你可以在一个闭包上放一个<a href="#%60optimize_attribute%60">optimize attribute</a></p><h3><code>cfg_version</code></h3>
 <p>该特性允许根据编译器版本进行条件编译。</p><div class="highlight"><pre><span></span><span class="cp">#[cfg(version(</span><span class="s">&quot;1.42&quot;</span><span class="cp">))]</span><span class="w"> </span><span class="c1">// 1.42 以上</span>
 <span class="k">fn</span> <span class="nf">a</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// ...</span>
@@ -525,9 +571,10 @@ This allows us to set the <code>Err</code> variant to type <code>!</code>.</p><d
 （比如说，你希望你的crate可以成为libcore的依赖。）</p><h2>其它</h2>
 <h3>Const 泛型</h3>
 <blockquote>
-<p>这个小节由 <a href="https://t.me/Hinanawi_Tenshi_M">@Hinanawi_Tenshi_M</a> 提供翻译，有改动。</p></blockquote>
+<p>这个小节由 <a href="https://t.me/Hinanawi_Tenshi_M">@Hinanawi_Tenshi_M</a> 提供翻译，有改动。
+已经在 Stable Rust 部分实现。 <sup class="footnote-ref" id="fnref-2"><a href="#fn-2">2</a></sup></p></blockquote>
 <p>我在都柏林 Rust 集会中做过一个关于 const_generics 的未来的<a href="https://lazy.codes/posts/intro-to-const-generics/">演讲</a>。
-与其重复那些内容，我更推荐大家去<a href="https://lazy.codes/posts/intro-to-const-generics/">看这个演讲</a>。</p><h2>Macros 2.0</h2>
+与其重复那些内容，我更推荐大家去<a href="https://lazy.codes/posts/intro-to-const-generics/">看这个演讲</a>。</p><h3>Macros 2.0</h3>
 <p>Rust的声明式宏非常强大，然而有些 <code>macro_rules!</code> 的规则让我很困惑。</p><p>比如，<code>macro_rules!</code>是一个简单的token转换过程。
 它接受一个token列表，输出新的token列表，仅仅如此。
 可见性原则会遵从宏的调用处的规则。
@@ -584,12 +631,18 @@ This allows us to set the <code>Err</code> variant to type <code>!</code>.</p><d
 It makes use of a number of features that you may have just been introduced to.</p><p>There is a compelling argument against adding too many new features as they can greatly increase the learning curve.</p></blockquote>
 <p>生成器让一些没有这个特性会难以编写甚至无法编写的实现变为可能。</p><p>生成器在标准库中是为了实现 async/await 添加的。
 具体的语义在稳定化前很可能被修改，但它很有趣。</p><h3>总结</h3>
-<p>我很抱歉，没有引用另外三个不错的unstable特性：<a href="https://github.com/rust-lang/rfcs/blob/master/text/1598-generic_associated_types.md">GAT</a>, <a href="https://rust-lang.github.io/rfcs/2873-inline-asm.html">内联汇编</a>和<a href="https://rust-lang.github.io/rfcs/1210-impl-specialization.html">特化</a>。
-我只是感觉在这篇文章我做不到客观的评价它们，不过将来我可能会尝试。</p><p>如果你想了解更多unstable特性，我推荐你看<a href="https://doc.rust-lang.org/beta/unstable-book/the-unstable-book.html">the unstable book</a>，这里会列出绝大部分。
+<p>我很抱歉，没有介绍其他三个不错的unstable特性：<a href="https://github.com/rust-lang/rfcs/blob/master/text/1598-generic_associated_types.md">GAT</a>, <a href="https://rust-lang.github.io/rfcs/2873-inline-asm.html">内联汇编</a>和<a href="https://rust-lang.github.io/rfcs/1210-impl-specialization.html">特化</a>。
+我只是感觉，在这篇文章中，我做不到客观的评价它们，不过将来我可能会尝试。</p><p>如果你想了解更多unstable特性，我推荐你看<a href="https://doc.rust-lang.org/beta/unstable-book/the-unstable-book.html">the unstable book</a>，这里会列出绝大部分。
 Unstable book会连接到<a href="https://github.com/rust-lang/rust/labels/C-tracking-issue">tracking issue</a>，而后者往往会链接到<a href="https://rust-lang.github.io/rfcs/">RFC</a>。
 组合使用这些来源，你可以很好地了解新特性。</p><p>Thank you for reading my first blog post 😃.
 The best way to support me is by following my <a href="https://twitter.com/efun_b">Twitter</a>.
-I am also looking for employment opportunities so please get in touch if you would like to talk about that.</p></article>
+I am also looking for employment opportunities so please get in touch if you would like to talk about that.</p><section class="footnotes">
+<ol>
+<li id="fn-1"><p><a href="https://github.com/rust-lang/rust/issues/53120#issuecomment-1124065083">https://github.com/rust-lang/rust/issues/53120#issuecomment-1124065083</a><a href="#fnref-1" class="footnote">&#8617;</a></p></li>
+<li id="fn-2"><p><a href="https://github.com/rust-lang/rust/issues/44580#issuecomment-1074040208">https://github.com/rust-lang/rust/issues/44580#issuecomment-1074040208</a><a href="#fnref-2" class="footnote">&#8617;</a></p></li>
+</ol>
+</section>
+</article>
     </section>
 
     
