@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "/a0b147804c0aaa5e59b8a03bd8871125.json"
+            api: "/e51607a223a933e025109ad246a9074b.json"
         }
     </script>
     <script>
@@ -150,7 +150,7 @@
             </span>
         </p>
         <article class="yue"><h2>选项</h2>
-<p>从 Debian <code>ovmf</code> 提取 <code>OVMF_VARS_4M.fd</code> <sup class="footnote-ref" id="fnref-1"><a href="#fn-1">1</a></sup>，使用任意发行版提供的 <code>OVMF_CODE.secboot.4m.fd</code> ：</p><div class="highlight"><pre><span></span>qemu<span class="w"> </span>...<span class="w"> </span><span class="se">\</span>
+<p>从 Debian <code>ovmf</code> 提取 <code>OVMF_VARS_4M.ms.fd</code> <sup class="footnote-ref" id="fnref-1"><a href="#fn-1">1</a></sup>，使用任意发行版提供的 <code>OVMF_CODE.secboot.4m.fd</code> ：</p><div class="highlight"><pre><span></span>qemu<span class="w"> </span>...<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-drive<span class="w"> </span><span class="k">if</span><span class="o">=</span>pflash,format<span class="o">=</span>raw,readonly<span class="o">=</span>on,file<span class="o">=</span>OVMF_CODE.fd<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-drive<span class="w"> </span><span class="k">if</span><span class="o">=</span>pflash,format<span class="o">=</span>raw,file<span class="o">=</span>OVMF_VARS.ms.fd<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-machine<span class="w"> </span>pc-q35-2.5
