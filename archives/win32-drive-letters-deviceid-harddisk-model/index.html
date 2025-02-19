@@ -148,10 +148,10 @@
         <article class="yue"><h2>原发布地址</h2>
 <p><a href="https://github.com/JonMagon/KDiskMark/issues/87#issuecomment-1925784750">原Issue评论</a>，讨论 KDiskMark Windows 支持需要的工作</p><h2>列出设备</h2>
 <h3>逻辑设备</h3>
-<p><a href="https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-getlogicaldrives"><code>GetLogicalDrives</code></a> 会返回一组位码，值为1的位的位置加上'A'就是它代表的盘符</p><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">win32api</span> <span class="kn">import</span> <span class="n">GetLogicalDrives</span>
+<p><a href="https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-getlogicaldrives"><code>GetLogicalDrives</code></a> 会返回一组位码，值为1的位的位置加上'A'就是它代表的盘符</p><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">win32api</span><span class="w"> </span><span class="kn">import</span> <span class="n">GetLogicalDrives</span>
 
 <span class="c1"># for example, `0b_1100` means there are C:/ and D:/.</span>
-<span class="k">def</span> <span class="nf">logical_drives</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">logical_drives</span><span class="p">():</span>
    <span class="n">bit_mask</span> <span class="o">=</span> <span class="n">GetLogicalDrives</span><span class="p">()</span>
    <span class="k">for</span> <span class="n">offset</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">26</span><span class="p">):</span>
       <span class="n">alphabet</span> <span class="o">=</span> <span class="nb">chr</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">offset</span><span class="p">)</span>
@@ -167,7 +167,7 @@
 <pre><code>mountvol /L
 </code></pre>
 <h4>使用 <a href="https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-findfirstvolumew"><code>FindFirstVolumeW</code></a> and <a href="https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-findnextvolumew"><code>FindNextVolumeW</code></a></h4>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">winsys._kernel32</span> <span class="kn">import</span> <span class="n">FindFirstVolume</span><span class="p">,</span> <span class="n">FindNextVolume</span>
+<div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">winsys._kernel32</span><span class="w"> </span><span class="kn">import</span> <span class="n">FindFirstVolume</span><span class="p">,</span> <span class="n">FindNextVolume</span>
 <span class="n">handle</span><span class="p">,</span> <span class="n">first</span> <span class="o">=</span> <span class="n">FindFirstVolume</span><span class="p">()</span>
 <span class="n">volumes</span> <span class="o">=</span> <span class="p">[</span><span class="n">first</span><span class="p">]</span>
 
@@ -222,9 +222,9 @@
 <pre><code>wmic diskdrive get index,model
 </code></pre>
 <h4>使用 wmi</h4>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">win32com.client</span> <span class="kn">import</span> <span class="n">GetObject</span>
+<div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">win32com.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">GetObject</span>
 
-<span class="k">def</span> <span class="nf">get_diskdrive_info</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_diskdrive_info</span><span class="p">():</span>
     <span class="n">wmi</span> <span class="o">=</span> <span class="n">GetObject</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;winmgmts:</span><span class="se">\\</span><span class="s2">.\root\cimv2&quot;</span><span class="p">)</span>
     <span class="n">disks</span> <span class="o">=</span> <span class="n">wmi</span><span class="o">.</span><span class="n">ExecQuery</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM Win32_DiskDrive&quot;</span><span class="p">)</span>
 
@@ -237,7 +237,7 @@
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">index</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 <p>Anyway, the most accurate way is to call <code>smartctl ... X:</code></p><h2>其他可能要用到的系统调用</h2>
-<p><a href="https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-querydosdevicew"><code>QueryDosDeviceW</code></a> 可以用来从盘符获取卷编号（也可以用来列出卷，如果传入None），即 \Device\HarddiskVolume<em>X</em> 中的 X 。</p><p><a href="https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-getdiskfreespaceexa"><code>GetDiskFreeSpaceExA</code></a> 可以拿到对调用用户可用的空间（详见配额），总硬盘大小和总可用空间。</p><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">win32file</span> <span class="kn">import</span> <span class="n">GetDiskFreeSpaceEx</span>
+<p><a href="https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-querydosdevicew"><code>QueryDosDeviceW</code></a> 可以用来从盘符获取卷编号（也可以用来列出卷，如果传入None），即 \Device\HarddiskVolume<em>X</em> 中的 X 。</p><p><a href="https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-getdiskfreespaceexa"><code>GetDiskFreeSpaceExA</code></a> 可以拿到对调用用户可用的空间（详见配额），总硬盘大小和总可用空间。</p><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">win32file</span><span class="w"> </span><span class="kn">import</span> <span class="n">GetDiskFreeSpaceEx</span>
 <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">size</span><span class="p">:</span> <span class="n">size</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1024</span><span class="o">**</span><span class="mi">3</span><span class="p">),</span> <span class="n">GetDiskFreeSpaceEx</span><span class="p">(</span><span class="s2">&quot;C:&quot;</span><span class="p">)))</span>
 <span class="c1"># [58.516212463378906, 117.97948837280273, 58.516212463378906]</span>
 </pre></div>
