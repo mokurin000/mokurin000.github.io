@@ -1,19 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>poly000客栈</title><link>/</link><description>poly000 的碎碎念</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>/android-chrome-512x512.png</url><title>poly000客栈</title><link>/</link></image><language>chinese</language><lastBuildDate>Wed, 19 Feb 2025 21:26:14 +0806</lastBuildDate><pubDate>Wed, 19 Feb 2025 21:26:14 +0806</pubDate><item><title>在wine下运行galgame常见问题解决方案</title><link>/archives/galgame-runs-on-linux/</link><description>&lt;h2&gt;说明&lt;/h2&gt;
-&lt;p&gt;咱的wine一直跟随archlinux官方仓库最新版&lt;/p&gt;&lt;p&gt;这里内容可能很少，因为咱每次wine推gal出错并且解决了才会放到这里&lt;/p&gt;&lt;h2&gt;这里是正文&lt;/h2&gt;
-&lt;p&gt;咱在linux下推gal有时OP什么的经常出错……&lt;/p&gt;&lt;p&gt;于是准备整理这个博文，​收录各种错误信息解决方案。&lt;/p&gt;&lt;h3&gt;通用&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;MPEG splitter faild: 安装 devenum, quartz 后解决；quartz出问题的话可以执行 &lt;code&gt;winetricks --force quartz&lt;/code&gt; 重装。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;万能方法： 在崩溃的地方存档，换win7虚拟机走过那段内容后存档。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;其他OP播放崩溃：faudio（闪画面无声音），等等……（待添加）&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;打不开游戏: 一般安装DirectX相关依赖项即可解决，进不去也可以试试WINED3D=1前缀&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;启动时弹了乱码报错，或者是游戏中乱码（比如 Clover Day’s中文汉化版，rewrite），可以在wine前加启动参数LANG=en_US.UTF-8，或LANG=zh_CN.UTF-8或LANG=ja_JP.UTF-8。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href="https://appdb.winehq.org/"&gt;WineHQ-AppDB&lt;/a&gt; 通常会有一些人提供信息。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;特定游戏&lt;/h3&gt;
-&lt;h4&gt;拔作岛&lt;/h4&gt;
-&lt;p&gt;拔作岛使用编码 GB18030&lt;/p&gt;&lt;p&gt;启动时使用 &lt;code&gt;LANG=zh_CN.GB18030 wine ...&lt;/code&gt; 即可解决乱码&lt;/p&gt;&lt;h4&gt;多娜多娜&lt;/h4&gt;
-&lt;p&gt;添加启动参数 &lt;code&gt;WINED3D=1&lt;/code&gt; 即可运行。&lt;/p&gt;&lt;p&gt;&lt;a href="https://blog.sg4yk.com/gal_on_linux.html"&gt;参考链接&lt;/a&gt;（需要事先进行locale-gen）&lt;/p&gt;</description><author>1348292515@qq.com (Poly000)</author><guid isPermaLink="true">/archives/galgame-runs-on-linux/</guid><pubDate>Thu, 04 Feb 2021 00:04:00 +0806</pubDate></item><item><title>WinDirStat——Windows下存储分析的优秀方案</title><link>/archives/windirstat-recommend/</link><description>&lt;h2&gt;引言&lt;/h2&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>poly000客栈</title><link>/</link><description>poly000 的碎碎念</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>/android-chrome-512x512.png</url><title>poly000客栈</title><link>/</link></image><language>chinese</language><lastBuildDate>Wed, 19 Feb 2025 22:13:04 +0806</lastBuildDate><pubDate>Wed, 19 Feb 2025 22:13:04 +0806</pubDate><item><title>WinDirStat——Windows下存储分析的优秀方案</title><link>/archives/windirstat-recommend/</link><description>&lt;h2&gt;引言&lt;/h2&gt;
 &lt;p&gt;一个月前&lt;span title="被学校领导命令"&gt;清理&lt;/span&gt;C盘，&lt;/p&gt;&lt;p&gt;然后在 &lt;a href="https://alternativeto.net"&gt;alternativeto.net&lt;/a&gt; 找到了 &lt;a href="https://alternativeto.net/software/filelight/?platform=windows"&gt;FileLight 在 Windows 上的替代品&lt;/a&gt;，&lt;/p&gt;&lt;p&gt;最后选择了 &lt;a href="https://windirstat.net/index.html"&gt;WinDirStat&lt;/a&gt; 。&lt;/p&gt;&lt;p&gt;相较于 TreeSize 抽象的饼图和&lt;span title="让人眼花"&gt;目害&lt;/span&gt;的大小图，&lt;/p&gt;&lt;p&gt;WinDirStat 使用 &lt;strong&gt;颜色&lt;/strong&gt; （对应文件类型）， &lt;strong&gt;矩形大小&lt;/strong&gt; （对应文件大小），直观地显示了空间使用分布。&lt;/p&gt;&lt;p&gt;附一张截图：&lt;/p&gt;&lt;figure&gt;&lt;img loading="lazy" data-width="500" data-height="400" src="https://windirstat.net/images/windirstat.jpg" alt="screencut" /&gt;&lt;figcaption&gt;screencut&lt;/figcaption&gt;&lt;/figure&gt;</description><author>1348292515@qq.com (Poly000)</author><guid isPermaLink="true">/archives/windirstat-recommend/</guid><pubDate>Wed, 23 Jun 2021 19:30:00 +0806</pubDate></item><item><title>OpenGL Flipping——记一次游戏直播闪屏修复过程</title><link>/archives/opengl-flipping/</link><description>&lt;h2&gt;引言&lt;/h2&gt;
 &lt;p&gt;此前我在 bilibili 上传 osu! 等游戏视频 发现有闪屏现象。&lt;/p&gt;&lt;p&gt;很久以后我到 OBS 社区 寻求帮助，终于得到了解决方案。&lt;/p&gt;&lt;h2&gt;Flipping&lt;/h2&gt;
 &lt;p&gt;NVIDIA Flipping 是种可以 &lt;strong&gt;略微&lt;/strong&gt; 提高帧率的技术，&lt;/p&gt;&lt;p&gt;对于内容创作者（录制视频，全屏模式的话）应当禁用，不然会影响录制（详见官方文档）&lt;/p&gt;&lt;p&gt;禁用之后，垂直同步会无法使用，而且会有 &lt;strong&gt;略微&lt;/strong&gt; 性能下降&lt;/p&gt;</description><author>1348292515@qq.com (Poly000)</author><guid isPermaLink="true">/archives/opengl-flipping/</guid><pubDate>Tue, 20 Jul 2021 01:03:00 +0806</pubDate></item><item><title>Osdlyrics 网易来源启用翻译</title><link>/archives/enable-osdlyrics-netease-translation/</link><description>&lt;h2&gt;引言&lt;/h2&gt;
@@ -909,4 +895,129 @@ I am also looking for employment opportunities so please get in touch if you wou
 &lt;ul&gt;
 &lt;li&gt;成本较高&lt;/li&gt;
 &lt;/ul&gt;
-</description><author>1348292515@qq.com (Poly000)</author><guid isPermaLink="true">/archives/android-make-storage-clean/</guid><pubDate>Thu, 28 Nov 2024 13:27:00 +0806</pubDate></item></channel></rss>
+</description><author>1348292515@qq.com (Poly000)</author><guid isPermaLink="true">/archives/android-make-storage-clean/</guid><pubDate>Thu, 28 Nov 2024 13:27:00 +0806</pubDate></item><item><title>基于 Xiu 和 ffmpeg 的局域网录像机平替方案</title><link>/archives/xiu-ffmpeg-based-lan-video-recorder/</link><description>&lt;h1&gt;硬件需要&lt;/h1&gt;
+&lt;h2&gt;路由器/无线光猫&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;需要可以绑定 MAC 到 LAN IP&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;摄像头&lt;/h2&gt;
+&lt;h3&gt;丐版 (本教程)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;一部可以长期供电、固定录制的手机&lt;/li&gt;
+&lt;li&gt;一台 10w-20w 功率的LED灯，提供手动补光（一体式约15~20 CNY）&lt;/li&gt;
+&lt;li&gt;一根足够稳定，不会摔坏你手机的摄像支架&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;家庭版&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;听闻只有乐橙的网络摄像机不是云存储服务的副产品,
+包括 rtsp流/ONVIF 都是公开的。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;一台乐橙网络摄像机，需支持接入你的局域网&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;企业方案&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;一台专业的，包含 RTSP 协议透明引出的“企业用”溢价的业内品牌网络摄像机&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;录像机&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;一台可以长期供电，带有停电时自动关机（你的笔记本电池，何尝不是UPS？）的电脑&lt;ul&gt;
+&lt;li&gt;最好带有可用的硬件视频编码支持。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+本教程只考虑了 intel QuickSyncVideo / NVIDIA NVENC
+可以自行调整 AMD 支持参数&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;软件需要&lt;/h1&gt;
+&lt;h2&gt;摄像手机&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://play.google.com/store/apps/details?id=com.pas.webcam"&gt;IP摄像头&lt;/a&gt;，广告软件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;笔者试过一些 &lt;code&gt;摄像头 -&amp;gt; rtsp&lt;/code&gt; 的开源实现，结论是：基本上都不能稳定工作。&lt;/p&gt;&lt;p&gt;有兴趣的话可以研究下这一部分有没有开源平替。&lt;/p&gt;&lt;h2&gt;录像机&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;运行有 Systemd-based 发行版，或 Windows（自行使用 &lt;a href="https://nssm.cc/"&gt;nssm&lt;/a&gt; 管理服务）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Xiu 配置文件&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;EDITOR&lt;/span&gt;&lt;span class="k"&gt;:-&lt;/span&gt;&lt;span class="nv"&gt;nano&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;~/xiu.toml
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;[rtmp]&lt;/span&gt;
+&lt;span class="n"&gt;enabled&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;
+&lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1935&lt;/span&gt;
+&lt;span class="n"&gt;gop&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+
+&lt;span class="k"&gt;[hls]&lt;/span&gt;
+&lt;span class="n"&gt;enabled&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;
+&lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;8080&lt;/span&gt;
+&lt;span class="n"&gt;need_record&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;
+
+&lt;span class="k"&gt;[authsecret]&lt;/span&gt;
+&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;ffmpeg 推流+时间戳脚本&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;此处以 nushell 为例，你可以把它改写成 bash 脚本等&lt;/p&gt;&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;EDITOR&lt;/span&gt;&lt;span class="k"&gt;:-&lt;/span&gt;&lt;span class="nv"&gt;nano&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;~/rtsp-to-rtmp.nu
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;QuickSync&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/nu
+
+# 填入你的 RTSP 推流地址
+let rtsp_addr = &amp;quot;rtsp://192.168.xxx.xxx:8080/h264.sdp&amp;quot;;
+
+ffmpeg -hwaccel qsv -i $rtsp_addr -framerate 30 -video_size 1920x1080 -c:v h264_qsv -global_quality 30 -f flv ( &amp;quot;rtmp://127.0.0.1/live/&amp;quot; + ( date now | format date &amp;quot;%Y-%m-%d_%H-%M-%S&amp;quot; ))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;NVENC&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/nu
+
+# 填入你的 RTSP 推流地址
+let rtsp_addr = &amp;quot;rtsp://192.168.xxx.xxx:8080/h264.sdp&amp;quot;;
+
+ffmpeg -hwaccel cuda -i $rtsp_addr -framerate 30 -video_size 1920x1080 -c:v h264_nvenc -rc:v vbr_hq -cq 30 -f flv ( &amp;quot;rtmp://127.0.0.1/live/&amp;quot; + ( date now | format date &amp;quot;%Y-%m-%d_%H_%M_%S&amp;quot; ))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Systemd 服务项&lt;/h3&gt;
+&lt;h4&gt;建立目录&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mkdir&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;~/.local/share/systemd/user
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;Xiu&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;EDITOR&lt;/span&gt;&lt;span class="k"&gt;:-&lt;/span&gt;&lt;span class="nv"&gt;nano&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;~/.local/share/systemd/user/xiu.service
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;[Unit]&lt;/span&gt;
+&lt;span class="na"&gt;Description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;Xiu Service&lt;/span&gt;
+&lt;span class="na"&gt;After&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;network-manager.service&lt;/span&gt;
+
+&lt;span class="k"&gt;[Service]&lt;/span&gt;
+&lt;span class="c1"&gt;# user 改为你的用户名&lt;/span&gt;
+&lt;span class="na"&gt;ExecStart&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/usr/bin/xiu -c /home/user/xiu.toml&lt;/span&gt;
+&lt;span class="c1"&gt;# 此目录为存储 ./live/&amp;lt;时间戳&amp;gt;/*.{ts,m3u8} 的目录&lt;/span&gt;
+&lt;span class="na"&gt;WorkingDirectory&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/mnt/Data/monitor&lt;/span&gt;
+&lt;span class="na"&gt;Restart&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;always&lt;/span&gt;
+
+&lt;span class="k"&gt;[Install]&lt;/span&gt;
+&lt;span class="na"&gt;WantedBy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;default.target&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;systemctl&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;enable&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;--user&lt;span class="w"&gt; &lt;/span&gt;--now&lt;span class="w"&gt; &lt;/span&gt;xiu.service
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;FFmpeg 转发流&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;EDITOR&lt;/span&gt;&lt;span class="k"&gt;:-&lt;/span&gt;&lt;span class="nv"&gt;nano&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;~/.local/share/systemd/user/rtmp-to-rtsp.service
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;[Unit]&lt;/span&gt;
+&lt;span class="na"&gt;Description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;RTSP Push to RTMP Service&lt;/span&gt;
+&lt;span class="na"&gt;After&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;network-manager.service&lt;/span&gt;
+
+&lt;span class="k"&gt;[Service]&lt;/span&gt;
+&lt;span class="c1"&gt;# user 改为你的用户名&lt;/span&gt;
+&lt;span class="na"&gt;ExecStart&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/home/user/rtsp_push_rtmp.nu&lt;/span&gt;
+&lt;span class="na"&gt;Restart&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;always&lt;/span&gt;
+
+&lt;span class="k"&gt;[Install]&lt;/span&gt;
+&lt;span class="na"&gt;WantedBy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;default.target&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;systemctl&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;enable&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;--user&lt;span class="w"&gt; &lt;/span&gt;--now&lt;span class="w"&gt; &lt;/span&gt;rtmp-to-rtsp.service
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;尾声&lt;/h1&gt;
+&lt;p&gt;现在 &lt;code&gt;xiu&lt;/code&gt; 就可以在你设置好的存储位置自动产出动态 &lt;code&gt;.m3u8&lt;/code&gt; 文件和（每当xiu退出时）的总 &lt;code&gt;vod_&amp;lt;...&amp;gt;.m3u8&lt;/code&gt; 。&lt;/p&gt;&lt;p&gt;使用以下命令将 H264 编码的 &lt;code&gt;*.ts&lt;/code&gt; 文件合并为 &lt;code&gt;.mp4&lt;/code&gt; 格式，以使 mpv 可以正常seek视频。&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ffmpeg&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;vod_2025-02-19_16_47_38.m3u8&lt;span class="w"&gt; &lt;/span&gt;-c&lt;span class="w"&gt; &lt;/span&gt;copy&lt;span class="w"&gt; &lt;/span&gt;output.mp4
+&lt;/pre&gt;&lt;/div&gt;
+</description><author>1348292515@qq.com (Poly000)</author><guid isPermaLink="true">/archives/xiu-ffmpeg-based-lan-video-recorder/</guid><pubDate>Wed, 19 Feb 2025 21:28:00 +0806</pubDate></item></channel></rss>
