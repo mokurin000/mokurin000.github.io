@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "/1543a0422f3b500aaad0d4951c4ab21b.json"
+            api: "/ad778198d22dd18f53fd99b185ab70d7.json"
         }
     </script>
     <script>
@@ -283,6 +283,23 @@ ffmpeg -hwaccel cuda -i $rtsp_addr -framerate 30 -video_size 1920x1080 -c:v h264
 <h1>尾声</h1>
 <p>现在 <code>xiu</code> 就可以在你设置好的存储位置自动产出动态 <code>.m3u8</code> 文件和（每当 Xiu退出/串流停止推往Xiu 时生成）的总 <code>vod_&lt;...&gt;.m3u8</code> 。</p><p>使用以下命令将 H264 编码的 <code>*.ts</code> 文件合并为 <code>.mp4</code> 格式，以使 mpv 可以正常seek视频。</p><div class="highlight"><pre><span></span>ffmpeg<span class="w"> </span>-i<span class="w"> </span>vod_2025-02-19_16_47_38.m3u8<span class="w"> </span>-c<span class="w"> </span>copy<span class="w"> </span>output.mp4
 </pre></div>
+<p>或者使用 nushell 脚本：</p>
+<pre><code># 此处 live 之前改为你的视频存储路径
+cd /mnt/Data/monitor/live
+
+for $it in (fd '^vod_.*\.m3u8$' | lines) {
+    # 提取文件名部分，这里是配合产生的 `&lt;时间戳&gt;/vod_&lt;时间戳&gt;.m3u8` 路径格式
+    let name = ($it | str replace --regex &quot;/.*&quot; &quot;&quot;);
+
+    # 合并 .m3u8 视频，不进行重编码
+    ffmpeg -i $it -codec copy ($name + &quot;.mp4&quot;)
+
+    # 清理合并成功的 .ts 视频分片
+    if ($env.LAST_EXIT_CODE == 0) {
+        rm -rf $name
+    }
+}
+</code></pre>
 </article>
     </section>
 
