@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "/a0d4850cd8261a6d6fd3ec53525f2d7e.json"
+            api: "/8bbd21eceda6f76b367743b97c162359.json"
         }
     </script>
     <script>
@@ -274,6 +274,8 @@ ffmpeg -hwaccel cuda -i $rtsp_addr -framerate 30 -video_size 1920x1080 -c:v h264
 <span class="c1"># user 改为你的用户名</span>
 <span class="na">ExecStart</span><span class="o">=</span><span class="s">/home/user/rtsp_push_rtmp.nu</span>
 <span class="na">Restart</span><span class="o">=</span><span class="s">always</span>
+<span class="c1"># 每小时分一次 vod_[...].m3u8</span>
+<span class="na">RuntimeMaxSec</span><span class="o">=</span><span class="s">3600</span>
 
 <span class="k">[Install]</span>
 <span class="na">WantedBy</span><span class="o">=</span><span class="s">default.target</span>
