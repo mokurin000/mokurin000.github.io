@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "/556dc06b357cfc83e7dd075850d6e6e5.json"
+            api: "/b666b9e2e75d117290d0ecce29369b9a.json"
         }
     </script>
     <script>
@@ -231,7 +231,15 @@ let rtsp_addr = &quot;rtsp://192.168.xxx.xxx:8080/h264.sdp&quot;;
 # 填入你的摄像头名称
 let camera_prefix = &quot;&quot;;
 
-ffmpeg -hwaccel qsv -i $rtsp_addr -framerate 30 -video_size 1920x1080 -c:v h264_qsv -global_quality 30 -f flv -ar 22050 ( &quot;rtmp://127.0.0.1/live/&quot; + $camera_prefix + ( date now | format date &quot;%Y-%m-%d_%H-%M-%S&quot; ))
+(
+  ffmpeg
+  -rtsp_transport tcp # 指定TCP协议
+  -hwaccel qsv # QuickSyncVideo 加速
+  -i $rtsp_addr -framerate 30 # 30 fps
+  -c:v h264_qsv -global_quality 30 # ICQ 30
+  -f flv -ar 22050 # 音频采样率
+  ( &quot;rtmp://127.0.0.1/live/&quot; + $camera_prefix + ( date now | format date &quot;%Y-%m-%d_%H-%M-%S&quot; ))
+)
 </code></pre>
 <h4>NVENC</h4>
 
@@ -242,7 +250,15 @@ let rtsp_addr = &quot;rtsp://192.168.xxx.xxx:8080/h264.sdp&quot;;
 # 填入你的摄像头名称
 let camera_prefix = &quot;&quot;;
 
-ffmpeg -hwaccel cuda -i $rtsp_addr -framerate 30 -video_size 1920x1080 -c:v h264_nvenc -rc:v vbr_hq -cq 30 -f flv -ar 22050 ( &quot;rtmp://127.0.0.1/live/&quot; + $camera_prefix + ( date now | format date &quot;%Y-%m-%d_%H_%M_%S&quot; ))
+(
+  ffmpeg
+  -rtsp_transport tcp # 指定TCP协议
+  -hwaccel cuda # CUDA加速
+  -i $rtsp_addr -framerate 30 # 30 fps
+  -c:v h264_nvenc -rc:v vbr_hq -cq 30 # CQR 30
+  -f flv -ar 22050 # 音频采样率
+  ( &quot;rtmp://127.0.0.1/live/&quot; + $camera_prefix + ( date now | format date &quot;%Y-%m-%d_%H_%M_%S&quot; ))
+)
 </code></pre>
 <h3>Systemd 服务项</h3>
 <h4>建立目录</h4>

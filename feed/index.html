@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>poly000客栈</title><link>/</link><description>poly000 的碎碎念</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>/android-chrome-512x512.png</url><title>poly000客栈</title><link>/</link></image><language>chinese</language><lastBuildDate>Sat, 22 Feb 2025 20:21:36 +0806</lastBuildDate><pubDate>Sat, 22 Feb 2025 20:21:36 +0806</pubDate><item><title>WinDirStat——Windows下存储分析的优秀方案</title><link>/archives/windirstat-recommend/</link><description>&lt;h2&gt;引言&lt;/h2&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>poly000客栈</title><link>/</link><description>poly000 的碎碎念</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>/android-chrome-512x512.png</url><title>poly000客栈</title><link>/</link></image><language>chinese</language><lastBuildDate>Sun, 23 Feb 2025 18:51:53 +0806</lastBuildDate><pubDate>Sun, 23 Feb 2025 18:51:53 +0806</pubDate><item><title>WinDirStat——Windows下存储分析的优秀方案</title><link>/archives/windirstat-recommend/</link><description>&lt;h2&gt;引言&lt;/h2&gt;
 &lt;p&gt;一个月前&lt;span title="被学校领导命令"&gt;清理&lt;/span&gt;C盘，&lt;/p&gt;&lt;p&gt;然后在 &lt;a href="https://alternativeto.net"&gt;alternativeto.net&lt;/a&gt; 找到了 &lt;a href="https://alternativeto.net/software/filelight/?platform=windows"&gt;FileLight 在 Windows 上的替代品&lt;/a&gt;，&lt;/p&gt;&lt;p&gt;最后选择了 &lt;a href="https://windirstat.net/index.html"&gt;WinDirStat&lt;/a&gt; 。&lt;/p&gt;&lt;p&gt;相较于 TreeSize 抽象的饼图和&lt;span title="让人眼花"&gt;目害&lt;/span&gt;的大小图，&lt;/p&gt;&lt;p&gt;WinDirStat 使用 &lt;strong&gt;颜色&lt;/strong&gt; （对应文件类型）， &lt;strong&gt;矩形大小&lt;/strong&gt; （对应文件大小），直观地显示了空间使用分布。&lt;/p&gt;&lt;p&gt;附一张截图：&lt;/p&gt;&lt;figure&gt;&lt;img loading="lazy" data-width="500" data-height="400" src="https://windirstat.net/images/windirstat.jpg" alt="screencut" /&gt;&lt;figcaption&gt;screencut&lt;/figcaption&gt;&lt;/figure&gt;</description><author>1348292515@qq.com (Poly000)</author><guid isPermaLink="true">/archives/windirstat-recommend/</guid><pubDate>Wed, 23 Jun 2021 19:30:00 +0806</pubDate></item><item><title>OpenGL Flipping——记一次游戏直播闪屏修复过程</title><link>/archives/opengl-flipping/</link><description>&lt;h2&gt;引言&lt;/h2&gt;
 &lt;p&gt;此前我在 bilibili 上传 osu! 等游戏视频 发现有闪屏现象。&lt;/p&gt;&lt;p&gt;很久以后我到 OBS 社区 寻求帮助，终于得到了解决方案。&lt;/p&gt;&lt;h2&gt;Flipping&lt;/h2&gt;
 &lt;p&gt;NVIDIA Flipping 是种可以 &lt;strong&gt;略微&lt;/strong&gt; 提高帧率的技术，&lt;/p&gt;&lt;p&gt;对于内容创作者（录制视频，全屏模式的话）应当禁用，不然会影响录制（详见官方文档）&lt;/p&gt;&lt;p&gt;禁用之后，垂直同步会无法使用，而且会有 &lt;strong&gt;略微&lt;/strong&gt; 性能下降&lt;/p&gt;</description><author>1348292515@qq.com (Poly000)</author><guid isPermaLink="true">/archives/opengl-flipping/</guid><pubDate>Tue, 20 Jul 2021 01:03:00 +0806</pubDate></item><item><title>Osdlyrics 网易来源启用翻译</title><link>/archives/enable-osdlyrics-netease-translation/</link><description>&lt;h2&gt;引言&lt;/h2&gt;
@@ -973,7 +973,15 @@ let rtsp_addr = &amp;quot;rtsp://192.168.xxx.xxx:8080/h264.sdp&amp;quot;;
 # 填入你的摄像头名称
 let camera_prefix = &amp;quot;&amp;quot;;
 
-ffmpeg -hwaccel qsv -i $rtsp_addr -framerate 30 -video_size 1920x1080 -c:v h264_qsv -global_quality 30 -f flv -ar 22050 ( &amp;quot;rtmp://127.0.0.1/live/&amp;quot; + $camera_prefix + ( date now | format date &amp;quot;%Y-%m-%d_%H-%M-%S&amp;quot; ))
+(
+  ffmpeg
+  -rtsp_transport tcp # 指定TCP协议
+  -hwaccel qsv # QuickSyncVideo 加速
+  -i $rtsp_addr -framerate 30 # 30 fps
+  -c:v h264_qsv -global_quality 30 # ICQ 30
+  -f flv -ar 22050 # 音频采样率
+  ( &amp;quot;rtmp://127.0.0.1/live/&amp;quot; + $camera_prefix + ( date now | format date &amp;quot;%Y-%m-%d_%H-%M-%S&amp;quot; ))
+)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h4&gt;NVENC&lt;/h4&gt;
 
@@ -984,7 +992,15 @@ let rtsp_addr = &amp;quot;rtsp://192.168.xxx.xxx:8080/h264.sdp&amp;quot;;
 # 填入你的摄像头名称
 let camera_prefix = &amp;quot;&amp;quot;;
 
-ffmpeg -hwaccel cuda -i $rtsp_addr -framerate 30 -video_size 1920x1080 -c:v h264_nvenc -rc:v vbr_hq -cq 30 -f flv -ar 22050 ( &amp;quot;rtmp://127.0.0.1/live/&amp;quot; + $camera_prefix + ( date now | format date &amp;quot;%Y-%m-%d_%H_%M_%S&amp;quot; ))
+(
+  ffmpeg
+  -rtsp_transport tcp # 指定TCP协议
+  -hwaccel cuda # CUDA加速
+  -i $rtsp_addr -framerate 30 # 30 fps
+  -c:v h264_nvenc -rc:v vbr_hq -cq 30 # CQR 30
+  -f flv -ar 22050 # 音频采样率
+  ( &amp;quot;rtmp://127.0.0.1/live/&amp;quot; + $camera_prefix + ( date now | format date &amp;quot;%Y-%m-%d_%H_%M_%S&amp;quot; ))
+)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3&gt;Systemd 服务项&lt;/h3&gt;
 &lt;h4&gt;建立目录&lt;/h4&gt;
