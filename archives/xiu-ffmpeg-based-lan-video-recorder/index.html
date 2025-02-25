@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "/b666b9e2e75d117290d0ecce29369b9a.json"
+            api: "/215e9e8bb65f9562c36fac4f0b807f9c.json"
         }
     </script>
     <script>
@@ -303,9 +303,7 @@ let camera_prefix = &quot;&quot;;
 <div class="highlight"><pre><span></span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--user<span class="w"> </span>--now<span class="w"> </span>rtmp-to-rtsp.service
 </pre></div>
 <h1>尾声</h1>
-<p>现在 <code>xiu</code> 就可以在你设置好的存储位置自动产出动态 <code>.m3u8</code> 文件和（每当 Xiu退出/串流停止推往Xiu 时生成）的总 <code>vod_&lt;...&gt;.m3u8</code> 。</p><p>使用以下命令将 H264 编码的 <code>*.ts</code> 文件合并为 <code>.mp4</code> 格式，以使 mpv 可以正常seek视频。</p><div class="highlight"><pre><span></span>ffmpeg<span class="w"> </span>-i<span class="w"> </span>vod_2025-02-19_16_47_38.m3u8<span class="w"> </span>-c<span class="w"> </span>copy<span class="w"> </span>output.mp4
-</pre></div>
-<p>或者使用 nushell 脚本：</p>
+<p>现在 <code>xiu</code> 就可以在你设置好的存储位置自动产出动态 <code>.m3u8</code> 文件和（每当 Xiu退出/串流停止推往Xiu 时生成）的总 <code>vod_&lt;...&gt;.m3u8</code> 。</p><p>使用以下命令将 H264 编码的 <code>*.ts</code> 文件合并为 <code>.mp4</code> 格式，以使 mpv 可以正常seek视频。</p><p>使用 nushell 脚本：</p>
 <pre><code># 此处 live 之前改为你的视频存储路径
 cd /mnt/Data/monitor/live
 
@@ -321,6 +319,16 @@ for $it in (fd '^vod_.*\.m3u8$' | lines) {
         rm -rf $name
     }
 }
+</code></pre>
+<p>播放视频时，可以直接使用NuShell脚本：</p>
+<pre><code>let prefix = &quot;&quot;;
+let output = $prefix + &quot;temp.m3u&quot;;
+
+# 此处可以自行填写年份，月份，日期，小时等
+let pattern = '^' + $prefix + '....-..-.._.._.._..\.mp4$';
+
+fd $pattern out&gt; $output
+mpv $output
 </code></pre>
 </article>
     </section>
