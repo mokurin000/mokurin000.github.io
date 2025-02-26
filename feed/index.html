@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>poly000客栈</title><link>/</link><description>poly000 的碎碎念</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>/android-chrome-512x512.png</url><title>poly000客栈</title><link>/</link></image><language>chinese</language><lastBuildDate>Wed, 26 Feb 2025 14:34:50 +0806</lastBuildDate><pubDate>Wed, 26 Feb 2025 14:34:50 +0806</pubDate><item><title>OpenGL Flipping——记一次游戏直播闪屏修复过程</title><link>/archives/opengl-flipping/</link><description>&lt;h2&gt;引言&lt;/h2&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>poly000客栈</title><link>/</link><description>poly000 的碎碎念</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>/android-chrome-512x512.png</url><title>poly000客栈</title><link>/</link></image><language>chinese</language><lastBuildDate>Wed, 26 Feb 2025 14:56:09 +0806</lastBuildDate><pubDate>Wed, 26 Feb 2025 14:56:09 +0806</pubDate><item><title>OpenGL Flipping——记一次游戏直播闪屏修复过程</title><link>/archives/opengl-flipping/</link><description>&lt;h2&gt;引言&lt;/h2&gt;
 &lt;p&gt;此前我在 bilibili 上传 osu! 等游戏视频 发现有闪屏现象。&lt;/p&gt;&lt;p&gt;很久以后我到 OBS 社区 寻求帮助，终于得到了解决方案。&lt;/p&gt;&lt;h2&gt;Flipping&lt;/h2&gt;
 &lt;p&gt;NVIDIA Flipping 是种可以 &lt;strong&gt;略微&lt;/strong&gt; 提高帧率的技术，&lt;/p&gt;&lt;p&gt;对于内容创作者（录制视频，全屏模式的话）应当禁用，不然会影响录制（详见官方文档）&lt;/p&gt;&lt;p&gt;禁用之后，垂直同步会无法使用，而且会有 &lt;strong&gt;略微&lt;/strong&gt; 性能下降&lt;/p&gt;</description><author>1348292515@qq.com (Poly000)</author><guid isPermaLink="true">/archives/opengl-flipping/</guid><pubDate>Tue, 20 Jul 2021 01:03:00 +0806</pubDate></item><item><title>Osdlyrics 网易来源启用翻译</title><link>/archives/enable-osdlyrics-netease-translation/</link><description>&lt;h2&gt;引言&lt;/h2&gt;
 &lt;p&gt;现在已经加进&lt;a href="https://github.com/osdlyrics/osdlyrics"&gt;上游&lt;/a&gt;了。&lt;/p&gt;</description><author>1348292515@qq.com (Poly000)</author><guid isPermaLink="true">/archives/enable-osdlyrics-netease-translation/</guid><pubDate>Sun, 25 Jul 2021 17:45:00 +0806</pubDate></item><item><title>一些不错的Rust Unstable特性</title><link>/archives/awesome-unstable-rust-features/</link><description>&lt;h2&gt;注意&lt;/h2&gt;
@@ -1145,7 +1145,33 @@ zcat&lt;span class="w"&gt; &lt;/span&gt;myconf.xml.gz&lt;span class="w"&gt;  &lt
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h2&gt;恢复华为公版界面&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;注意：需要先备份好 宽带帐户，宽带密码，ONT认证密码
-如果只修改界面，不直接 restore_xxx.sh ，可能可以保留下来
-作者的OTN注册方式是 Password&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;TODO&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.chinadsl.net/thread-172911-1-1.html"&gt;来源&lt;/a&gt;&lt;/p&gt;</description><author>1348292515@qq.com (Poly000)</author><guid isPermaLink="true">/archives/fuck-wuawei-hn8145xr/</guid><pubDate>Wed, 26 Feb 2025 11:30:00 +0806</pubDate></item></channel></rss>
+&lt;p&gt;参考：&lt;a href="https://www.chinadsl.net/thread-172911-1-1.html"&gt;折腾HN8145XR（恢复华为界面 等）&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;需要先备份好 宽带帐户，宽带密码，ONT认证密码&lt;/p&gt;&lt;p&gt;如果只修改界面，不直接 restore_xxx.sh ，可能可以保留下来ONT认证密码&lt;/p&gt;&lt;p&gt;作者的OTN注册方式是 Password&lt;/p&gt;&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;启动 &lt;code&gt;WW_Dollar2.exe&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;在你的电脑启动 ncat:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果没有ncat，可以 &lt;code&gt;scoop install nmap&lt;/code&gt;。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ncat&lt;span class="w"&gt; &lt;/span&gt;-l&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;9999&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&amp;gt;&lt;span class="w"&gt; &lt;/span&gt;hw_boardinfo
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ol start="3"&gt;
+&lt;li&gt;在光猫，使用 busybox nc 把 hw_boardinfo 传过来：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;此处 192.168.1.4 为电脑的局域网IP&lt;/p&gt;&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;busybox&lt;span class="w"&gt; &lt;/span&gt;nc&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;192&lt;/span&gt;.168.1.4&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;9999&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&amp;lt;&lt;span class="w"&gt; &lt;/span&gt;/mnt/jffs2/hw_boardinfo
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ol start="4"&gt;
+&lt;li&gt;备份一份 &lt;code&gt;hw_boardinfo&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;打开 &lt;code&gt;hw_boardinfo&lt;/code&gt; ，修改：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;obj.id = &amp;quot;0x0000001a&amp;quot;; obj.value = &amp;quot;COMMON&amp;quot;;
+obj.id = &amp;quot;0x0000001b&amp;quot;; obj.value = &amp;quot;COMMON&amp;quot;;
+obj.id = &amp;quot;0x00000031&amp;quot;; obj.value = &amp;quot;NOCHOOSE&amp;quot;;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ol start="6"&gt;
+&lt;li&gt;把修改后的 hw_boardinfo 传回覆盖 &lt;code&gt;/mnt/jffs2/hw_boardinfo&lt;/code&gt; 和 &lt;code&gt;/mnt/jffs2/hw_boardinfo.bak&lt;/code&gt; 。&lt;/li&gt;
+&lt;/ol&gt;
+</description><author>1348292515@qq.com (Poly000)</author><guid isPermaLink="true">/archives/fuck-wuawei-hn8145xr/</guid><pubDate>Wed, 26 Feb 2025 11:30:00 +0806</pubDate></item></channel></rss>

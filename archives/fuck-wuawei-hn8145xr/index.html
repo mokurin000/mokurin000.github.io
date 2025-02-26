@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "/38412ad50f301d51d8db39abb0a7793b.json"
+            api: "/1ab23c650094fed7eecbb9cca810b2be.json"
         }
     </script>
     <script>
@@ -219,10 +219,36 @@ zcat<span class="w"> </span>myconf.xml.gz<span class="w">  </span><span class="p
 </pre></div>
 <h2>恢复华为公版界面</h2>
 <blockquote>
-<p>注意：需要先备份好 宽带帐户，宽带密码，ONT认证密码
-如果只修改界面，不直接 restore_xxx.sh ，可能可以保留下来
-作者的OTN注册方式是 Password</p></blockquote>
-<p><strong>TODO</strong></p><p><a href="https://www.chinadsl.net/thread-172911-1-1.html">来源</a></p></article>
+<p>参考：<a href="https://www.chinadsl.net/thread-172911-1-1.html">折腾HN8145XR（恢复华为界面 等）</a></p></blockquote>
+<blockquote>
+<p>需要先备份好 宽带帐户，宽带密码，ONT认证密码</p><p>如果只修改界面，不直接 restore_xxx.sh ，可能可以保留下来ONT认证密码</p><p>作者的OTN注册方式是 Password</p></blockquote>
+<ol>
+<li>启动 <code>WW_Dollar2.exe</code></li>
+<li>在你的电脑启动 ncat:</li>
+</ol>
+<blockquote>
+<p>如果没有ncat，可以 <code>scoop install nmap</code>。</p></blockquote>
+<div class="highlight"><pre><span></span>ncat<span class="w"> </span>-l<span class="w"> </span>-p<span class="w"> </span><span class="m">9999</span><span class="w"> </span>&gt;<span class="w"> </span>hw_boardinfo
+</pre></div>
+<ol start="3">
+<li>在光猫，使用 busybox nc 把 hw_boardinfo 传过来：</li>
+</ol>
+<blockquote>
+<p>此处 192.168.1.4 为电脑的局域网IP</p></blockquote>
+<div class="highlight"><pre><span></span>busybox<span class="w"> </span>nc<span class="w"> </span><span class="m">192</span>.168.1.4<span class="w"> </span><span class="m">9999</span><span class="w"> </span>&lt;<span class="w"> </span>/mnt/jffs2/hw_boardinfo
+</pre></div>
+<ol start="4">
+<li>备份一份 <code>hw_boardinfo</code></li>
+<li>打开 <code>hw_boardinfo</code> ，修改：</li>
+</ol>
+<div class="highlight"><pre><span></span>obj.id = &quot;0x0000001a&quot;; obj.value = &quot;COMMON&quot;;
+obj.id = &quot;0x0000001b&quot;; obj.value = &quot;COMMON&quot;;
+obj.id = &quot;0x00000031&quot;; obj.value = &quot;NOCHOOSE&quot;;
+</pre></div>
+<ol start="6">
+<li>把修改后的 hw_boardinfo 传回覆盖 <code>/mnt/jffs2/hw_boardinfo</code> 和 <code>/mnt/jffs2/hw_boardinfo.bak</code> 。</li>
+</ol>
+</article>
     </section>
 
     
