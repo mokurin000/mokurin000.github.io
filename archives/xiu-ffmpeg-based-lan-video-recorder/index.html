@@ -19,7 +19,7 @@
     <script>
         var ExSearchConfig = {
             root: "",
-            api: "/2d083e13359407d3bb011b7c3fdf7b6e.json"
+            api: "/aad36f0f6d20666d3a817f918a2bb464.json"
         }
     </script>
     <script>
@@ -302,10 +302,13 @@ let camera_prefix = &quot;&quot;;
 </pre></div>
 <div class="highlight"><pre><span></span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--user<span class="w"> </span>--now<span class="w"> </span>rtmp-to-rtsp.service
 </pre></div>
-<h1>尾声</h1>
+<h3>tmpfiles.d 清理视频录像</h3>
+<p>例如，清理三天前创建的目录/文件:</p><div class="highlight"><pre><span></span>e /path/to/live 0755 用户名 用户名 cC:3d -
+</pre></div>
+<p>注意，cC分别表示文件和目录的创建时间，不添加 cC: 会导致默认考虑访问时间。</p><h1>尾声</h1>
 <p>现在 <code>xiu</code> 就可以在你设置好的存储位置自动产出动态 <code>.m3u8</code> 文件和（每当 Xiu退出/串流停止推往Xiu 时生成）的总 <code>vod_&lt;...&gt;.m3u8</code> 。</p><p>使用以下命令将 H264 编码的 <code>*.ts</code> 文件合并为 <code>.mp4</code> 格式，以使 mpv 可以正常seek视频。</p><p>使用 nushell 脚本：</p>
-<pre><code># 此处 live 之前改为你的视频存储路径
-cd /mnt/Data/monitor/live
+<pre><code># 此处改为你的视频存储路径
+cd /path/to/live
 
 for $it in (fd '^vod_.*\.m3u8$' | lines) {
     # 提取文件名部分，这里是配合产生的 `&lt;时间戳&gt;/vod_&lt;时间戳&gt;.m3u8` 路径格式
