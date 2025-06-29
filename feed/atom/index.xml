@@ -1,8 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="chinese"><id>/</id><title>poly000客栈</title><updated>2025-05-04T04:23:11.976011+08:06</updated><author><name>poly000</name><email>1348292515@qq.com</email></author><link href="/" rel="alternate"/><generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator><logo>/android-chrome-512x512.png</logo><subtitle>poly000 的碎碎念</subtitle><entry><id>/archives/opengl-flipping/</id><title>OpenGL Flipping——记一次游戏直播闪屏修复过程</title><updated>2025-05-03T20:23:11.976011+00:00</updated><author><name>Poly000</name><email>1348292515@qq.com</email><uri>https://poly000.github.io</uri></author><content>&lt;h2&gt;引言&lt;/h2&gt;
-&lt;p&gt;此前我在 bilibili 上传 osu! 等游戏视频 发现有闪屏现象。&lt;/p&gt;&lt;p&gt;很久以后我到 OBS 社区 寻求帮助，终于得到了解决方案。&lt;/p&gt;&lt;h2&gt;Flipping&lt;/h2&gt;
-&lt;p&gt;NVIDIA Flipping 是种可以 &lt;strong&gt;略微&lt;/strong&gt; 提高帧率的技术，&lt;/p&gt;&lt;p&gt;对于内容创作者（录制视频，全屏模式的话）应当禁用，不然会影响录制（详见官方文档）&lt;/p&gt;&lt;p&gt;禁用之后，垂直同步会无法使用，而且会有 &lt;strong&gt;略微&lt;/strong&gt; 性能下降&lt;/p&gt;</content><link href="/archives/opengl-flipping/"/><published>2021-07-20T01:03:00+08:06</published></entry><entry><id>/archives/enable-osdlyrics-netease-translation/</id><title>Osdlyrics 网易来源启用翻译</title><updated>2025-05-03T20:23:11.976011+00:00</updated><author><name>Poly000</name><email>1348292515@qq.com</email><uri>https://poly000.github.io</uri></author><content>&lt;h2&gt;引言&lt;/h2&gt;
-&lt;p&gt;现在已经加进&lt;a href="https://github.com/osdlyrics/osdlyrics"&gt;上游&lt;/a&gt;了。&lt;/p&gt;</content><link href="/archives/enable-osdlyrics-netease-translation/"/><published>2021-07-25T17:45:00+08:06</published></entry><entry><id>/archives/awesome-unstable-rust-features/</id><title>一些不错的Rust Unstable特性</title><updated>2025-05-03T20:23:11.976011+00:00</updated><author><name>Poly000</name><email>1348292515@qq.com</email><uri>https://poly000.github.io</uri></author><content>&lt;h2&gt;注意&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="chinese"><id>/</id><title>poly000客栈</title><updated>2025-06-29T12:29:35.134717+08:06</updated><author><name>poly000</name><email>1348292515@qq.com</email></author><link href="/" rel="alternate"/><generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator><logo>/android-chrome-512x512.png</logo><subtitle>poly000 的碎碎念</subtitle><entry><id>/archives/enable-osdlyrics-netease-translation/</id><title>Osdlyrics 网易来源启用翻译</title><updated>2025-06-29T04:29:35.135104+00:00</updated><author><name>Poly000</name><email>1348292515@qq.com</email><uri>https://poly000.github.io</uri></author><content>&lt;h2&gt;引言&lt;/h2&gt;
+&lt;p&gt;现在已经加进&lt;a href="https://github.com/osdlyrics/osdlyrics"&gt;上游&lt;/a&gt;了。&lt;/p&gt;</content><link href="/archives/enable-osdlyrics-netease-translation/"/><published>2021-07-25T17:45:00+08:06</published></entry><entry><id>/archives/awesome-unstable-rust-features/</id><title>一些不错的Rust Unstable特性</title><updated>2025-06-29T04:29:35.135075+00:00</updated><author><name>Poly000</name><email>1348292515@qq.com</email><uri>https://poly000.github.io</uri></author><content>&lt;h2&gt;注意&lt;/h2&gt;
 &lt;p&gt;本文原文发布于2021-07-26，其中部分内容可能已经过时。请以 Rust RFC 为准。
 已经稳定的特性见 &lt;a href="https://github.com/rust-lang/rust/blob/master/compiler/rustc_feature/src/accepted.rs"&gt;accepted.rs&lt;/a&gt;。&lt;/p&gt;&lt;p&gt;最后一次更新：2024-02-08&lt;/p&gt;&lt;h2&gt;关于翻译&lt;/h2&gt;
 &lt;p&gt;主要译者：&lt;a href="https://github.com/poly000"&gt;poly000&lt;/a&gt;，&lt;a href="https://t.me/Hinanawi_Tenshi_M"&gt;比那名居&lt;/a&gt;&lt;/p&gt;&lt;p&gt;术语翻译部分参考了 &lt;a href="https://rustwiki.org/wiki/translate/english-chinese-glossary-of-rust/"&gt;Rust 语言术语中英文对照表&lt;/a&gt;。&lt;/p&gt;&lt;p&gt;如果有原文错误，请联系 &lt;a href="https://twitter.com/efun_b"&gt;Ethan Brierley&lt;/a&gt; 且联系我更新翻译。&lt;/p&gt;&lt;p&gt;参与：&lt;a href="https://github.com/poly000/Maverick/"&gt;Maverick/demo_src&lt;/a&gt;&lt;/p&gt;&lt;h2&gt;Credits&lt;/h2&gt;
@@ -492,7 +490,7 @@ I am also looking for employment opportunities so please get in touch if you wou
 &lt;li id="fn-2"&gt;&lt;p&gt;&lt;a href="https://github.com/rust-lang/rust/issues/44580#issuecomment-1074040208"&gt;https://github.com/rust-lang/rust/issues/44580#issuecomment-1074040208&lt;/a&gt;&lt;a href="#fnref-2" class="footnote"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/section&gt;
-</content><link href="/archives/awesome-unstable-rust-features/"/><published>2021-07-28T15:04:00+08:06</published></entry><entry><id>/archives/c23-quickview/</id><title>C23特性简介</title><updated>2025-05-03T20:23:11.976011+00:00</updated><author><name>Poly000</name><email>1348292515@qq.com</email><uri>https://poly000.github.io</uri></author><content>&lt;h1&gt;差异&lt;/h1&gt;
+</content><link href="/archives/awesome-unstable-rust-features/"/><published>2021-07-28T15:04:00+08:06</published></entry><entry><id>/archives/c23-quickview/</id><title>C23特性简介</title><updated>2025-06-29T04:29:35.135047+00:00</updated><author><name>Poly000</name><email>1348292515@qq.com</email><uri>https://poly000.github.io</uri></author><content>&lt;h1&gt;差异&lt;/h1&gt;
 &lt;h2&gt;移除&lt;/h2&gt;
 &lt;h3&gt;数据类型&lt;/h3&gt;
 &lt;ul&gt;
@@ -687,11 +685,11 @@ I am also looking for employment opportunities so please get in touch if you wou
 &lt;li&gt;&lt;a href="https://thephd.dev/ever-closer-c23-improvements"&gt;Ever Closer - C23 Draws Nearer&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://thephd.dev/c23-is-coming-here-is-what-is-on-the-menu"&gt;C23 is Finished: Here is What is on the Menu&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</content><link href="/archives/c23-quickview/"/><published>2022-10-01T17:38:00+08:06</published></entry><entry><id>/archives/software-raid-versus-hardware-raid/</id><title>软RAID vs 硬RAID</title><updated>2025-05-03T20:23:11.976011+00:00</updated><author><name>Poly000</name><email>1348292515@qq.com</email><uri>https://poly000.github.io</uri></author><content>&lt;h2&gt;Credit&lt;/h2&gt;
+</content><link href="/archives/c23-quickview/"/><published>2022-10-01T17:38:00+08:06</published></entry><entry><id>/archives/software-raid-versus-hardware-raid/</id><title>软RAID vs 硬RAID</title><updated>2025-06-29T04:29:35.135019+00:00</updated><author><name>Poly000</name><email>1348292515@qq.com</email><uri>https://poly000.github.io</uri></author><content>&lt;h2&gt;Credit&lt;/h2&gt;
 &lt;p&gt;&lt;a href="https://utcc.utoronto.ca/~cks/space/blog/tech/HardwareVsSoftwareRAID"&gt;原文地址&lt;/a&gt;&lt;/p&gt;&lt;h2&gt;正文&lt;/h2&gt;
 &lt;p&gt;一个很容易引起争论的问题：硬RAID和软RAID哪个更快和（或）更好？&lt;/p&gt;&lt;p&gt;很多传统观点认为是硬RAID，但我很不同意。让我们问一个相反的问题：硬件RAID如何（或何时）比软件RAID快？&lt;/p&gt;&lt;p&gt;如果你要用RAID-5，硬件可以比你的CPU更快XOR。但是，在现代系统中，XOR的性能基本上受制于内存带宽，而不是CPU的能力。你可能有比CPU更好的内存带宽（显卡就是这样），但这并不便宜。&lt;/p&gt;&lt;p&gt;如果你要用RAID-1，硬件RAID可以减少写的总线带宽，从N个DMA传输到N个磁盘到一个DMA传输到自己。但是，为了使你的系统更快，你需要用写流量使PCI总线带宽饱和，这并不常见。(理论上，你也可以在RAID-5中遇到这种情况）。&lt;/p&gt;&lt;p&gt;就是这样。(欢迎补充和更正）&lt;/p&gt;&lt;p&gt;通常的反驳是，虽然硬件RAID可能不比软件RAID快，但至少把负荷从你的主CPU上转移了，所以系统的整体速度提高了。然而，要达到这种情况，你的系统需要在CPU方面很差，并且要做大量的写入IO（如果你的写入IO不是特别多，那么软RAID的额外CPU使用率也会很小）。这种情况也不太常见。&lt;/p&gt;&lt;p&gt;软件RAID有一个缺点：启动操作系统后才可以使用。这会使早期启动变得复杂。但软件RAID也有很多优点，如不依赖硬件。&lt;/p&gt;&lt;blockquote&gt;
 &lt;p&gt;The one wildcard I can see in hardware RAID's favour is virtualization, which might deliver a future of heavily used hardware running close to both CPU and IO saturation.&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;我认为虚拟化是硬RAID的优势所在，可以帮你压榨硬件，达到CPU和IO饱和。&lt;/p&gt;&lt;p&gt;DeepL翻译后润色。&lt;/p&gt;</content><link href="/archives/software-raid-versus-hardware-raid/"/><published>2023-02-24T22:08:00+08:06</published></entry><entry><id>/archives/win32-drive-letters-deviceid-harddisk-model/</id><title>Win32 盘符，设备号和硬盘型号</title><updated>2025-05-03T20:23:11.976011+00:00</updated><author><name>Poly000</name><email>1348292515@qq.com</email><uri>https://poly000.github.io</uri></author><content>&lt;h2&gt;原发布地址&lt;/h2&gt;
+&lt;p&gt;我认为虚拟化是硬RAID的优势所在，可以帮你压榨硬件，达到CPU和IO饱和。&lt;/p&gt;&lt;p&gt;DeepL翻译后润色。&lt;/p&gt;</content><link href="/archives/software-raid-versus-hardware-raid/"/><published>2023-02-24T22:08:00+08:06</published></entry><entry><id>/archives/win32-drive-letters-deviceid-harddisk-model/</id><title>Win32 盘符，设备号和硬盘型号</title><updated>2025-06-29T04:29:35.134987+00:00</updated><author><name>Poly000</name><email>1348292515@qq.com</email><uri>https://poly000.github.io</uri></author><content>&lt;h2&gt;原发布地址&lt;/h2&gt;
 &lt;p&gt;&lt;a href="https://github.com/JonMagon/KDiskMark/issues/87#issuecomment-1925784750"&gt;原Issue评论&lt;/a&gt;，讨论 KDiskMark Windows 支持需要的工作&lt;/p&gt;&lt;h2&gt;列出设备&lt;/h2&gt;
 &lt;h3&gt;逻辑设备&lt;/h3&gt;
 &lt;p&gt;&lt;a href="https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-getlogicaldrives"&gt;&lt;code&gt;GetLogicalDrives&lt;/code&gt;&lt;/a&gt; 会返回一组位码，值为1的位的位置加上'A'就是它代表的盘符&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nn"&gt;win32api&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;GetLogicalDrives&lt;/span&gt;
@@ -796,7 +794,7 @@ I am also looking for employment opportunities so please get in touch if you wou
 &lt;li id="fn-3"&gt;&lt;p&gt;&lt;a href="https://chrisdenton.github.io/omnipath/Overview.html"&gt;https://chrisdenton.github.io/omnipath/Overview.html&lt;/a&gt;&lt;a href="#fnref-3" class="footnote"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/section&gt;
-</content><link href="/archives/win32-drive-letters-deviceid-harddisk-model/"/><published>2024-02-06T18:23:00+08:06</published></entry><entry><id>/archives/windows-qemu-guest-enable-secure-boot/</id><title>QEMU运行Windows启用安全启动</title><updated>2025-05-03T20:23:11.976011+00:00</updated><author><name>Poly000</name><email>1348292515@qq.com</email><uri>https://poly000.github.io</uri></author><content>&lt;h2&gt;选项&lt;/h2&gt;
+</content><link href="/archives/win32-drive-letters-deviceid-harddisk-model/"/><published>2024-02-06T18:23:00+08:06</published></entry><entry><id>/archives/windows-qemu-guest-enable-secure-boot/</id><title>QEMU运行Windows启用安全启动</title><updated>2025-06-29T04:29:35.134956+00:00</updated><author><name>Poly000</name><email>1348292515@qq.com</email><uri>https://poly000.github.io</uri></author><content>&lt;h2&gt;选项&lt;/h2&gt;
 &lt;p&gt;从 Debian &lt;code&gt;ovmf&lt;/code&gt; 提取 &lt;code&gt;OVMF_VARS_4M.ms.fd&lt;/code&gt; &lt;sup class="footnote-ref" id="fnref-1"&gt;&lt;a href="#fn-1"&gt;1&lt;/a&gt;&lt;/sup&gt;，使用任意发行版提供的 &lt;code&gt;OVMF_CODE.secboot.4m.fd&lt;/code&gt; ：&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;qemu&lt;span class="w"&gt; &lt;/span&gt;...&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
 &lt;span class="w"&gt;  &lt;/span&gt;-drive&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;pflash,format&lt;span class="o"&gt;=&lt;/span&gt;raw,readonly&lt;span class="o"&gt;=&lt;/span&gt;on,file&lt;span class="o"&gt;=&lt;/span&gt;OVMF_CODE.fd&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
 &lt;span class="w"&gt;  &lt;/span&gt;-drive&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;pflash,format&lt;span class="o"&gt;=&lt;/span&gt;raw,file&lt;span class="o"&gt;=&lt;/span&gt;OVMF_VARS.ms.fd&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="se"&gt;\&lt;/span&gt;
@@ -808,7 +806,7 @@ I am also looking for employment opportunities so please get in touch if you wou
 &lt;li id="fn-1"&gt;&lt;p&gt;&lt;a href="https://bbs.archlinux.org/viewtopic.php?id=275691"&gt;https://bbs.archlinux.org/viewtopic.php?id=275691&lt;/a&gt;&lt;a href="#fnref-1" class="footnote"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/section&gt;
-</content><link href="/archives/windows-qemu-guest-enable-secure-boot/"/><published>2024-03-07T19:08:00+08:06</published></entry><entry><id>/archives/android-make-storage-clean/</id><title>Android 如何保持眼中存储干净</title><updated>2025-05-03T20:23:11.976011+00:00</updated><author><name>Poly000</name><email>1348292515@qq.com</email><uri>https://poly000.github.io</uri></author><content>&lt;h2&gt;&lt;a href="https://sr.rikka.app/zh-hans/"&gt;存储空间隔离&lt;/a&gt;&lt;/h2&gt;
+</content><link href="/archives/windows-qemu-guest-enable-secure-boot/"/><published>2024-03-07T19:08:00+08:06</published></entry><entry><id>/archives/android-make-storage-clean/</id><title>Android 如何保持眼中存储干净</title><updated>2025-06-29T04:29:35.134923+00:00</updated><author><name>Poly000</name><email>1348292515@qq.com</email><uri>https://poly000.github.io</uri></author><content>&lt;h2&gt;&lt;a href="https://sr.rikka.app/zh-hans/"&gt;存储空间隔离&lt;/a&gt;&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;由 RikkaApps 开发。&lt;/p&gt;&lt;p&gt;由于基于目录重定向，垃圾文件实际上是放在了独立的空间&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h3&gt;优点&lt;/h3&gt;
@@ -894,7 +892,7 @@ I am also looking for employment opportunities so please get in touch if you wou
 &lt;ul&gt;
 &lt;li&gt;成本较高&lt;/li&gt;
 &lt;/ul&gt;
-</content><link href="/archives/android-make-storage-clean/"/><published>2024-11-28T13:27:00+08:06</published></entry><entry><id>/archives/xiu-ffmpeg-based-lan-video-recorder/</id><title>基于 Xiu 和 ffmpeg 的局域网录像机平替方案</title><updated>2025-05-03T20:23:11.976011+00:00</updated><author><name>Poly000</name><email>1348292515@qq.com</email><uri>https://poly000.github.io</uri></author><content>&lt;h1&gt;硬件需要&lt;/h1&gt;
+</content><link href="/archives/android-make-storage-clean/"/><published>2024-11-28T13:27:00+08:06</published></entry><entry><id>/archives/xiu-ffmpeg-based-lan-video-recorder/</id><title>基于 Xiu 和 ffmpeg 的局域网录像机平替方案</title><updated>2025-06-29T04:29:35.134880+00:00</updated><author><name>Poly000</name><email>1348292515@qq.com</email><uri>https://poly000.github.io</uri></author><content>&lt;h1&gt;硬件需要&lt;/h1&gt;
 &lt;h2&gt;路由器/无线光猫&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;需要可以绑定 MAC 到 LAN IP&lt;/li&gt;
@@ -1074,7 +1072,7 @@ let pattern = '^' + $prefix + '....-..-.._.._.._..\.mp4$';
 fd $pattern out&amp;gt; $output
 mpv $output
 &lt;/code&gt;&lt;/pre&gt;
-</content><link href="/archives/xiu-ffmpeg-based-lan-video-recorder/"/><published>2025-02-21T13:07:00+08:06</published></entry><entry><id>/archives/fuck-wuawei-hn8145xr/</id><title>HN8145XR光猫-河南移动-资料整理</title><updated>2025-05-03T20:23:11.976011+00:00</updated><author><name>Poly000</name><email>1348292515@qq.com</email><uri>https://poly000.github.io</uri></author><content>&lt;h1&gt;前言&lt;/h1&gt;
+</content><link href="/archives/xiu-ffmpeg-based-lan-video-recorder/"/><published>2025-02-21T13:07:00+08:06</published></entry><entry><id>/archives/fuck-wuawei-hn8145xr/</id><title>HN8145XR光猫-河南移动-资料整理</title><updated>2025-06-29T04:29:35.134835+00:00</updated><author><name>Poly000</name><email>1348292515@qq.com</email><uri>https://poly000.github.io</uri></author><content>&lt;h1&gt;前言&lt;/h1&gt;
 &lt;p&gt;本人有幸用上了 河南移动 网络接入，我们井盖省的网络封闭程度一直是内地省份中数一数二。&lt;/p&gt;&lt;p&gt;相关软件会放在 &lt;a href="https://github.com/mokurin000/fuck-wuawei-modem"&gt;fuck-wuawei-modem&lt;/a&gt;&lt;/p&gt;&lt;h2&gt;还原可用的Shell环境&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;来源: &lt;a href="https://www.right.com.cn/forum/thread-8339357-1-1.html"&gt;分享HN8145XR开telnet及补全shell个人心得&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Telnet用户：root
@@ -1177,4 +1175,164 @@ obj.id = &amp;quot;0x00000031&amp;quot;; obj.value = &amp;quot;NOCHOOSE&amp;quot
 &lt;ol start="6"&gt;
 &lt;li&gt;把修改后的 hw_boardinfo 传回覆盖 &lt;code&gt;/mnt/jffs2/hw_boardinfo&lt;/code&gt; 和 &lt;code&gt;/mnt/jffs2/hw_boardinfo.bak&lt;/code&gt; 。&lt;/li&gt;
 &lt;/ol&gt;
-</content><link href="/archives/fuck-wuawei-hn8145xr/"/><published>2025-02-26T11:30:00+08:06</published></entry></feed>
+</content><link href="/archives/fuck-wuawei-hn8145xr/"/><published>2025-02-26T11:30:00+08:06</published></entry><entry><id>/archives/frigate-on-linux-laptop-with-nvidia/</id><title>Frigate + NVIDIA 显卡笔记本的部署</title><updated>2025-06-29T04:29:35.134770+00:00</updated><author><name>Poly000</name><email>1348292515@qq.com</email><uri>https://poly000.github.io</uri></author><content>&lt;h2&gt;硬件要求&lt;/h2&gt;
+&lt;p&gt;该方案相比于之前的丐版方案，需要更新的硬件才能解决种种兼容或性能问题。&lt;/p&gt;&lt;p&gt;笔者测试的环境：&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;-`
+                  .o+`
+                 `ooo/
+                `+oooo:
+               `+oooooo:                 poly@mokurin-arch 
+               -+oooooo+:                ----------------- 
+             `/:-:++oooo+:               OS: Arch Linux x86_64 
+            `/++++/+++++++:              Host: Dell G15 5520 
+           `/++++++++++++++:             Kernel: 6.15.2-arch1-1 
+          `/+++ooooooooooooo/`           Uptime: 22 hours, 2 mins 
+         ./ooosssso++osssssso+`          Packages: 2766 (pacman), 8 (flatpak) 
+        .oossssso-````/ossssss+`         Shell: zsh 5.9 
+       -osssssso.      :ssssssso.        Resolution: 1920x1080 
+      :osssssss/        osssso+++.       DE: Plasma 6.3.5 
+     /ossssssss/        +ssssooo/-       WM: kwin 
+   `/ossssso+/:-        -:/+osssso+-     Theme: Materia [GTK2/3] 
+  `+sso+:-`                 `.-/+oso:    Icons: breeze-dark [GTK2/3] 
+ `++:.                           `-/+/   Terminal: vscode 
+ .`                                 `/   CPU: 12th Gen Intel i7-12700H (20) @ 4.600GHz 
+                                         GPU: Intel Alder Lake-P GT2 [Iris Xe Graphics] 
+                                         GPU: NVIDIA GeForce RTX 3060 Mobile / Max-Q 
+                                         Memory: -- MiB / 15669MiB
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;使用的文件&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;init.sh&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mkdir&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;config&lt;span class="w"&gt; &lt;/span&gt;storage
+mkdir&lt;span class="w"&gt; &lt;/span&gt;-p&lt;span class="w"&gt; &lt;/span&gt;config/model_cache/jinaai/jina-clip-v1
+&lt;span class="c1"&gt;# btrfs 改善 sqlite 的性能&lt;/span&gt;
+chattr&lt;span class="w"&gt; &lt;/span&gt;-R&lt;span class="w"&gt; &lt;/span&gt;+C&lt;span class="w"&gt; &lt;/span&gt;config&lt;span class="w"&gt; &lt;/span&gt;storage
+cp&lt;span class="w"&gt; &lt;/span&gt;--reflink&lt;span class="o"&gt;=&lt;/span&gt;auto&lt;span class="w"&gt; &lt;/span&gt;config.yaml&lt;span class="w"&gt; &lt;/span&gt;config/
+cp&lt;span class="w"&gt; &lt;/span&gt;--reflink&lt;span class="o"&gt;=&lt;/span&gt;auto&lt;span class="w"&gt; &lt;/span&gt;yolo_nas_s.onnx&lt;span class="w"&gt; &lt;/span&gt;config/
+
+&lt;span class="c1"&gt;# optional, useless semantic search&lt;/span&gt;
+&lt;span class="c1"&gt;# cp --reflink=auto *_fp16.onnx config/model_cache/jinaai/jina-clip-v1/&lt;/span&gt;
+
+docker-compose&lt;span class="w"&gt; &lt;/span&gt;up&lt;span class="w"&gt; &lt;/span&gt;-d
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;yolo_nas_s.onnx&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;该文件由于禁止分发转换模型，建议使用 &lt;a href="https://colab.research.google.com/github/blakeblackshear/frigate/blob/dev/notebooks/YOLO_NAS_Pretrained_Export.ipynb"&gt;colab&lt;/a&gt; 运行获取。&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;docker-compose.yml&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;-tensorrt&lt;/code&gt; 只有用N卡加速才需要，AMD / Intel 卡不需要。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;services&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;frigate&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;container_name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;frigate&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;restart&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;unless-stopped&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;stop_grace_period&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;30s&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;image&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;ghcr.io/blakeblackshear/frigate:stable-tensorrt&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;volumes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;./config:/config&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;./storage:/media/frigate&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;type&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;tmpfs&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;# Optional: 1GB of memory, reduces SSD/SD Card wear&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;target&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;/tmp/cache&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;tmpfs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;size&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;1000000000&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;ports&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;8971:8971&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;8554:8554&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;# RTSP feeds&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;deploy&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;resources&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;reservations&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;devices&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;driver&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;nvidia&lt;/span&gt;
+&lt;span class="w"&gt;              &lt;/span&gt;&lt;span class="nt"&gt;device_ids&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p p-Indicator"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;0&amp;#39;&lt;/span&gt;&lt;span class="p p-Indicator"&gt;]&lt;/span&gt;
+&lt;span class="w"&gt;              &lt;/span&gt;&lt;span class="nt"&gt;capabilities&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p p-Indicator"&gt;[&lt;/span&gt;&lt;span class="nv"&gt;gpu&lt;/span&gt;&lt;span class="p p-Indicator"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;config.yaml&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;此处以乐橙为例子。大多摄像头可以在 iSpy 的文档找到需要的链接。&lt;/p&gt;&lt;p&gt;顺便一提，乐橙摄像头要求密码必须是字母加数字，否则不可能连接成功。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;frigate 在这方面的文档出奇的烂。你需要综合翻阅 &lt;a href="https://docs.frigate.video/configuration/reference/"&gt;完整参考配置&lt;/a&gt; 和小节甚至 issues 。&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;version&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;0.15-1&lt;/span&gt;
+&lt;span class="c1"&gt;# 关闭 mqtt 消息队列&lt;/span&gt;
+&lt;span class="nt"&gt;mqtt&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;enabled&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;false&lt;/span&gt;
+&lt;span class="c1"&gt;# 关闭 TLS 连接（端口不变）&lt;/span&gt;
+&lt;span class="nt"&gt;tls&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;enabled&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;false&lt;/span&gt;
+&lt;span class="c1"&gt;# 关闭网页验证&lt;/span&gt;
+&lt;span class="nt"&gt;auth&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# 如果启用，admin密码会在首次启动时输出到日志。&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# 错过了没关系，看 `docker-compose logs` 输出。&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;enabled&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;false&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
+
+&lt;span class="nt"&gt;ffmpeg&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;hwaccel_args&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;preset-nvidia-h264&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="c1"&gt;# IMOU 的摄像头rtsp流，udp传输时很容易丢包、重复包、断流。&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;input_args&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;-rtsp_transport tcp&lt;/span&gt;
+
+
+&lt;span class="c1"&gt;# 保留录制历史，1天的全部视频和30天的警告/识别片段。&lt;/span&gt;
+&lt;span class="nt"&gt;record&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;enabled&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;retain&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;days&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;1&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;mode&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;all&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;alerts&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;retain&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;days&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;30&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;mode&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;motion&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;detections&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;retain&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;days&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;30&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;mode&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;motion&lt;/span&gt;
+
+&lt;span class="nt"&gt;cameras&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;backyard&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;enabled&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;ffmpeg&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;inputs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;path&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="c1"&gt;# 此处 PASSWORD 和乐橙 app 中设置的一致。&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="c1"&gt;# CAMIP 即为你的摄像头绑定的 ip 地址。&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;rtsp://admin:PASSWORD@CAMIP:554/cam/realmonitor?channel=1&amp;amp;subtype=0&lt;/span&gt;
+&lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;roles&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;detect&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;detect&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;enabled&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;# 上下左右。请勿尝试通过 onvif 启用 autotracking ，乐橙这种情况会死机。&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;onvif&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;host&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;CAMIP&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;port&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;80&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;user&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;admin&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;password&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;PASSWORD&lt;/span&gt;
+
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;motion&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="c1"&gt;# mask掉乐橙的时间戳区域。&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;mask&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;0.015,0.041,0.268,0.041,0.267,0.086,0.014,0.089&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;threshold&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;40&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;# 减少树叶抖动导致的不必要 detect。&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;contour_area&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;10&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nt"&gt;improve_contrast&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
+&lt;span class="nt"&gt;detectors&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;onnx&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;type&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;onnx&lt;/span&gt;
+
+&lt;span class="c1"&gt;# 此处识别高宽和之前 ipynb 运行时设置一致。&lt;/span&gt;
+&lt;span class="nt"&gt;model&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;model_type&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;yolonas&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;width&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;320&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;# &amp;lt;--- should match whatever was set in notebook&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;height&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;320&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;# &amp;lt;--- should match whatever was set in notebook&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;input_pixel_format&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;bgr&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;input_tensor&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;nchw&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;path&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;/config/yolo_nas_s.onnx&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;labelmap_path&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;/labelmap/coco-80.txt&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;如何彻底关闭服务&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;docker-compose&lt;span class="w"&gt; &lt;/span&gt;down
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;如何通过命令行重启服务 (不推荐)&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;docker-compose&lt;span class="w"&gt; &lt;/span&gt;stop
+sleep&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;
+docker-compose&lt;span class="w"&gt; &lt;/span&gt;start
+&lt;/pre&gt;&lt;/div&gt;
+</content><link href="/archives/frigate-on-linux-laptop-with-nvidia/"/><published>2025-06-28T12:11:00+08:06</published></entry></feed>
