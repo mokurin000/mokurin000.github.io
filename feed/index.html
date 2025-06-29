@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>poly000客栈</title><link>/</link><description>poly000 的碎碎念</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>/android-chrome-512x512.png</url><title>poly000客栈</title><link>/</link></image><language>chinese</language><lastBuildDate>Sun, 29 Jun 2025 12:31:36 +0806</lastBuildDate><pubDate>Sun, 29 Jun 2025 12:31:36 +0806</pubDate><item><title>Osdlyrics 网易来源启用翻译</title><link>/archives/enable-osdlyrics-netease-translation/</link><description>&lt;h2&gt;引言&lt;/h2&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>poly000客栈</title><link>/</link><description>poly000 的碎碎念</description><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>/android-chrome-512x512.png</url><title>poly000客栈</title><link>/</link></image><language>chinese</language><lastBuildDate>Sun, 29 Jun 2025 12:37:11 +0806</lastBuildDate><pubDate>Sun, 29 Jun 2025 12:37:11 +0806</pubDate><item><title>Osdlyrics 网易来源启用翻译</title><link>/archives/enable-osdlyrics-netease-translation/</link><description>&lt;h2&gt;引言&lt;/h2&gt;
 &lt;p&gt;现在已经加进&lt;a href="https://github.com/osdlyrics/osdlyrics"&gt;上游&lt;/a&gt;了。&lt;/p&gt;</description><author>1348292515@qq.com (Poly000)</author><guid isPermaLink="true">/archives/enable-osdlyrics-netease-translation/</guid><pubDate>Sun, 25 Jul 2021 17:45:00 +0806</pubDate></item><item><title>一些不错的Rust Unstable特性</title><link>/archives/awesome-unstable-rust-features/</link><description>&lt;h2&gt;注意&lt;/h2&gt;
 &lt;p&gt;本文原文发布于2021-07-26，其中部分内容可能已经过时。请以 Rust RFC 为准。
 已经稳定的特性见 &lt;a href="https://github.com/rust-lang/rust/blob/master/compiler/rustc_feature/src/accepted.rs"&gt;accepted.rs&lt;/a&gt;。&lt;/p&gt;&lt;p&gt;最后一次更新：2024-02-08&lt;/p&gt;&lt;h2&gt;关于翻译&lt;/h2&gt;
@@ -1175,7 +1175,12 @@ obj.id = &amp;quot;0x00000031&amp;quot;; obj.value = &amp;quot;NOCHOOSE&amp;quot
 &lt;ol start="6"&gt;
 &lt;li&gt;把修改后的 hw_boardinfo 传回覆盖 &lt;code&gt;/mnt/jffs2/hw_boardinfo&lt;/code&gt; 和 &lt;code&gt;/mnt/jffs2/hw_boardinfo.bak&lt;/code&gt; 。&lt;/li&gt;
 &lt;/ol&gt;
-</description><author>1348292515@qq.com (Poly000)</author><guid isPermaLink="true">/archives/fuck-wuawei-hn8145xr/</guid><pubDate>Wed, 26 Feb 2025 11:30:00 +0806</pubDate></item><item><title>Frigate + NVIDIA 显卡笔记本的部署</title><link>/archives/frigate-on-linux-laptop-with-nvidia/</link><description>&lt;h2&gt;硬件要求&lt;/h2&gt;
+</description><author>1348292515@qq.com (Poly000)</author><guid isPermaLink="true">/archives/fuck-wuawei-hn8145xr/</guid><pubDate>Wed, 26 Feb 2025 11:30:00 +0806</pubDate></item><item><title>Frigate + NVIDIA 显卡笔记本的部署</title><link>/archives/frigate-on-linux-laptop-with-nvidia/</link><description>&lt;h2&gt;软件前置&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;pacman&lt;span class="w"&gt; &lt;/span&gt;-Syu&lt;span class="w"&gt; &lt;/span&gt;docker&lt;span class="w"&gt; &lt;/span&gt;docker-compose&lt;span class="w"&gt; &lt;/span&gt;nvidia-container-toolkit
+sudo&lt;span class="w"&gt; &lt;/span&gt;systemctl&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;enable&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;--now&lt;span class="w"&gt; &lt;/span&gt;docker
+&lt;span class="c1"&gt;# 确保 docker0 已经被代理或已设置好连接代理&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;硬件要求&lt;/h2&gt;
 &lt;p&gt;该方案相比于之前的丐版方案，需要更新的硬件才能解决种种兼容或性能问题。&lt;/p&gt;&lt;p&gt;笔者测试的环境：&lt;/p&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;-`
                   .o+`
                  `ooo/
