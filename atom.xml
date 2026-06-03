@@ -28,7 +28,7 @@
         <id>https://mokurin000.github.io/blog/hello-world/</id>
         
             <content type="html">&lt;p&gt;多年前，笔者用 &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;AlanDecode&#x2F;Maverick&quot;&gt;AlanDecode&#x2F;Maverick&lt;&#x2F;a&gt; 搭建了第一个&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;mokurin000-legacy.github.io&#x2F;&quot;&gt;博客&lt;&#x2F;a&gt;，奈何其中主题已经多年无人维护，故迁移至 &lt;code&gt;zola&lt;&#x2F;code&gt; + &lt;code&gt;tabi&lt;&#x2F;code&gt; 。&lt;&#x2F;p&gt;
-&lt;p&gt;其中博文多数已过时，部分为（与社区伙伴合作）的译文。这篇博客既是新的篇章，也是与过去的自己作一次告别。&lt;&#x2F;p&gt;
+&lt;p&gt;其中博文多数已过时，部分为（与社区伙伴合作的）译文。这篇博客既是新的篇章，也是与过去的自己作一次告别。&lt;&#x2F;p&gt;
 </content>
         <summary type="html">第一篇博客</summary>
         </entry><entry xml:lang="en">
@@ -50,33 +50,13 @@
 硬件要求&lt;&#x2F;h2&gt;
 &lt;p&gt;该方案相比于之前的丐版方案，需要更新的硬件才能解决种种兼容或性能问题。&lt;&#x2F;p&gt;
 &lt;p&gt;笔者测试环境：&lt;&#x2F;p&gt;
-&lt;pre class=&quot;giallo z-code&quot;&gt;&lt;code data-lang=&quot;plain&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;                   -`&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
-&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;                  .o+`&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
-&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;                 `ooo&#x2F;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
-&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;                `+oooo:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
-&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;               `+oooooo:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
-&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;               -+oooooo+:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
-&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;             `&#x2F;:-:++oooo+:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
-&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;            `&#x2F;++++&#x2F;+++++++:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
-&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;           `&#x2F;++++++++++++++:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
-&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;          `&#x2F;+++ooooooooooooo&#x2F;`&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
-&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;         .&#x2F;ooosssso++osssssso+`&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
-&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;        .oossssso-````&#x2F;ossssss+`&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
-&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;       -osssssso.      :ssssssso.&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
-&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;      :osssssss&#x2F;        osssso+++.&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
-&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;     &#x2F;ossssssss&#x2F;        +ssssooo&#x2F;-&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
-&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;   `&#x2F;ossssso+&#x2F;:-        -:&#x2F;+osssso+-&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
-&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;  `+sso+:-`                 `.-&#x2F;+oso:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
-&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt; `++:.                           `-&#x2F;+&#x2F;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
-&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt; .`                                 `&#x2F;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
-&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
-&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;OS: Arch Linux x86_64&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;pre class=&quot;giallo z-code&quot;&gt;&lt;code data-lang=&quot;plain&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;OS: Arch Linux x86_64&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
 &lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Host: Dell G15 5520&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
 &lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Kernel: 6.15.2-arch1-1&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
 &lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;CPU: Intel i7-12700H&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
 &lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;GPU: Intel Iris Xe Graphics&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
 &lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;GPU: NVIDIA GeForce RTX 3060 Mobile&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
-&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Memory: 15 GiB&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;shi-yong-de-wen-jian&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#shi-yong-de-wen-jian&quot; aria-label=&quot;Anchor link for: shi-yong-de-wen-jian&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Memory: 16 GB&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;shi-yong-de-wen-jian&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#shi-yong-de-wen-jian&quot; aria-label=&quot;Anchor link for: shi-yong-de-wen-jian&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
 使用的文件&lt;&#x2F;h2&gt;
 &lt;h3 id=&quot;init-sh&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#init-sh&quot; aria-label=&quot;Anchor link for: init-sh&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
 init.sh&lt;&#x2F;h3&gt;
@@ -231,5 +211,152 @@ config.yaml&lt;&#x2F;h3&gt;
 &lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt;sleep&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-numeric&quot;&gt; 2&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
 &lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt;docker-compose&lt;&#x2F;span&gt;&lt;span class=&quot;z-string&quot;&gt; start&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</content>
         <summary type="html">在 Arch Linux NVIDIA 笔记本上部署 Frigate、RTSP 摄像头与 ONNX 检测模型的记录。</summary>
+        </entry><entry xml:lang="en">
+        <title>HN8145XR 光猫折腾记录</title>
+        <published>2025-02-26T00:00:00+00:00</published>
+        <updated>2025-02-26T00:00:00+00:00</updated>
+        <author>
+            <name>mokurin000</name>
+        </author>
+        <link rel="alternate" href="https://mokurin000.github.io/projects/hn8145xr-henan-mobile-notes/" type="text/html"/>
+        <id>https://mokurin000.github.io/projects/hn8145xr-henan-mobile-notes/</id>
+        
+            <content type="html">&lt;p&gt;本人有幸用上了河南移动网络接入，我们井盖省的网络封闭程度一直是内地省份中数一数二。&lt;&#x2F;p&gt;
+&lt;p&gt;相关软件会放在 &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;mokurin000&#x2F;fuck-wuawei-modem&quot;&gt;fuck-wuawei-modem&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;huan-yuan-ke-yong-de-shell-huan-jing&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#huan-yuan-ke-yong-de-shell-huan-jing&quot; aria-label=&quot;Anchor link for: huan-yuan-ke-yong-de-shell-huan-jing&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+还原可用的 Shell 环境&lt;&#x2F;h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;来源：&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;www.right.com.cn&#x2F;forum&#x2F;thread-8339357-1-1.html&quot;&gt;分享HN8145XR开telnet及补全shell个人心得&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Telnet用户：root&lt;&#x2F;p&gt;
+&lt;p&gt;Telnet密码：&lt;code&gt;adminHW&lt;&#x2F;code&gt;、&lt;code&gt;Hw8@cMcc&lt;&#x2F;code&gt; 等&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;启动 &lt;code&gt;ONT_telnet_enable.exe&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;网线连接光猫和电脑&#x2F;笔记本&lt;&#x2F;li&gt;
+&lt;li&gt;打开使能工具，选择对应有线网卡，展开设备列表&lt;&#x2F;li&gt;
+&lt;li&gt;断开光猫电源&lt;&#x2F;li&gt;
+&lt;li&gt;选择“V5使能”，点击启动&lt;&#x2F;li&gt;
+&lt;li&gt;恢复光猫电源，等待出现“Failed”字样，不用管；待到光猫 LED 灯全部熄灭，点击停止。不要退出使能工具&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;此处可以检查 Telnet 是否已经可以连接。&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;ol start=&quot;7&quot;&gt;
+&lt;li&gt;选择“升级”，版本包选择 &lt;code&gt;shell9.bin&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;点击开始，再次重启光猫电源&lt;&#x2F;li&gt;
+&lt;li&gt;等待光猫 LED 再次全部熄灭（除下行光），出现 “Failed” 后点击停止，退出使能工具。&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h2 id=&quot;ji-yu-telnet-huo-qu-chao-guan-mi-ma&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#ji-yu-telnet-huo-qu-chao-guan-mi-ma&quot; aria-label=&quot;Anchor link for: ji-yu-telnet-huo-qu-chao-guan-mi-ma&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+基于 Telnet 获取超管密码&lt;&#x2F;h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;参考：&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;www.silencetime.com&#x2F;index.php&#x2F;archives&#x2F;359&#x2F;&quot;&gt;通过telnet取得华为HN8145XR超级密码&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;pre class=&quot;giallo z-code&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt;telnet&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-numeric&quot;&gt; 192.168.1.1&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-comment&quot;&gt;# -&amp;gt; root&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-comment&quot;&gt;# -&amp;gt; (telnet密码)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt;su&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt;shell&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-support z-function z-builtin&quot;&gt;cd&lt;&#x2F;span&gt;&lt;span class=&quot;z-string&quot;&gt; &#x2F;mnt&#x2F;jffs2&#x2F;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt;cp&lt;&#x2F;span&gt;&lt;span class=&quot;z-string&quot;&gt; hw_ctree.xml myconf.xml.gz&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt;aescrypt2&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-numeric&quot;&gt; 1&lt;&#x2F;span&gt;&lt;span class=&quot;z-string&quot;&gt; myconf.xml.gz tmp&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-comment&quot;&gt; # 此处 tmp 被忽略了&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt;zcat&lt;&#x2F;span&gt;&lt;span class=&quot;z-string&quot;&gt; myconf.xml.gz&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-character z-escape&quot;&gt; \&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;  |&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt; grep&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-string&quot;&gt; &amp;#39;UserName=&amp;quot;CMCCAdmin&amp;quot;&amp;#39;&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-character z-escape&quot;&gt; \&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;  |&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt; cut&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-punctuation z-definition z-string&quot;&gt; -d &amp;quot; &amp;quot; -f&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-numeric&quot;&gt; 5&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-character z-escape&quot;&gt; \&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;  |&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt; cut&lt;&#x2F;span&gt;&lt;span class=&quot;z-string&quot;&gt; -d = -f&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-numeric&quot;&gt; 2&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;可以得到如下结果：&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo z-code&quot;&gt;&lt;code data-lang=&quot;plain&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Password=&amp;quot;$2...............$&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;使用 &lt;code&gt;WW_Dollar2.exe&lt;&#x2F;code&gt;，点击计算，可以解密 &lt;code&gt;$2&lt;&#x2F;code&gt; 密文。&lt;&#x2F;p&gt;
+&lt;p&gt;得到的密码可能需要拼接上 &lt;code&gt;CMCCAdmin&lt;&#x2F;code&gt; &#x2F; &lt;code&gt;CMCCAdmin#&lt;&#x2F;code&gt;，如果是中国移动版。&lt;&#x2F;p&gt;
+&lt;p&gt;作者这里得到了一串 sha256sum（-_-|||），还好最终是电话要到了密码。&lt;&#x2F;p&gt;
+&lt;p&gt;考虑到河南移动的做法是 &lt;code&gt;CMCCAdmin + 八位随机字符&lt;&#x2F;code&gt;，以目前时代的个人算力基本不可能爆破。&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;cong-hash-hou-de-kuan-dai-mi-ma-chao-ji-mi-ma-ji-suan-yuan-mi-ma&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#cong-hash-hou-de-kuan-dai-mi-ma-chao-ji-mi-ma-ji-suan-yuan-mi-ma&quot; aria-label=&quot;Anchor link for: cong-hash-hou-de-kuan-dai-mi-ma-chao-ji-mi-ma-ji-suan-yuan-mi-ma&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+从 Hash 后的宽带密码&#x2F;超级密码计算原密码&lt;&#x2F;h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;来源：PurePeace 的 &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_26373925&#x2F;article&#x2F;details&#x2F;112798210&quot;&gt;获取移动光猫（如HS8545M5等设备）PPPoE密码明文&lt;&#x2F;a&gt;，略有修改&lt;&#x2F;p&gt;
+&lt;p&gt;Rust 写了&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;mokurin000&#x2F;hw-hash-bruteforce&quot;&gt;一份&lt;&#x2F;a&gt;，可以用来试试看更长的密码&lt;&#x2F;p&gt;
+&lt;p&gt;另外，移动似乎倾向于设置为手机号后六位。&lt;&#x2F;p&gt;
+&lt;p&gt;更建议的方式：通过手机营业厅重置密码，获取新的 PPPoE 拨号密码。&lt;&#x2F;p&gt;
+&lt;p&gt;移动可以发送 &lt;code&gt;CZKDMM&lt;&#x2F;code&gt; 到 10086。&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;pre class=&quot;giallo z-code&quot;&gt;&lt;code data-lang=&quot;python&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword&quot;&gt;from&lt;&#x2F;span&gt;&lt;span class=&quot;z-source&quot;&gt; sys&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword&quot;&gt; import&lt;&#x2F;span&gt;&lt;span class=&quot;z-source&quot;&gt; argv&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword&quot;&gt;import&lt;&#x2F;span&gt;&lt;span class=&quot;z-source&quot;&gt; hashlib&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-storage z-type z-function z-python&quot;&gt;def&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt; sha256&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter&quot;&gt;todo&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;:&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-type z-python&quot;&gt; str&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;):&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword z-control z-flow z-python&quot;&gt;    return&lt;&#x2F;span&gt;&lt;span class=&quot;z-source&quot;&gt; hashlib&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-python&quot;&gt;sha256&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-type z-python&quot;&gt;str&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-python&quot;&gt;todo&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;).&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-python&quot;&gt;encode&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;()).&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-python&quot;&gt;hexdigest&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;()&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-storage z-type z-function z-python&quot;&gt;def&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt; md5&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter&quot;&gt;todo&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;:&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-type z-python&quot;&gt; str&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;):&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword z-control z-flow z-python&quot;&gt;    return&lt;&#x2F;span&gt;&lt;span class=&quot;z-source&quot;&gt; hashlib&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-python&quot;&gt;md5&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-type z-python&quot;&gt;str&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-python&quot;&gt;todo&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;).&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-python&quot;&gt;encode&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;()).&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-python&quot;&gt;hexdigest&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;()&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-storage z-type z-function z-python&quot;&gt;def&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt; find_target&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter&quot;&gt;secret&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;:&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-type z-python&quot;&gt; str&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;):&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-comment&quot;&gt;    # 生成六位密码&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword z-control z-flow z-python&quot;&gt;    for&lt;&#x2F;span&gt;&lt;span class=&quot;z-source&quot;&gt; value&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-control z-flow z-python&quot;&gt; in&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-function z-builtin z-python&quot;&gt; range&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-numeric&quot;&gt;1000000&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;):&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-source&quot;&gt;        value&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt; =&lt;&#x2F;span&gt;&lt;span class=&quot;z-storage z-type z-string z-python&quot;&gt; f&lt;&#x2F;span&gt;&lt;span class=&quot;z-string&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-character z-format z-placeholder z-other z-python&quot;&gt;{&lt;&#x2F;span&gt;&lt;span class=&quot;z-source&quot;&gt;value&lt;&#x2F;span&gt;&lt;span class=&quot;z-storage z-type&quot;&gt;:06&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-character z-format z-placeholder z-other z-python&quot;&gt;}&lt;&#x2F;span&gt;&lt;span class=&quot;z-string&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-source&quot;&gt;        s&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt; =&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-python&quot;&gt; sha256&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-python&quot;&gt;md5&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-python&quot;&gt;value&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;))&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword z-control z-flow z-python&quot;&gt;        if&lt;&#x2F;span&gt;&lt;span class=&quot;z-source&quot;&gt; s&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt; ==&lt;&#x2F;span&gt;&lt;span class=&quot;z-source&quot;&gt; secret&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword z-control z-flow z-python&quot;&gt;            return&lt;&#x2F;span&gt;&lt;span class=&quot;z-source&quot;&gt; value&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword z-control z-flow z-python&quot;&gt;    return&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-language z-python&quot;&gt; None&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword z-control z-flow z-python&quot;&gt;if&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-variable z-magic z-python&quot;&gt; __name__&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt; ==&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-string&quot;&gt; &amp;quot;__main__&amp;quot;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword z-control z-flow z-python&quot;&gt;    try&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-source&quot;&gt;        secret&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt; =&lt;&#x2F;span&gt;&lt;span class=&quot;z-source&quot;&gt; argv&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-python&quot;&gt;pop&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-numeric&quot;&gt;1&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword z-control z-flow z-python&quot;&gt;    except&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-type z-exception z-python&quot;&gt; IndexError&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-support z-function z-builtin z-python&quot;&gt;        print&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-string&quot;&gt;&amp;quot;Usage:&amp;quot;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-support z-function z-builtin z-python&quot;&gt;        print&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-storage z-type z-string z-python&quot;&gt;f&lt;&#x2F;span&gt;&lt;span class=&quot;z-string&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-character z-format z-placeholder z-other z-python&quot;&gt;    {&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-indexed-name z-python&quot;&gt;argv&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;[&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-numeric&quot;&gt;0&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;]&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-character z-format z-placeholder z-other z-python&quot;&gt;}&lt;&#x2F;span&gt;&lt;span class=&quot;z-string&quot;&gt; &amp;lt;sha256hashsecret&amp;gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-support z-function z-builtin z-python&quot;&gt;        exit&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-numeric&quot;&gt;1&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-source&quot;&gt;    target&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt; =&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-python&quot;&gt; find_target&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-python&quot;&gt;secret&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-support z-function z-builtin z-python&quot;&gt;    print&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-python&quot;&gt;target&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-control z-flow z-python&quot;&gt; if&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-python&quot;&gt; target&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-control z-flow z-python&quot;&gt; is not&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-language z-python&quot;&gt; None&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-control z-flow z-python&quot;&gt; else&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-string&quot;&gt; &amp;quot;&amp;quot;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;hui-fu-hua-wei-gong-ban-jie-mian&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#hui-fu-hua-wei-gong-ban-jie-mian&quot; aria-label=&quot;Anchor link for: hui-fu-hua-wei-gong-ban-jie-mian&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+恢复华为公版界面&lt;&#x2F;h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;参考：&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;www.chinadsl.net&#x2F;thread-172911-1-1.html&quot;&gt;折腾HN8145XR（恢复华为界面 等）&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;需要先备份好：&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;宽带帐号&lt;&#x2F;li&gt;
+&lt;li&gt;宽带密码&lt;&#x2F;li&gt;
+&lt;li&gt;ONT 认证密码&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;如果只修改界面，不直接执行 restore_xxx.sh，可能可以保留下来 ONT 认证密码。&lt;&#x2F;p&gt;
+&lt;p&gt;作者的 ONT 注册方式是 Password。&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;启动 &lt;code&gt;WW_Dollar2.exe&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;在你的电脑启动 ncat&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果没有 ncat，可以：&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo z-code&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt;scoop&lt;&#x2F;span&gt;&lt;span class=&quot;z-string&quot;&gt; install nmap&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;&#x2F;blockquote&gt;
+&lt;pre class=&quot;giallo z-code&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt;ncat&lt;&#x2F;span&gt;&lt;span class=&quot;z-string&quot;&gt; -l -p&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-numeric&quot;&gt; 9999&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt; &amp;gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-string&quot;&gt; hw_boardinfo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;在光猫中，使用 busybox nc 把 hw_boardinfo 传过来&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;此处 &lt;code&gt;192.168.1.4&lt;&#x2F;code&gt; 为电脑的局域网 IP&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;pre class=&quot;giallo z-code&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt;busybox&lt;&#x2F;span&gt;&lt;span class=&quot;z-string&quot;&gt; nc&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-numeric&quot;&gt; 192.168.1.4 9999&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt; &amp;lt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-string&quot;&gt; &#x2F;mnt&#x2F;jffs2&#x2F;hw_boardinfo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;ol start=&quot;4&quot;&gt;
+&lt;li&gt;备份一份 &lt;code&gt;hw_boardinfo&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;打开 &lt;code&gt;hw_boardinfo&lt;&#x2F;code&gt;，修改：&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;pre class=&quot;giallo z-code&quot;&gt;&lt;code data-lang=&quot;plain&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;obj.id = &amp;quot;0x0000001a&amp;quot;; obj.value = &amp;quot;COMMON&amp;quot;;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;obj.id = &amp;quot;0x0000001b&amp;quot;; obj.value = &amp;quot;COMMON&amp;quot;;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;obj.id = &amp;quot;0x00000031&amp;quot;; obj.value = &amp;quot;NOCHOOSE&amp;quot;;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;ol start=&quot;6&quot;&gt;
+&lt;li&gt;把修改后的 hw_boardinfo 传回，并覆盖：&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;pre class=&quot;giallo z-code&quot;&gt;&lt;code data-lang=&quot;plain&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;&#x2F;mnt&#x2F;jffs2&#x2F;hw_boardinfo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;&#x2F;mnt&#x2F;jffs2&#x2F;hw_boardinfo.bak&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;!-- ref --&gt;
+</content>
+        <summary type="html">河南移动 HN8145XR 光猫 Telnet、超管密码获取、公版界面恢复等资料整理</summary>
         </entry>
 </feed>
