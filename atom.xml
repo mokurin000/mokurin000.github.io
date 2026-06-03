@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://mokurin000.github.io/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:base_url>https:&#x2F;&#x2F;mokurin000.github.io</tabi:base_url>
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>mokurin000&#x27;s blog</tabi:current_section>
+    </tabi:metadata><title>mokurin000's blog</title>
+        <subtitle>geek blog</subtitle>
+    <link href="https://mokurin000.github.io/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://mokurin000.github.io" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator><updated>2026-06-03T00:00:00+00:00</updated><id>https://mokurin000.github.io/atom.xml</id><entry xml:lang="en">
+        <title>你好，世界</title>
+        <published>2026-06-03T00:00:00+00:00</published>
+        <updated>2026-06-03T00:00:00+00:00</updated>
+        <author>
+            <name>mokurin000</name>
+        </author>
+        <link rel="alternate" href="https://mokurin000.github.io/blog/hello-world/" type="text/html"/>
+        <id>https://mokurin000.github.io/blog/hello-world/</id>
+        
+            <content type="html">&lt;p&gt;多年前，笔者用 &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;AlanDecode&#x2F;Maverick&quot;&gt;AlanDecode&#x2F;Maverick&lt;&#x2F;a&gt; 搭建了第一个&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;mokurin000-legacy.github.io&#x2F;&quot;&gt;博客&lt;&#x2F;a&gt;，奈何其中主题已经多年无人维护，故迁移至 &lt;code&gt;zola&lt;&#x2F;code&gt; + &lt;code&gt;tabi&lt;&#x2F;code&gt; 。&lt;&#x2F;p&gt;
+&lt;p&gt;其中博文多数已过时，部分为（与社区伙伴合作）的译文。这篇博客既是新的篇章，也是与过去的自己作一次告别。&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">第一篇博客</summary>
+        </entry>
+</feed>

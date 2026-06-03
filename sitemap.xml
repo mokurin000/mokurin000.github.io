@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="https://mokurin000.github.io/sitemap_style.xsl" type="text/xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://mokurin000.github.io/</loc>
+    </url>
+    <url>
+        <loc>https://mokurin000.github.io/archive/</loc>
+    </url>
+    <url>
+        <loc>https://mokurin000.github.io/blog/</loc>
+    </url>
+    <url>
+        <loc>https://mokurin000.github.io/blog/hello-world/</loc>
+        <lastmod>2026-06-03</lastmod>
+    </url>
+    <url>
+        <loc>https://mokurin000.github.io/blog/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://mokurin000.github.io/projects/</loc>
+    </url>
+    <url>
+        <loc>https://mokurin000.github.io/projects/cool-project/</loc>
+    </url>
+    <url>
+        <loc>https://mokurin000.github.io/tags/</loc>
+    </url>
+    <url>
+        <loc>https://mokurin000.github.io/tags/meta/</loc>
+    </url>
+</urlset>
