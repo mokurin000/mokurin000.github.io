@@ -26,6 +26,10 @@
         <loc>https://mokurin000.github.io/blog/page/1/</loc>
     </url>
     <url>
+        <loc>https://mokurin000.github.io/blog/tauri-userscript-injection/</loc>
+        <lastmod>2026-06-04T17:30:00+08:00</lastmod>
+    </url>
+    <url>
         <loc>https://mokurin000.github.io/blog/win32-volume-disk/</loc>
         <lastmod>2026-06-04T11:30:00+08:00</lastmod>
     </url>
@@ -63,6 +67,12 @@
     </url>
     <url>
         <loc>https://mokurin000.github.io/tags/rust/</loc>
+    </url>
+    <url>
+        <loc>https://mokurin000.github.io/tags/tauri/</loc>
+    </url>
+    <url>
+        <loc>https://mokurin000.github.io/tags/userscript/</loc>
     </url>
     <url>
         <loc>https://mokurin000.github.io/tags/webcam/</loc>
