@@ -142,5 +142,6 @@
 &lt;li&gt;&lt;code&gt;NAN&lt;&#x2F;code&gt;, &lt;code&gt;INFINITY&lt;&#x2F;code&gt; 等常数的 &lt;code&gt;&amp;lt;math.h&amp;gt;&lt;&#x2F;code&gt; 定义废弃，现移动至 &lt;code&gt;&amp;lt;float.h&amp;gt;&lt;&#x2F;code&gt;。&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 </content>
+        <summary type="html">简短介绍 C23 的语法变化。</summary>
         </entry>
 </feed>

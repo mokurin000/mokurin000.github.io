@@ -17,7 +17,154 @@
         <subtitle>geek blog</subtitle>
     <link href="https://mokurin000.github.io/atom.xml" rel="self" type="application/atom+xml"/>
     <link href="https://mokurin000.github.io" rel="alternate" type="text/html"/>
-    <generator uri="https://www.getzola.org/">Zola</generator><updated>2026-06-04T17:30:00+08:00</updated><id>https://mokurin000.github.io/atom.xml</id><entry xml:lang="en">
+    <generator uri="https://www.getzola.org/">Zola</generator><updated>2026-06-04T18:30:00+08:00</updated><id>https://mokurin000.github.io/atom.xml</id><entry xml:lang="en">
+        <title>Windows 桌面图标移动的 COM 实现</title>
+        <published>2026-06-04T18:30:00+08:00</published>
+        <updated>2026-06-04T18:30:00+08:00</updated>
+        <author>
+            <name>mokurin000</name>
+        </author>
+        <link rel="alternate" href="https://mokurin000.github.io/projects/windows-desktop-icon-move-com/" type="text/html"/>
+        <id>https://mokurin000.github.io/projects/windows-desktop-icon-move-com/</id>
+        
+            <content type="html">&lt;p&gt;在 Windows 桌面上移动图标，看起来只是个“改坐标”的操作，但背后实际上是 Shell View + COM 交互。&lt;&#x2F;p&gt;
+&lt;p&gt;笔者基于 Rust + windows-rs，实现直接操作桌面 &lt;code&gt;IFolderView&lt;&#x2F;code&gt; 的图标管理层，用于枚举、读取信息以及移动桌面图标位置。&lt;&#x2F;p&gt;
+&lt;p&gt;该实现在不依赖 UI 自动化或 &lt;code&gt;ListView&lt;&#x2F;code&gt; 无文档接口的前提下，直接驱动 Explorer 的图标布局。&lt;&#x2F;p&gt;
+&lt;p&gt;项目地址：&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;mokurin000&#x2F;win-desktop-icon&quot;&gt;win-desktop-icon&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;zhuo-mian-tu-biao-de-lai-yuan-bu-shi-chuang-kou-er-shi-shell-view&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#zhuo-mian-tu-biao-de-lai-yuan-bu-shi-chuang-kou-er-shi-shell-view&quot; aria-label=&quot;Anchor link for: zhuo-mian-tu-biao-de-lai-yuan-bu-shi-chuang-kou-er-shi-shell-view&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+桌面图标的来源不是“窗口”，而是 Shell View&lt;&#x2F;h2&gt;
+&lt;p&gt;很多人一开始会误以为桌面图标属于某个窗口句柄（HWND），但实际上桌面图标属于 Explorer 的 Shell View 层。&lt;&#x2F;p&gt;
+&lt;p&gt;关键对象是：&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;IShellWindows&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;IShellBrowser&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;IShellView&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;IFolderView&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;IShellFolder&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;其中 &lt;code&gt;IFolderView&lt;&#x2F;code&gt; 才是“图标布局控制器”。&lt;&#x2F;p&gt;
+&lt;p&gt;获取流程大致为：&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo z-code&quot;&gt;&lt;code data-lang=&quot;rust&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-storage z-type z-rust&quot;&gt;let&lt;&#x2F;span&gt;&lt;span class=&quot;z-source&quot;&gt; shell_windows&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;:&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-type&quot;&gt; IShellWindows&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt; =&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt;    CoCreateInstance&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;&amp;amp;&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-type&quot;&gt;ShellWindows&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;,&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-type&quot;&gt; None&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;,&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-other z-caps z-rust&quot;&gt; CLSCTX_ALL&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;)&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;?&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-storage z-type z-rust&quot;&gt;let&lt;&#x2F;span&gt;&lt;span class=&quot;z-source&quot;&gt; dispatch&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt; =&lt;&#x2F;span&gt;&lt;span class=&quot;z-source&quot;&gt; shell_windows&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt;FindWindowSW&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;...&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-other z-caps z-rust&quot;&gt; SWC_DESKTOP&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt; ...&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;)&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;?&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-storage z-type z-rust&quot;&gt;let&lt;&#x2F;span&gt;&lt;span class=&quot;z-source&quot;&gt; service_provider&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;:&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-type&quot;&gt; IServiceProvider&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt; =&lt;&#x2F;span&gt;&lt;span class=&quot;z-source&quot;&gt; dispatch&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt;cast&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;()&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;?&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-storage z-type z-rust&quot;&gt;let&lt;&#x2F;span&gt;&lt;span class=&quot;z-source&quot;&gt; browser&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;:&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-type&quot;&gt; IShellBrowser&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt; =&lt;&#x2F;span&gt;&lt;span class=&quot;z-source&quot;&gt; service_provider&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt;QueryService&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;&amp;amp;&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-type&quot;&gt;SID_STopLevelBrowser&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;)&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;?&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-storage z-type z-rust&quot;&gt;let&lt;&#x2F;span&gt;&lt;span class=&quot;z-source&quot;&gt; shell_view&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;:&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-type&quot;&gt; IShellView&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt; =&lt;&#x2F;span&gt;&lt;span class=&quot;z-source&quot;&gt; browser&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt;QueryActiveShellView&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;()&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;?&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-storage z-type z-rust&quot;&gt;let&lt;&#x2F;span&gt;&lt;span class=&quot;z-source&quot;&gt; folder_view&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;:&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-type&quot;&gt; IFolderView&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt; =&lt;&#x2F;span&gt;&lt;span class=&quot;z-source&quot;&gt; shell_view&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt;cast&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;()&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;?&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-storage z-type z-rust&quot;&gt;let&lt;&#x2F;span&gt;&lt;span class=&quot;z-source&quot;&gt; shell_folder&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt; =&lt;&#x2F;span&gt;&lt;span class=&quot;z-source&quot;&gt; folder_view&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt;GetFolder&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;()&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;?&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;这里有两个关键点：&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;IFolderView&lt;&#x2F;code&gt; 负责“布局操作”&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;IShellFolder&lt;&#x2F;code&gt; 负责“名字 &#x2F; PIDL &#x2F; 元数据”&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;也就是说，一个负责位置，一个负责语义。&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;itemidlist-cai-shi-tu-biao-de-zhen-shi-shen-fen&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#itemidlist-cai-shi-tu-biao-de-zhen-shi-shen-fen&quot; aria-label=&quot;Anchor link for: itemidlist-cai-shi-tu-biao-de-zhen-shi-shen-fen&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+ITEMIDLIST 才是图标的真实身份&lt;&#x2F;h2&gt;
+&lt;p&gt;桌面图标并不是用 HWND 或 ID 标识的，而是 &lt;code&gt;ITEMIDLIST&lt;&#x2F;code&gt;（PIDL）。&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;文件&lt;&#x2F;li&gt;
+&lt;li&gt;快捷方式&lt;&#x2F;li&gt;
+&lt;li&gt;系统对象&lt;&#x2F;li&gt;
+&lt;li&gt;虚拟目录项&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;都统一抽象为 PIDL。&lt;&#x2F;p&gt;
+&lt;p&gt;枚举图标时，本质是：&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo z-code&quot;&gt;&lt;code data-lang=&quot;rust&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-storage z-type z-rust&quot;&gt;let&lt;&#x2F;span&gt;&lt;span class=&quot;z-source&quot;&gt; enumerator&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt; =&lt;&#x2F;span&gt;&lt;span class=&quot;z-source&quot;&gt; folder_view&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt;Items&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-other z-caps z-rust&quot;&gt;SVGIO_ALLVIEW&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;)&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;?&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword z-storage z-type z-rust&quot;&gt;while let&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-type&quot;&gt; Some&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-source&quot;&gt;idlist&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;)&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt; =&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt; next_item&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;&amp;amp;&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-other z-rust&quot;&gt;enumerator&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;)&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;?&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt; {&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;    ...&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-punctuation&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;这里得到的 &lt;code&gt;ITEMIDLIST&lt;&#x2F;code&gt; 是 COM 分配的内存，在 Rust 侧需要谨慎地管理生命周期。&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;yi-dong-tu-biao-selectandpositionitems&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#yi-dong-tu-biao-selectandpositionitems&quot; aria-label=&quot;Anchor link for: yi-dong-tu-biao-selectandpositionitems&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+移动图标：SelectAndPositionItems&lt;&#x2F;h2&gt;
+&lt;p&gt;真正的核心 API 是：&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo z-code&quot;&gt;&lt;code data-lang=&quot;rust&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-entity z-name z-type&quot;&gt;SelectAndPositionItems&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;调用方式类似：&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo z-code&quot;&gt;&lt;code data-lang=&quot;rust&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-variable z-language z-self z-rust&quot;&gt;self&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-source&quot;&gt;folder_view&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt;SelectAndPositionItems&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;(&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-constant z-numeric&quot;&gt;    1&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;,&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;    &amp;amp;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-other z-rust&quot;&gt;icon&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function z-call z-rust&quot;&gt;inner&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt;as_ptr&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;()&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword&quot;&gt; as&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt; *&lt;&#x2F;span&gt;&lt;span class=&quot;z-storage z-modifier z-rust&quot;&gt;const&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-other z-caps z-rust&quot;&gt; ITEMIDLIST&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;),&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-entity z-name z-type&quot;&gt;    Some&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;&amp;amp;&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-other z-caps z-rust&quot;&gt;POINT&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt; {&lt;&#x2F;span&gt;&lt;span class=&quot;z-source&quot;&gt; x&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;,&lt;&#x2F;span&gt;&lt;span class=&quot;z-source&quot;&gt; y&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt; }),&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-constant z-other z-caps z-rust&quot;&gt;    SVSI_POSITIONITEM&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-numeric&quot;&gt;0&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword&quot;&gt; as&lt;&#x2F;span&gt;&lt;span class=&quot;z-source&quot;&gt; _&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;,&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-punctuation&quot;&gt;)&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;?&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;此处语义如下：&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;第一个参数：移动的 item 数量&lt;&#x2F;li&gt;
+&lt;li&gt;第二个参数：PIDL 数组指针&lt;&#x2F;li&gt;
+&lt;li&gt;第三个参数：目标坐标&lt;&#x2F;li&gt;
+&lt;li&gt;第四个参数：行为标志（position）&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;本质就是告诉 Explorer：&lt;&#x2F;p&gt;
+&lt;p&gt;“把这个 PIDL 对应的图标移动到这个坐标”。&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;rust-ce-nei-cun-guan-li-de-guan-jian-wen-ti&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#rust-ce-nei-cun-guan-li-de-guan-jian-wen-ti&quot; aria-label=&quot;Anchor link for: rust-ce-nei-cun-guan-li-de-guan-jian-wen-ti&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Rust 侧内存管理的关键问题&lt;&#x2F;h2&gt;
+&lt;p&gt;这一块比 COM API 本身更容易出错。&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;ITEMIDLIST&lt;&#x2F;code&gt; 的来源有两种：&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;1-com-fen-pei&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#1-com-fen-pei&quot; aria-label=&quot;Anchor link for: 1-com-fen-pei&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+1. COM 分配&lt;&#x2F;h3&gt;
+&lt;p&gt;来自 &lt;code&gt;IEnumIDList&lt;&#x2F;code&gt; &#x2F; Shell API：&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;必须 &lt;code&gt;CoTaskMemFree&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;Rust 不能直接 drop&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;2-rust-nei-cun-ying-she&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#2-rust-nei-cun-ying-she&quot; aria-label=&quot;Anchor link for: 2-rust-nei-cun-ying-she&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+2. Rust 内存映射&lt;&#x2F;h3&gt;
+&lt;p&gt;来自外部 buffer：&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;不允许释放&lt;&#x2F;li&gt;
+&lt;li&gt;需要“借用标记”&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;因此实现中引入了一个关键结构：&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo z-code&quot;&gt;&lt;code data-lang=&quot;rust&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword z-storage z-type z-rust&quot;&gt;pub struct&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-type&quot;&gt; DesktopIcon&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-brackets z-angle z-rust&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-type z-lifetime&quot;&gt;desktop&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-brackets z-angle z-rust&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt; {&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-source&quot;&gt;    inner&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;:&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-type&quot;&gt; NonNull&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-brackets z-angle z-rust&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-type&quot;&gt;ITEMIDLIST&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-brackets z-angle z-rust&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;,&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-source&quot;&gt;    mut_ref&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;:&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-type&quot;&gt; Option&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-brackets z-angle z-rust&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;&amp;amp;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-type z-lifetime&quot;&gt;desktop&lt;&#x2F;span&gt;&lt;span class=&quot;z-storage z-modifier&quot;&gt; mut&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt; [&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-type z-numeric z-rust&quot;&gt;u8&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;]&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-brackets z-angle z-rust&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;,&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-punctuation&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;核心思想很简单：&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;mut_ref = None&lt;&#x2F;code&gt; → COM 管理，需要释放&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;mut_ref = Some(...)&lt;&#x2F;code&gt; → Rust 管理，不可释放&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Drop 实现也因此变得安全：&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo z-code&quot;&gt;&lt;code data-lang=&quot;rust&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword&quot;&gt;impl&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-type&quot;&gt; Drop&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword&quot;&gt; for&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-type&quot;&gt; DesktopIcon&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-brackets z-angle z-rust&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-type z-lifetime&quot;&gt;_&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-brackets z-angle z-rust&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt; {&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword&quot;&gt;    fn&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt; drop&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;&amp;amp;&lt;&#x2F;span&gt;&lt;span class=&quot;z-storage z-modifier&quot;&gt;mut&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-language z-self z-rust&quot;&gt; self&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;) {&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword&quot;&gt;        if&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-language z-self z-rust&quot;&gt; self&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-source&quot;&gt;mut_ref&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt;is_none&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;() {&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword&quot;&gt;            unsafe&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt; {&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt;                CoTaskMemFree&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-type&quot;&gt;Some&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-language z-self z-rust&quot;&gt;self&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function z-call z-rust&quot;&gt;inner&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt;as_ptr&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;()&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword&quot;&gt; as&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-other z-rust&quot;&gt; _&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;));&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-punctuation&quot;&gt;            }&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-punctuation&quot;&gt;        }&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-punctuation&quot;&gt;    }&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-punctuation&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;这个设计避免了两类经典问题：&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;COM 内存泄露&lt;&#x2F;li&gt;
+&lt;li&gt;Rust double free&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;huo-qu-tu-biao-xin-xi-ming-zi-yu-zuo-biao&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#huo-qu-tu-biao-xin-xi-ming-zi-yu-zuo-biao&quot; aria-label=&quot;Anchor link for: huo-qu-tu-biao-xin-xi-ming-zi-yu-zuo-biao&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+获取图标信息：名字与坐标&lt;&#x2F;h2&gt;
+&lt;p&gt;图标信息分为两部分：&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;zuo-biao&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#zuo-biao&quot; aria-label=&quot;Anchor link for: zuo-biao&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+坐标&lt;&#x2F;h3&gt;
+&lt;pre class=&quot;giallo z-code&quot;&gt;&lt;code data-lang=&quot;rust&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-source&quot;&gt;folder_view&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt;GetItemPosition&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-other z-rust&quot;&gt;pidl&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;直接由 Shell View 返回当前 UI 布局坐标。&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;ming-zi&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#ming-zi&quot; aria-label=&quot;Anchor link for: ming-zi&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+名字&lt;&#x2F;h3&gt;
+&lt;p&gt;通过 &lt;code&gt;IShellFolder&lt;&#x2F;code&gt;：&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo z-code&quot;&gt;&lt;code data-lang=&quot;rust&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-entity z-name z-type&quot;&gt;GetDisplayNameOf&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt; -&amp;gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-other z-caps z-rust&quot;&gt; STRRET&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt; -&amp;gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-type&quot;&gt; StrRetToStrW&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;最终再转换为 Rust String，并手动释放：&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo z-code&quot;&gt;&lt;code data-lang=&quot;rust&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-entity z-name z-function&quot;&gt;CoTaskMemFree&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-type&quot;&gt;Some&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-other z-rust&quot;&gt;name_ptr&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-numeric&quot;&gt;0&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword&quot;&gt; as&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-other z-rust&quot;&gt; _&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation&quot;&gt;));&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;这一部分本质是 Shell 统一的字符串返回机制。&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;xiao-jie&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#xiao-jie&quot; aria-label=&quot;Anchor link for: xiao-jie&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+小结&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;IFolderView&lt;&#x2F;code&gt; 控制布局&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;ITEMIDLIST&lt;&#x2F;code&gt; 作为唯一标识&lt;&#x2F;li&gt;
+&lt;li&gt;COM 语义驱动 UI 状态变化&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;顺便一提，笔者发现 &lt;code&gt;SelectAndPositionItems&lt;&#x2F;code&gt; 似乎无法批量移动多个图标，不过目前实现性能足矣。&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">基于 rust + windows-rs 移动 Windows 桌面图标</summary>
+        </entry><entry xml:lang="en">
         <title>用 Tauri 注入 UserScript</title>
         <published>2026-06-04T17:30:00+08:00</published>
         <updated>2026-06-04T17:30:00+08:00</updated>
@@ -91,6 +238,7 @@
 &lt;p&gt;这是一种将“浏览器扩展式能力”迁移到桌面应用分发体系中的实现路径。&lt;&#x2F;p&gt;
 &lt;p&gt;示例项目：&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;mokurin000&#x2F;fknc-calculator&#x2F;&quot;&gt;fknc-calculator&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
 </content>
+        <summary type="html">一篇由付费游戏价格计算器引发的思考</summary>
         </entry><entry xml:lang="en">
         <title>Win32 Volume、分区号与硬盘型号</title>
         <published>2026-06-04T11:30:00+08:00</published>
@@ -509,6 +657,7 @@
 &lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Type      : SSD&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;可通过 &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;gist.github.com&#x2F;mokurin000&#x2F;6516ee116cb24c63883e682c75c06c48&quot;&gt;gist&lt;&#x2F;a&gt; 获取完整示例代码。&lt;&#x2F;p&gt;
 </content>
+        <summary type="html">Windows 硬盘操作，不用 WMI 可以多麻烦。</summary>
         </entry><entry xml:lang="en">
         <title>C23特性简介</title>
         <published>2026-06-04T00:00:00+00:00</published>
@@ -634,6 +783,7 @@
 &lt;li&gt;&lt;code&gt;NAN&lt;&#x2F;code&gt;, &lt;code&gt;INFINITY&lt;&#x2F;code&gt; 等常数的 &lt;code&gt;&amp;lt;math.h&amp;gt;&lt;&#x2F;code&gt; 定义废弃，现移动至 &lt;code&gt;&amp;lt;float.h&amp;gt;&lt;&#x2F;code&gt;。&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 </content>
+        <summary type="html">简短介绍 C23 的语法变化。</summary>
         </entry><entry xml:lang="en">
         <title>你好，世界</title>
         <published>2026-06-03T00:00:00+00:00</published>
@@ -1568,5 +1718,6 @@ I am also looking for employment opportunities so please get in touch if you wou
 &lt;&#x2F;ol&gt;
 &lt;&#x2F;section&gt;
 </content>
+        <summary type="html">旧的 Rust 特性译文，其中部分已经 Stablized ，部分成为废案。</summary>
         </entry>
 </feed>

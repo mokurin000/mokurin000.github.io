@@ -435,5 +435,6 @@
 &lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Type      : SSD&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;可通过 &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;gist.github.com&#x2F;mokurin000&#x2F;6516ee116cb24c63883e682c75c06c48&quot;&gt;gist&lt;&#x2F;a&gt; 获取完整示例代码。&lt;&#x2F;p&gt;
 </content>
+        <summary type="html">Windows 硬盘操作，不用 WMI 可以多麻烦。</summary>
         </entry>
 </feed>

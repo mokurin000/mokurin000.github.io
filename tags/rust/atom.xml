@@ -91,6 +91,7 @@
 &lt;p&gt;这是一种将“浏览器扩展式能力”迁移到桌面应用分发体系中的实现路径。&lt;&#x2F;p&gt;
 &lt;p&gt;示例项目：&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;mokurin000&#x2F;fknc-calculator&#x2F;&quot;&gt;fknc-calculator&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
 </content>
+        <summary type="html">一篇由付费游戏价格计算器引发的思考</summary>
         </entry><entry xml:lang="en">
         <title>一些不错的 Rust Unstable 特性</title>
         <published>2021-07-28T15:04:00+00:00</published>
@@ -684,5 +685,6 @@ I am also looking for employment opportunities so please get in touch if you wou
 &lt;&#x2F;ol&gt;
 &lt;&#x2F;section&gt;
 </content>
+        <summary type="html">旧的 Rust 特性译文，其中部分已经 Stablized ，部分成为废案。</summary>
         </entry>
 </feed>
