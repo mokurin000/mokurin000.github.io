@@ -19,11 +19,18 @@
         <lastmod>2026-06-04</lastmod>
     </url>
     <url>
+        <loc>https://mokurin000.github.io/blog/fasthash/</loc>
+        <lastmod>2026-06-16T07:00:00+09:00</lastmod>
+    </url>
+    <url>
         <loc>https://mokurin000.github.io/blog/hello-world/</loc>
         <lastmod>2026-06-03</lastmod>
     </url>
     <url>
         <loc>https://mokurin000.github.io/blog/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://mokurin000.github.io/blog/page/2/</loc>
     </url>
     <url>
         <loc>https://mokurin000.github.io/blog/tauri-userscript-injection/</loc>
@@ -64,7 +71,13 @@
         <loc>https://mokurin000.github.io/tags/frigate/</loc>
     </url>
     <url>
+        <loc>https://mokurin000.github.io/tags/hashing/</loc>
+    </url>
+    <url>
         <loc>https://mokurin000.github.io/tags/modem/</loc>
+    </url>
+    <url>
+        <loc>https://mokurin000.github.io/tags/optimization/</loc>
     </url>
     <url>
         <loc>https://mokurin000.github.io/tags/python/</loc>
